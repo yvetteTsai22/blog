@@ -12,7 +12,7 @@ optimized_image: >-
 category: blog
 tags:
   - template
-author: Yvette Tsai
+author: yvetteTsai
 paginate: true
 ---
 Insert a link  <a href="#">like this</a>.
