@@ -4,8 +4,8 @@ photo: /assets/img/uploads/profile.png
 name: yvetteTsai
 display_name: Yvette Tsai
 position: Chief Editor
-bio: Just a developer.
-github_username: thiagorossener
+bio: Dance in code.
+github_username: yvetteTsai22
 facebook_username: thiagorossener
 twitter_username: thiagorossener
 instagram_username: thiagorossener
