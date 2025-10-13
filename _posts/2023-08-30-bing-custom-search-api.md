@@ -16,9 +16,9 @@ paginate: false
     
     [Bing Custom Search](https://www.customsearch.ai/application/2fb5152d-594b-40bd-95ee-c28d9caeceda/prod/endpoint)
     
-    ![Untitled](./2023-08-30-bing-custom-search-api/Untitled.png)
+    ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled.png)
     
-    ![Untitled](./2023-08-30-bing-custom-search-api/Untitled%20(1).png)
+    ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled%20(1).png)
     
     add domain to search on
     
@@ -26,22 +26,23 @@ paginate: false
     
     [](https://portal.azure.com/#@TrendMicro.onmicrosoft.com/resource/subscriptions/847a5749-fae0-42df-a6f0-d943651bcbd9/resourceGroups/Workshop_2/providers/Microsoft.Bing/accounts/test_BSP/overview)
     
-    ![Untitled](./2023-08-30-bing-custom-search-api/Untitled%20(2).png)
+    ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled%20(2).png)
     
 3. access the azure resource
     - use this endpoint, the endpoint in the sample code is not working
-        
-        [https://api.bing.microsoft.com/v7.0/custom/search?q=@{triggerBody()['text']}&customconfig=5ffcd700-1ab8-4382-8c77-32bc455916e0&mkt=en-US](https://api.bing.microsoft.com/v7.0/custom/search?q=@%7BtriggerBody()%5B%27text%27%5D%7D&customconfig=5ffcd700-1ab8-4382-8c77-32bc455916e0&mkt=en-US)
+        ```
+        https://api.bing.microsoft.com/v7.0/custom/search?q=@{triggerBody()['text']}&customconfig=5ffcd700-1ab8-4382-8c77-32bc455916e0&mkt=en-US
+        ```
         
         replace the custom config with that in **custom bing search**
         
-        ![Untitled](./2023-08-30-bing-custom-search-api/Untitled%20(3).png)
+        ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled%20(3).png)
         
     - need a header
         
         Ocp-Apim-Subscription-Key: <azure bing search key>
         
-        ![Untitled](./2023-08-30-bing-custom-search-api/Untitled%20(4).png)
+        ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled%20(4).png)
         
     
     sample usage in PVA
