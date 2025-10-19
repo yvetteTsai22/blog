@@ -28,7 +28,6 @@ email: tsaimc2@gmail.com
 # See: https://formspree.io/
 formspree_form_id: xvgwyrvw
 
-
 # Social Media Settings
 # Remove the item if you don't need it
 github_username: yvetteTsai22
@@ -37,7 +36,6 @@ github_username: yvetteTsai22
 # instagram_username: instagram_username
 linkedin_username: mingchuantsai222
 medium_username: tsaimc2
-
 
 # Posts Settings
 show_time_bar: true
