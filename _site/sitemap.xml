@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
         <url>
-            <loc>http://localhost:4000/blog/404.html</loc>
+            <loc>http://localhost:4000/404.html</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -10,7 +10,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/NLP/</loc>
+            <loc>http://localhost:4000/category/NLP/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -18,7 +18,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/about/</loc>
+            <loc>http://localhost:4000/about/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -26,7 +26,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/blog/</loc>
+            <loc>http://localhost:4000/category/blog/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -34,7 +34,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/code/</loc>
+            <loc>http://localhost:4000/category/code/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -42,7 +42,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/contact/</loc>
+            <loc>http://localhost:4000/contact/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -50,7 +50,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/css/</loc>
+            <loc>http://localhost:4000/category/css/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -58,7 +58,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/diet/</loc>
+            <loc>http://localhost:4000/category/diet/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -66,7 +66,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/feed.xml</loc>
+            <loc>http://localhost:4000/feed.xml</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -74,7 +74,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/</loc>
+            <loc>http://localhost:4000/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -82,7 +82,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/life/</loc>
+            <loc>http://localhost:4000/category/life/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -90,7 +90,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/contact/message-sent/</loc>
+            <loc>http://localhost:4000/contact/message-sent/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -98,7 +98,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/music/</loc>
+            <loc>http://localhost:4000/category/music/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -106,7 +106,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/assets/css/preview.css</loc>
+            <loc>http://localhost:4000/assets/css/preview.css</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -114,7 +114,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/search.json</loc>
+            <loc>http://localhost:4000/search.json</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -122,7 +122,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/sitemap.xml</loc>
+            <loc>http://localhost:4000/sitemap.xml</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -130,7 +130,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/staff/</loc>
+            <loc>http://localhost:4000/staff/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -138,7 +138,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/assets/css/styles.css</loc>
+            <loc>http://localhost:4000/assets/css/styles.css</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -146,7 +146,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/tags/</loc>
+            <loc>http://localhost:4000/tags/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -154,7 +154,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/tips/</loc>
+            <loc>http://localhost:4000/category/tips/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -162,7 +162,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/tool/</loc>
+            <loc>http://localhost:4000/category/tool/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -170,7 +170,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/travel/</loc>
+            <loc>http://localhost:4000/category/travel/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -178,7 +178,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/tutorial/</loc>
+            <loc>http://localhost:4000/category/tutorial/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -186,7 +186,7 @@
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/category/work/</loc>
+            <loc>http://localhost:4000/category/work/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -195,28 +195,28 @@
     
     
         <url>
-            <loc>http://localhost:4000/blog/bing-custom-search-api/</loc>
+            <loc>http://localhost:4000/bing-custom-search-api/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
             <lastmod>2023-08-30</lastmod>
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/test/</loc>
+            <loc>http://localhost:4000/test/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
             <lastmod>2022-04-15</lastmod>
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/test/2/</loc>
+            <loc>http://localhost:4000/test/2/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
             <lastmod>2022-04-15</lastmod>
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/test/view-all/</loc>
+            <loc>http://localhost:4000/test/view-all/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
             <lastmod>2022-04-15</lastmod>
@@ -224,13 +224,13 @@
     
     
         <url>
-            <loc>http://localhost:4000/blog/authors/thiagorossener/</loc>
+            <loc>http://localhost:4000/authors/thiagorossener/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.5</priority>
         </url>
     
         <url>
-            <loc>http://localhost:4000/blog/authors/yvetteTsai/</loc>
+            <loc>http://localhost:4000/authors/yvetteTsai/</loc>
             <changefreq>monthly</changefreq>
             <priority>0.5</priority>
         </url>
