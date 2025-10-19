@@ -50,9 +50,8 @@
         <meta property="twitter:image" content="{{ image | prepend: site.url }}">
     {% endif %}
     
-    {% if site.twitter_username %}
-        <meta name="twitter:site" content="@{{ site.twitter_username }}">
-    {% endif %}
+    <!-- Styles -->
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | prepend: site.baseurl }}">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="{{ url }}">
@@ -100,4 +99,10 @@
     <script>
         document.querySelector('html').classList.remove('no-js');
     </script>
+
+    <!-- JavaScript -->
+    <script type="text/javascript" src="{{ '/assets/js/scripts.min.js' | prepend: site.baseurl }}"></script>
+    {% if site.google_analytics %}
+        {% include stats.html %}
+    {% endif %}
 </head>
