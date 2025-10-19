@@ -1,12 +1,16 @@
 # Site Settings
-name: YY coding
-title: Yvette
-description: A tech blog mainly on Python, NLP and other fun stuff. 
+name: YY AI
+title: YY AI | AI with Yvette Tsai
+description: About AI, ML, LLMs and more by Yvette Tsai.
 tags:
-  - Python
-  - NLP
-  - AI
-  - ML
+  - blog
+  - template
+  - jekyll
+  - theme
+  - netlify
+  - prompt engineering
+  - vector databases
+  - input processing
 show_hero: true
 menu:
   - title: Home
@@ -17,22 +21,22 @@ menu:
     url: /contact
   - title: Feed
     url: /feed.xml
-email: yvette.tsai22@gmail.com
+email: tsaimc2@gmail.com
 # See: https://disqus.com/
-disqus_username: disqus_username
+# disqus_username: disqus_username
 # Contact Form Setting
 # See: https://formspree.io/
-formspree_form_id: formspree_form_id
+formspree_form_id: xvgwyrvw
 
 
 # Social Media Settings
 # Remove the item if you don't need it
-github_username: github_username
-facebook_username: facebook_username
-twitter_username: twitter_username
-instagram_username: instagram_username
-linkedin_username: linkedin_username
-medium_username: medium_username
+github_username: yvetteTsai22
+# facebook_username: facebook_username
+# twitter_username: twitter_username
+# instagram_username: instagram_username
+linkedin_username: mingchuantsai222
+medium_username: tsaimc2
 
 
 # Posts Settings
@@ -43,9 +47,9 @@ two_columns_layout: true
 
 
 # Advanced Settings
-baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "https://yvettetsai22.github.io" # the base hostname & protocol for your site
-google_analytics: "UA-234689348-1"
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "" # the base hostname & protocol for your site
+google_analytics: "G-62P9NBRBB1"
 language: "en"
 categories_folder: category
 sent_message_url: "/contact/message-sent/"
@@ -59,7 +63,7 @@ collections:
   authors:
     output: true
 paginate_path: "/page/:num/"
-show_get_theme_btn: true
+show_get_theme_btn: false
 use_logo: false
 
 # Content paginator
@@ -99,7 +103,9 @@ exclude: [
   'Gemfile',
   'Gemfile.lock',
   'gulpfile.js',
-  'README.md'
+  'README.md',
+  'vendor',
+  '.bundle'
 ]
 
 # Theme
