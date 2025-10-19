@@ -1,17 +1,23 @@
 ---
 layout: page
 title: About
-description: Some description.
+description: Building smarter systems with AI and sharing what I learn along the way — from LLMs and chatbots to ideas shaping the future of work.
 permalink: /about/
 ---
 
-<img class="img-rounded" src="/assets/img/uploads/profile.png" alt="Thiago Rossener" width="200">
+<img class="img-rounded" src="/assets/img/uploads/profile.JPG" alt="Yvette Tsai" width="200">
 
 # About
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+👋 Hey, I’m YY — an explorer at heart, turning wild ideas into intelligent systems.
+
+✨ Over the past few years, I’ve wandered through the world of AI —
+building chatbots that talk, automating boring stuff,
+and playing with language models, image generators,
+and all the magical tools shaping the next tech wave 🌊.
+
+🧠 This blog is where I think out loud, share experiments,
+and connect the dots between curiosity, creativity, and code 💭💻.
+
+🚀 Welcome to my little corner of the internet —
+where ideas meet intelligence.
