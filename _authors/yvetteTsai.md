@@ -1,6 +1,6 @@
 ---
 layout: author
-photo: /assets/img/uploads/profile.JPG
+photo: ../assets/img/uploads/profile.JPG
 name: yvetteTsai
 display_name: Yvette Tsai
 position: Chief Editor

@@ -16,9 +16,9 @@ paginate: false
     
     [Bing Custom Search](https://www.customsearch.ai/application/2fb5152d-594b-40bd-95ee-c28d9caeceda/prod/endpoint)
     
-    ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled.png)
+    ![Untitled](../assets/img/2023-08-30-bing-custom-search-api/Untitled.png)
     
-    ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled%20(1).png)
+    ![Untitled](../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(1).png)
     
     add domain to search on
     
@@ -26,7 +26,7 @@ paginate: false
     
     [](https://portal.azure.com/#@TrendMicro.onmicrosoft.com/resource/subscriptions/847a5749-fae0-42df-a6f0-d943651bcbd9/resourceGroups/Workshop_2/providers/Microsoft.Bing/accounts/test_BSP/overview)
     
-    ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled%20(2).png)
+    ![Untitled](../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(2).png)
     
 3. access the azure resource
     - use this endpoint, the endpoint in the sample code is not working
@@ -36,13 +36,13 @@ paginate: false
         
         replace the custom config with that in **custom bing search**
         
-        ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled%20(3).png)
+        ![Untitled](../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(3).png)
         
     - need a header
         
         Ocp-Apim-Subscription-Key: <azure bing search key>
         
-        ![Untitled](/assets/img/2023-08-30-bing-custom-search-api/Untitled%20(4).png)
+        ![Untitled](../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(4).png)
         
     
     sample usage in PVA
