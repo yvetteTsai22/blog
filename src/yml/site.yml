@@ -1,13 +1,15 @@
-name: Jekflix
-title: Jekflix | A blog theme for Jekyll
-description: Jekflix is a template for Jekyll inspired by Netflix and made by
-  Thiago Rossener.
+name: YY AI
+title: YY AI | AI with Yvette Tsai
+description: About AI, ML, LLMs and more by Yvette Tsai.
 tags:
   - blog
   - template
   - jekyll
   - theme
   - netlify
+  - prompt engineering
+  - vector databases
+  - input processing
 show_hero: true
 menu:
   - title: Home
@@ -18,9 +20,9 @@ menu:
     url: /contact
   - title: Feed
     url: /feed.xml
-email: youremail@test.com
+email: tsaimc2@gmail.com
 # See: https://disqus.com/
-disqus_username: disqus_username
+# disqus_username: disqus_username
 # Contact Form Setting
 # See: https://formspree.io/
-formspree_form_id: formspree_form_id
+formspree_form_id: xvgwyrvw
