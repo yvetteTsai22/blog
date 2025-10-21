@@ -5,7 +5,7 @@ description: Building smarter systems with AI and sharing what I learn along the
 permalink: /about/
 ---
 
-<img class="img-rounded" src="../assets/img/uploads/profile.JPG" alt="Yvette Tsai" width="200">
+<img class="img-rounded" src="{{ '/assets/img/uploads/profile.JPG' | prepend: site.baseurl }}" alt="Yvette Tsai" width="200">
 
 # About
 
