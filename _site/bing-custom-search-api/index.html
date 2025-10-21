@@ -17,16 +17,16 @@
     
     
 
-    <title>Bing Custom Search API | YY AI</title>
-    <meta name="description" content="About AI, ML, LLMs and more by Yvette Tsai.">
+    <title>Getting Started with Bing Custom Search API | YY AI</title>
+    <meta name="description" content="Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything int...">
     
         <meta name="keywords" content="blog">
     
 
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Bing Custom Search API | YY AI">
-    <meta name="twitter:description" content="About AI, ML, LLMs and more by Yvette Tsai.">
+    <meta name="twitter:title" content="Getting Started with Bing Custom Search API | YY AI">
+    <meta name="twitter:description" content="Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything int...">
 
     
         <meta property="twitter:image" content="http://localhost:4000/blog/assets/img/blog-image.png">
@@ -37,9 +37,9 @@
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="http://localhost:4000/blog/bing-custom-search-api/">
-    <meta property="og:title" content="Bing Custom Search API | YY AI">
+    <meta property="og:title" content="Getting Started with Bing Custom Search API | YY AI">
     <meta property="og:image" content="http://localhost:4000/blog/assets/img/blog-image.png">
-    <meta property="og:description" content="About AI, ML, LLMs and more by Yvette Tsai.">
+    <meta property="og:description" content="Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything int...">
     <meta property="og:site_name" content="YY AI | AI with Yvette Tsai">
 
     <!-- Favicon -->
@@ -188,9 +188,9 @@ August 30, 2023
                         </time>
                     
                     <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
-                    <span>1 min to read</span>
+                    <span>2 min to read</span>
                 </p>
-                <h1 class="post-title">Bing Custom Search API</h1>
+                <h1 class="post-title">Getting Started with Bing Custom Search API</h1>
                 <p class="post-subtitle"></p>
 
                 
@@ -202,7 +202,38 @@ August 30, 2023
                 <!-- Add your table of contents here -->
 
 
-                <ol>
+                <p>Bing Custom Search API lets you build a focused search engine that returns results only from domains you trust. Instead of the entire web, you define a curated set of sites. This sharpens relevance, improves compliance, and makes answers faster and cleaner for your users. It’s ideal for internal knowledge portals, customer-facing help centers, and vertical search experiences where control matters more than breadth.</p>
+
+<p>Compared to general Bing Web Search, you get domain scoping, ranking controls, pinned results, and filters you can tune without code. You’ll create two things:</p>
+<ol>
+  <li>a <strong>Custom Bing Search instance</strong>,<br />
+where you configure domains and rules</li>
+  <li>an <strong>Azure Bing Search resource</strong>,<br />
+which provides keys, quotas, and enterprise-grade management.</li>
+</ol>
+
+<p>You’ll then call an endpoint that includes your customConfig ID and your subscription key.</p>
+
+<h2 id="architecture-at-a-glance">Architecture at a Glance</h2>
+<ul>
+  <li>Custom Search Instance (customsearch.ai): Define domains, filters, safe search, pinned results, and refinements.</li>
+  <li>Azure Bing Resource: Holds your API keys, pricing tier, region, and monitoring.</li>
+  <li>Call Flow: Client → Bing endpoint (/v7.0/custom/search) → Uses customConfig to apply your instance settings → Returns scoped results.</li>
+  <li>Consumers: Web apps, bots (like PVA), back-end services, or low-code flows.</li>
+</ul>
+
+<h2 id="prerequisites--access">Prerequisites &amp; Access</h2>
+
+<ul>
+  <li>Azure subscription with permissions to create resources.</li>
+  <li>Access to Bing Custom Search portal (customsearch.ai) to create and edit your instance.</li>
+  <li>RBAC setup (Owner/Contributor) for your resource group.</li>
+  <li>Region &amp; pricing tier chosen based on expected traffic.</li>
+  <li>Security: Plan for secret storage (Azure Key Vault) and rotation.</li>
+</ul>
+
+<h2 id="create-a-custom-bing-search-instance">Create a Custom Bing Search Instance</h2>
+<ol>
   <li>
     <p>add an instance in <strong>custom bing search</strong></p>
 
@@ -214,6 +245,11 @@ August 30, 2023
 
     <p>add domain to search on</p>
   </li>
+</ol>
+
+<h2 id="register-the-azure-bing-resource">Register the Azure Bing Resource</h2>
+
+<ol>
   <li>
     <p>register a <strong>Bing Custom Search</strong> in azure subscription</p>
 
@@ -221,8 +257,11 @@ August 30, 2023
 
     <p><img src="../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(2).png" alt="Untitled" /></p>
   </li>
-  <li>
-    <p>access the azure resource</p>
+</ol>
+
+<h2 id="connect-custom-config-to-azure">Connect Custom Config to Azure</h2>
+<ol>
+  <li>access the azure resource
     <ul>
       <li>use this endpoint, the endpoint in the sample code is not working
         <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  https://api.bing.microsoft.com/v7.0/custom/search?q=@{triggerBody()['text']}&amp;customconfig=5ffcd700-1ab8-4382-8c77-32bc455916e0&amp;mkt=en-US
@@ -233,19 +272,23 @@ August 30, 2023
         <p><img src="../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(3).png" alt="Untitled" /></p>
       </li>
       <li>
-        <p>need a header</p>
+        <p>Send the search key in the header</p>
 
-        <p>Ocp-Apim-Subscription-Key: <azure bing="" search="" key=""></azure></p>
-
-        <p><img src="../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(4).png" alt="Untitled" /></p>
+        <p><code class="language-plaintext highlighter-rouge">Ocp-Apim-Subscription-Key: &lt;azure bing search key&gt;</code>
+  <img src="../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(4).png" alt="Untitled" /></p>
       </li>
     </ul>
-
-    <p>sample usage in PVA</p>
-
-    <p><a href="https://web.powerva.microsoft.com/environments/Default-3e04753a-ae5b-42d4-a86d-d6f05460f9e4/bots/7648de59-d208-ee11-8f6e-00224804b843"></a></p>
   </li>
 </ol>
+
+<h2 id="conclusion">Conclusion</h2>
+
+<p>With a well-tuned Bing Custom Search API setup—custom instance, Azure resource, correct endpoint, and secure headers—you’ll deliver focused, trustworthy results from approved sources. Add PVA for conversational access, monitor usage, and keep domains/rules current. The result is faster answers, better compliance, and a smoother user experience for your audience.</p>
+
+<h2 id="ßhelpful-external-resource">ßHelpful External Resource</h2>
+<ul>
+  <li>Microsoft Docs: Bing Custom Search — feature overview, setup, and API reference: https://learn.microsoft.com/bing/search-apis/bing-custom-search/overview</li>
+</ul>
 
 
                 <!-- Pagination links -->
@@ -277,7 +320,7 @@ August 30, 2023
 
         <!-- Add time bar only for pages without pagination -->
         
-            <div class="time-bar" data-minutes="1">
+            <div class="time-bar" data-minutes="2">
     <span class="time-completed"></span>
     <span class="time-remaining"></span>
     <div class="bar">
@@ -319,7 +362,7 @@ August 30, 2023
 
         <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20http://localhost:4000/bing-custom-search-api/%20via%20&#64;&hashtags=blog"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything into Power Virtual Agents (PVA) step-by-step.&quot;%20http://localhost:4000/bing-custom-search-api/%20via%20&#64;&hashtags=blog"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
@@ -334,11 +377,11 @@ August 30, 2023
   <section class="author">
     <div class="details">
       
-        <img class="img-rounded" src="../assets/img/uploads/profile.JPG" alt="Yvette Tsai">
+        <img class="img-rounded" src="/blog/assets/img/uploads/profile.JPG" alt="Yvette Tsai">
       
       <p class="def">Author</p>
       <h3 class="name">
-        <a href="/authors/yvetteTsai/">Yvette Tsai</a>
+        <a href="/blog/authors/yvetteTsai/">Yvette Tsai</a>
       </h3>
       <p class="desc">Dance in code.</p>
       <p>
@@ -374,7 +417,7 @@ August 30, 2023
       "@type": "Person",
       "name": "Yvette Tsai",
       
-      "image": "../assets/img/uploads/profile.JPG",
+      "image": "/assets/img/uploads/profile.JPG",
       
       "jobTitle": "Chief Editor",
       "url": "http://localhost:4000/blog/authors/yvetteTsai/",
@@ -507,12 +550,43 @@ August 30, 2023
         {
             "@context": "http://schema.org",
             "@type": "BlogPosting",
-            "name": "Bing Custom Search API",
+            "name": "Getting Started with Bing Custom Search API",
             "headline": "",
-            "description": "",
+            "description": "Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything into Power Virtual Agents (PVA) step-by-step.",
             "image": "",
             "url": "http://localhost:4000/blog/bing-custom-search-api/",
-            "articleBody": "
+            "articleBody": "Bing Custom Search API lets you build a focused search engine that returns results only from domains you trust. Instead of the entire web, you define a curated set of sites. This sharpens relevance, improves compliance, and makes answers faster and cleaner for your users. It’s ideal for internal knowledge portals, customer-facing help centers, and vertical search experiences where control matters more than breadth.
+
+Compared to general Bing Web Search, you get domain scoping, ranking controls, pinned results, and filters you can tune without code. You’ll create two things:
+
+  a Custom Bing Search instance,
+where you configure domains and rules
+  an Azure Bing Search resource,
+which provides keys, quotas, and enterprise-grade management.
+
+
+You’ll then call an endpoint that includes your customConfig ID and your subscription key.
+
+Architecture at a Glance
+
+  Custom Search Instance (customsearch.ai): Define domains, filters, safe search, pinned results, and refinements.
+  Azure Bing Resource: Holds your API keys, pricing tier, region, and monitoring.
+  Call Flow: Client → Bing endpoint (/v7.0/custom/search) → Uses customConfig to apply your instance settings → Returns scoped results.
+  Consumers: Web apps, bots (like PVA), back-end services, or low-code flows.
+
+
+Prerequisites &amp;amp; Access
+
+
+  Azure subscription with permissions to create resources.
+  Access to Bing Custom Search portal (customsearch.ai) to create and edit your instance.
+  RBAC setup (Owner/Contributor) for your resource group.
+  Region &amp;amp; pricing tier chosen based on expected traffic.
+  Security: Plan for secret storage (Azure Key Vault) and rotation.
+
+
+Create a Custom Bing Search Instance
+
   
     add an instance in custom bing search
 
@@ -524,6 +598,11 @@ August 30, 2023
 
     add domain to search on
   
+
+
+Register the Azure Bing Resource
+
+
   
     register a Bing Custom Search in azure subscription
 
@@ -531,11 +610,14 @@ August 30, 2023
 
     
   
-  
-    access the azure resource
+
+
+Connect Custom Config to Azure
+
+  access the azure resource
     
       use this endpoint, the endpoint in the sample code is not working
-          https://api.bing.microsoft.com/v7.0/custom/search?q=@{triggerBody()['text']}&amp;amp;customconfig=5ffcd700-1ab8-4382-8c77-32bc455916e0&amp;amp;mkt=en-US
+          https://api.bing.microsoft.com/v7.0/custom/search?q=@{triggerBody()[&apos;text&apos;]}&amp;amp;customconfig=5ffcd700-1ab8-4382-8c77-32bc455916e0&amp;amp;mkt=en-US
         
 
         replace the custom config with that in custom bing search
@@ -543,21 +625,25 @@ August 30, 2023
         
       
       
-        need a header
+        Send the search key in the header
 
-        Ocp-Apim-Subscription-Key: 
-
-        
+        Ocp-Apim-Subscription-Key: &amp;lt;azure bing search key&amp;gt;
+  
       
-    
-
-    sample usage in PVA
-
     
   
 
+
+Conclusion
+
+With a well-tuned Bing Custom Search API setup—custom instance, Azure resource, correct endpoint, and secure headers—you’ll deliver focused, trustworthy results from approved sources. Add PVA for conversational access, monitor usage, and keep domains/rules current. The result is faster answers, better compliance, and a smoother user experience for your audience.
+
+ßHelpful External Resource
+
+  Microsoft Docs: Bing Custom Search — feature overview, setup, and API reference: https://learn.microsoft.com/bing/search-apis/bing-custom-search/overview
+
 ",
-            "wordcount": "107",
+            "wordcount": "443",
             "inLanguage": "en",
             "dateCreated": "2023-08-30/",
             "datePublished": "2023-08-30/",
