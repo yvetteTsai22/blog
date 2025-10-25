@@ -8,3 +8,4 @@ _drafts
 vendor/
 .bundle/
 local_files/
+_site/
