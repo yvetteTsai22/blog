@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>YY AI | AI with Yvette Tsai</title>
+    <description>About AI, ML, LLMs and more by Yvette Tsai.</description>
+    <link>https://yvettetsai22.github.io/blog/</link>
+    <atom:link href="https://yvettetsai22.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Sun, 26 Oct 2025 21:30:37 +0000</pubDate>
+    <lastBuildDate>Sun, 26 Oct 2025 21:30:37 +0000</lastBuildDate>
+    <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Getting Started with Bing Custom Search API</title>
+        <description>&lt;p&gt;Bing Custom Search API lets you build a focused search engine that returns results only from domains you trust. Instead of the entire web, you define a curated set of sites. This sharpens relevance, improves compliance, and makes answers faster and cleaner for your users. It’s ideal for internal knowledge portals, customer-facing help centers, and vertical search experiences where control matters more than breadth.&lt;/p&gt; &lt;p&gt;Compared to general Bing Web Search, you get domain scoping, ranking controls, pinned results, and filters you can tune without code. You’ll create two things:&lt;/p&gt; &lt;ol&gt; &lt;li&gt;a &lt;strong&gt;Custom Bing Search instance&lt;/strong&gt;,&lt;br /&gt; where you configure domains...</description>
+        <pubDate>Wed, 30 Aug 2023 12:05:21 +0000</pubDate>
+        <link>https://yvettetsai22.github.io/blog/bing-custom-search-api/</link>
+        <guid isPermaLink="true">https://yvettetsai22.github.io/blog/bing-custom-search-api/</guid>
+        
+        <category>blog</category>
+        
+        <category>blog</category>
+      </item>
+    
+  </channel>
+</rss>
