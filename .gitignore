@@ -9,3 +9,23 @@ vendor/
 .bundle/
 local_files/
 _site/
+tmp/
+
+# Affiliates - exclude source and node_modules
+_affiliates/product-1/node_modules/
+_affiliates/product-2/node_modules/
+_affiliates/product-1/build/
+_affiliates/product-2/build/
+
+# But DO include the built affiliate pages in _site
+!_site/affiliate/
+!_site/affiliate/**/*.html
+!_site/affiliate/**/*.js
+!_site/affiliate/**/*.css
+!_site/affiliate/**/*.svg
+!_site/affiliate/**/*.png
+!_site/affiliate/**/*.jpg
+!_site/affiliate/**/*.gif
+!_site/affiliate/**/*.webp
+!_site/affiliate/**/*.woff
+!_site/affiliate/**/*.woff2
