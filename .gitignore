@@ -12,20 +12,14 @@ _site/
 tmp/
 
 # Affiliates - exclude source and node_modules
-_affiliates/product-1/node_modules/
-_affiliates/product-2/node_modules/
-_affiliates/product-1/build/
-_affiliates/product-2/build/
+_affiliates/*/node_modules/
+_affiliates/*/build/
 
-# But DO include the built affiliate pages in _site
+# Exclude all _site EXCEPT affiliate pages (which are pre-built)
+_site/*
 !_site/affiliate/
-!_site/affiliate/**/*.html
-!_site/affiliate/**/*.js
-!_site/affiliate/**/*.css
-!_site/affiliate/**/*.svg
-!_site/affiliate/**/*.png
-!_site/affiliate/**/*.jpg
-!_site/affiliate/**/*.gif
-!_site/affiliate/**/*.webp
-!_site/affiliate/**/*.woff
-!_site/affiliate/**/*.woff2
+_site/affiliate/*
+!_site/affiliate/product-1/
+!_site/affiliate/product-1/**/*
+!_site/affiliate/product-2/
+!_site/affiliate/product-2/**/*
