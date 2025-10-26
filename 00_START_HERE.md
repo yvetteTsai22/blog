@@ -62,13 +62,28 @@ Pages will be live at:
 
 ---
 
+## ➕ Want to Add More Products?
+
+```bash
+cp -r _affiliates/product-1 _affiliates/product-3
+nano _affiliates/product-3/src/config.ts
+./build-affiliates.sh
+git push origin main
+```
+
+**Full guide:** See **`ADD_NEW_AFFILIATE_PRODUCT.md`**
+
+---
+
 ## 📁 Files Created
 
 ✅ **`build-affiliates.sh`** - Builds all affiliate pages (run this!)
-✅ **`AFFILIATE_SETUP_COMPLETE.md`** - Setup summary
-✅ **`AFFILIATE_LOCAL_SETUP.md`** - Detailed local dev guide
+✅ **`SETUP_COMPLETE.md`** - Complete setup overview
+✅ **`ADD_NEW_AFFILIATE_PRODUCT.md`** - Add new products guide ⭐
+✅ **`DEVELOPMENT_WORKFLOW.md`** - Local development guide
+✅ **`GITHUB_PAGES_DEPLOYMENT.md`** - Deployment guide
+✅ **`DEPLOYMENT_READY.md`** - Pre-deploy checklist
 ✅ **`_affiliates/README.md`** - Full documentation
-✅ **`_affiliates/QUICK_START.md`** - Quick reference
 ✅ **`.gitignore`** - Updated to track built files
 
 ---
@@ -99,10 +114,13 @@ Pages will be live at:
 ## 📚 Full Documentation
 
 - **This file:** Quick start
-- **AFFILIATE_SETUP_COMPLETE.md** - Setup summary
-- **AFFILIATE_LOCAL_SETUP.md** - Detailed guide
+- **ADD_NEW_AFFILIATE_PRODUCT.md** ⭐ - Add more products
+- **SETUP_COMPLETE.md** - Complete overview  
+- **DEVELOPMENT_WORKFLOW.md** - Local development
+- **GITHUB_PAGES_DEPLOYMENT.md** - GitHub Pages setup
+- **DEPLOYMENT_READY.md** - Pre-deploy checklist
+- **_affiliates/README.md** - Technical details
 - **_affiliates/QUICK_START.md** - Affiliate quick ref
-- **_affiliates/README.md** - Complete docs
 
 ---
 

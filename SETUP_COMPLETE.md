@@ -139,7 +139,9 @@ Styling with Tailwind CSS - all standard classes work.
 
 ## ➕ Add New Products
 
-To create product-3:
+See **`ADD_NEW_AFFILIATE_PRODUCT.md`** for complete instructions!
+
+Quick reference:
 
 ```bash
 # Copy template
@@ -159,6 +161,8 @@ git push origin main
 
 Your new page will be live at:
 `https://yourdomain.github.io/blog/affiliate/product-3/`
+
+**Full guide:** See `ADD_NEW_AFFILIATE_PRODUCT.md` for detailed configuration options, customization, and troubleshooting.
 
 ---
 
