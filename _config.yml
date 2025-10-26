@@ -86,6 +86,10 @@ paginate_content:
 sass:
   style: compressed
 
+# Keep affiliate files even when Jekyll regenerates _site
+keep_files:
+  - affiliate
+
 # Plugins
 plugins:
   - jekyll-paginate
