@@ -103,7 +103,9 @@ exclude: [
   'gulpfile.js',
   'README.md',
   'vendor',
-  '.bundle'
+  '.bundle',
+  '_affiliates',
+  'node_modules'
 ]
 
 # Theme
