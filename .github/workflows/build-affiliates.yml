@@ -1,0 +1,65 @@
+name: Build Affiliates & Deploy
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    # Setup Node.js for building React affiliates
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    # Setup Ruby for Jekyll
+    - name: Setup Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2'
+        bundler-cache: true
+
+    # Build affiliate landing pages
+    - name: Build affiliate pages
+      run: |
+        echo "🚀 Building affiliate landing pages..."
+        mkdir -p _site
+
+        # Build product-1
+        echo "📦 Building product-1..."
+        cd _affiliates/product-1
+        npm install --legacy-peer-deps > /dev/null 2>&1
+        npm run build > /dev/null 2>&1
+        cd ../..
+        mkdir -p _site/affiliate/product-1
+        cp -r _affiliates/product-1/build/* _site/affiliate/product-1/
+
+        # Build product-2
+        echo "📦 Building product-2..."
+        cd _affiliates/product-2
+        npm install --legacy-peer-deps > /dev/null 2>&1
+        npm run build > /dev/null 2>&1
+        cd ../..
+        mkdir -p _site/affiliate/product-2
+        cp -r _affiliates/product-2/build/* _site/affiliate/product-2/
+
+        echo "✅ Affiliate pages built successfully!"
+
+    # Build Jekyll site
+    - name: Build Jekyll site
+      run: bundle exec jekyll build --baseurl '/blog'
+
+    # Deploy to GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        cname: yourdomain.github.io
