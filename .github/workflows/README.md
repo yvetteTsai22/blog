@@ -140,6 +140,7 @@ If GitHub Actions fails repeatedly, deploy manually:
 # Build locally
 ./build-affiliates.sh
 bundle exec jekyll build --baseurl '/blog'
+bundle exec jekyll serve --baseurl '/blog'
 
 # Deploy manually
 git checkout --orphan gh-pages
