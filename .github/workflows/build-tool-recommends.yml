@@ -26,11 +26,14 @@ jobs:
         ruby-version: '3.2'
         bundler-cache: true
 
-    # Build tool-recommend landing pages
+    # Build Jekyll site FIRST (it clears _site directory)
+    - name: Build Jekyll site
+      run: bundle exec jekyll build --baseurl '/blog'
+
+    # Build tool-recommend landing pages AFTER Jekyll (so they don't get overwritten)
     - name: Build tool-recommend pages
       run: |
         echo "🚀 Building tool-recommend landing pages..."
-        mkdir -p _site
 
         # Build product-1
         echo "📦 Building product-1..."
@@ -51,10 +54,6 @@ jobs:
         cp -r _tool-recommends/product-2/build/* _site/tool-recommend/product-2/
 
         echo "✅ Tool recommend pages built successfully!"
-
-    # Build Jekyll site
-    - name: Build Jekyll site
-      run: bundle exec jekyll build --baseurl '/blog'
 
     # Deploy to GitHub Pages
     - name: Deploy to GitHub Pages
