@@ -11,15 +11,15 @@ local_files/
 _site/
 tmp/
 
-# Affiliates - exclude source and node_modules
-_affiliates/*/node_modules/
-_affiliates/*/build/
+# Tool recommends - exclude source and node_modules
+_tool-recommends/*/node_modules/
+_tool-recommends/*/build/
 
-# Exclude all _site EXCEPT affiliate pages (which are pre-built)
+# Exclude all _site EXCEPT tool-recommend pages (which are pre-built)
 _site/*
-!_site/affiliate/
-_site/affiliate/*
-!_site/affiliate/product-1/
-!_site/affiliate/product-1/**/*
-!_site/affiliate/product-2/
-!_site/affiliate/product-2/**/*
+!_site/tool-recommend/
+_site/tool-recommend/*
+!_site/tool-recommend/product-1/
+!_site/tool-recommend/product-1/**/*
+!_site/tool-recommend/product-2/
+!_site/tool-recommend/product-2/**/*

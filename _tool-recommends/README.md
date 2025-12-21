@@ -1,6 +1,6 @@
-# Affiliate Landing Pages
+# Tool Recommend Landing Pages
 
-This folder contains multiple affiliate landing pages built with React, TypeScript, and Vite. Each product is independently built and deployable.
+This folder contains multiple tool recommend landing pages built with React, TypeScript, and Vite. Each product is independently built and deployable.
 
 ## 🏗️ Architecture
 
@@ -14,17 +14,17 @@ This folder contains multiple affiliate landing pages built with React, TypeScri
 ### Directory Structure
 
 ```
-_affiliates/
+_tool-recommends/
 ├── shared/                    # Reference source (don't edit for deployment)
 │   └── components/
-│       ├── AffiliateLandingPage.tsx    # Main landing page component
+│       ├── ToolRecommendLandingPage.tsx    # Main landing page component
 │       ├── ui/                         # 50+ Radix UI components
 │       └── figma/                      # Utility components
 │
-├── product-1/                 # Independent affiliate landing page
+├── product-1/                 # Independent tool recommend landing page
 │   ├── src/
 │   │   ├── components/        # Copied from shared
-│   │   │   ├── AffiliateLandingPage.tsx
+│   │   │   ├── ToolRecommendLandingPage.tsx
 │   │   │   ├── ui/
 │   │   │   └── figma/
 │   │   ├── App.tsx            # Main app (uses config)
@@ -51,12 +51,12 @@ _affiliates/
 
 ```bash
 # Product 1
-cd _affiliates/product-1
+cd _tool-recommends/product-1
 npm install
 npm run build
 
 # Product 2
-cd _affiliates/product-2
+cd _tool-recommends/product-2
 npm install
 npm run build
 ```
@@ -66,7 +66,7 @@ npm run build
 Each product can be developed independently:
 
 ```bash
-cd _affiliates/product-1
+cd _tool-recommends/product-1
 npm run dev
 ```
 
@@ -112,7 +112,7 @@ Global styles are in the shared components. Product-specific styling can be adde
 ### Build a Product
 
 ```bash
-cd _affiliates/product-1
+cd _tool-recommends/product-1
 npm install      # Only needed first time
 npm run build    # Creates build/ folder
 ```
@@ -120,7 +120,7 @@ npm run build    # Creates build/ folder
 ### View Product Locally
 
 ```bash
-cd _affiliates/product-1
+cd _tool-recommends/product-1
 npm run dev      # Starts at http://localhost:5173
 ```
 
@@ -129,7 +129,7 @@ npm run dev      # Starts at http://localhost:5173
 **All content lives in `src/config.ts`** - no need to touch components:
 
 ```typescript
-// _affiliates/product-1/src/config.ts
+// _tool-recommends/product-1/src/config.ts
 export const productConfig = {
   headline: "Your Product Headline",
   highlights: [
@@ -158,10 +158,10 @@ export const productConfig = {
 
 ```bash
 # Copy product-1 to create product-3
-cp -r _affiliates/product-1 _affiliates/product-3
+cp -r _tool-recommends/product-1 _affiliates/product-3
 
 # Update config
-cd _affiliates/product-3
+cd _tool-recommends/product-3
 nano src/config.ts
 
 # Install and test
@@ -184,7 +184,7 @@ npm run dev
 2. Go to netlify.com → New site from Git
 3. Select your repository
 4. Build settings:
-   - **Build command:** `cd _affiliates/product-1 && npm run build`
+   - **Build command:** `cd _tool-recommends/product-1 && npm run build`
    - **Publish directory:** `_affiliates/product-1/build`
 5. Click Deploy!
 
@@ -194,26 +194,26 @@ Your site will be live at `your-site.netlify.app`
 
 ```bash
 npm install -g vercel
-cd _affiliates/product-1
+cd _tool-recommends/product-1
 vercel
 ```
 
 ### To GitHub Pages
 
-1. Create new repo: `affiliate-product-1`
+1. Create new repo: `tool-recommend-product-1`
 2. Copy `build/` contents to repo root
 3. Enable GitHub Pages in settings
-4. Access at `username.github.io/affiliate-product-1`
+4. Access at `username.github.io/tool-recommend-product-1`
 
 ### To Your Own Server
 
 ```bash
-cd _affiliates/product-1
+cd _tool-recommends/product-1
 npm run build
 
 # Upload build/ folder via FTP/SSH
 # Or use rsync:
-rsync -avz build/ user@host:/var/www/affiliate/
+rsync -avz build/ user@host:/var/www/tool-recommend/
 ```
 
 ## 🎨 Customization
@@ -235,7 +235,7 @@ Three highlight style options:
 
 ### Component Features
 
-The `AffiliateLandingPage` component includes:
+The `ToolRecommendLandingPage` component includes:
 
 - ✅ Hero section with headline
 - ✅ Highlighted text styling
@@ -323,7 +323,7 @@ npm install
 
 Make sure you're in the right directory:
 ```bash
-cd _affiliates/product-1
+cd _tool-recommends/product-1
 npm run build
 ```
 
@@ -355,7 +355,7 @@ Check that `productImageUrl` in config is:
 | File | Purpose |
 |------|---------|
 | `src/App.tsx` | Entry point, uses config |
-| `src/components/AffiliateLandingPage.tsx` | Main component |
+| `src/components/ToolRecommendLandingPage.tsx` | Main component |
 | `src/components/ui/*` | UI components |
 | `src/main.tsx` | React setup |
 
@@ -365,10 +365,10 @@ Check that `productImageUrl` in config is:
 
 ```bash
 # 1. Create new product
-cp -r _affiliates/product-1 _affiliates/my-tool
+cp -r _tool-recommends/product-1 _affiliates/my-tool
 
 # 2. Edit content
-cd _affiliates/my-tool
+cd _tool-recommends/my-tool
 nano src/config.ts
 # Update: headline, benefits, CTA, image URL, affiliate link
 

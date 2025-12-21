@@ -86,9 +86,9 @@ paginate_content:
 sass:
   style: compressed
 
-# Keep affiliate files even when Jekyll regenerates _site
+# Keep tool-recommend files even when Jekyll regenerates _site
 keep_files:
-  - affiliate
+  - tool-recommend
 
 # Plugins
 plugins:
@@ -108,7 +108,7 @@ exclude: [
   'README.md',
   'vendor',
   '.bundle',
-  '_affiliates',
+  '_tool-recommends',
   'node_modules'
 ]
 

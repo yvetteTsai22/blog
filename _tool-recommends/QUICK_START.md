@@ -1,23 +1,23 @@
-# Quick Start Guide - Affiliate Landing Pages
+# Quick Start Guide - Tool Recommend Landing Pages
 
 ## ✅ Setup Complete!
 
-Your affiliate landing pages are now organized and ready to use. Here's what's been set up:
+Your tool recommend landing pages are now organized and ready to use. Here's what's been set up:
 
 ### 📁 What You Have
 
-- **`_affiliates/product-1/`** - First affiliate landing page (fully built)
-- **`_affiliates/product-2/`** - Second affiliate landing page (fully built)
-- **`_affiliates/shared/`** - Reference source for components
-- **`_affiliates/build/`** - Built output folders in each product
+- **`_tool-recommends/product-1/`** - First tool recommend landing page (fully built)
+- **`_tool-recommends/product-2/`** - Second tool recommend landing page (fully built)
+- **`_tool-recommends/shared/`** - Reference source for components
+- **`_tool-recommends/build/`** - Built output folders in each product
 
-### 🚀 Using Your Affiliate Pages
+### 🚀 Using Your Tool Recommend Pages
 
 #### View Product Pages Locally
 
 ```bash
 # Product 1
-cd _affiliates/product-1
+cd _tool-recommends/product-1
 npm run dev
 
 # Opens at http://localhost:5173
@@ -27,21 +27,21 @@ npm run dev
 
 ```bash
 # Product 1
-cd _affiliates/product-1
+cd _tool-recommends/product-1
 npm run build
-# Output in: _affiliates/product-1/build/
+# Output in: _tool-recommends/product-1/build/
 
 # Product 2
-cd _affiliates/product-2
+cd _tool-recommends/product-2
 npm run build
-# Output in: _affiliates/product-2/build/
+# Output in: _tool-recommends/product-2/build/
 ```
 
 ### 📝 Customizing Products
 
 Each product has a `src/config.ts` file that controls all content:
 
-**`_affiliates/product-1/src/config.ts`**
+**`_tool-recommends/product-1/src/config.ts`**
 ```typescript
 export const productConfig = {
   headline: "Your headline",
@@ -61,12 +61,12 @@ Just edit the config to change everything about your landing page!
 
 1. **Copy an existing product:**
    ```bash
-   cp -r _affiliates/product-1 _affiliates/product-3
+   cp -r _tool-recommends/product-1 _affiliates/product-3
    ```
 
 2. **Update the config:**
    ```bash
-   cd _affiliates/product-3
+   cd _tool-recommends/product-3
    nano src/config.ts
    ```
 
@@ -93,7 +93,7 @@ Each `build/` folder can be deployed to:
 
 1. Create new site in Netlify
 2. Connect your GitHub repo
-3. Set build command: `cd _affiliates/product-1 && npm run build`
+3. Set build command: `cd _tool-recommends/product-1 && npm run build`
 4. Set publish directory: `_affiliates/product-1/build`
 5. Deploy!
 
@@ -178,16 +178,16 @@ All products include:
 
 ### 📖 Next Steps
 
-1. ✅ Customize `product-1` config with your first affiliate product
+1. ✅ Customize `product-1` config with your first tool recommend product
 2. ✅ Test locally with `npm run dev`
 3. ✅ Build with `npm run build`
 4. ✅ Deploy the `build/` folder to Netlify/Vercel
-5. ✅ Share your affiliate landing page URL!
+5. ✅ Share your tool recommend landing page URL!
 
 ### 📞 Need Help?
 
-- Check the full README: `_affiliates/README.md`
-- Review the template: `_affiliates/shared/components/AffiliateLandingPage.tsx`
+- Check the full README: `_tool-recommends/README.md`
+- Review the template: `_tool-recommends/shared/components/ToolRecommendLandingPage.tsx`
 - Check Radix UI docs: https://www.radix-ui.com/
 
 Enjoy! 🚀

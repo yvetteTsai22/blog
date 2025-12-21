@@ -1,4 +1,4 @@
-name: Build Affiliates & Deploy
+name: Build Tool Recommends & Deploy
 
 on:
   push:
@@ -13,7 +13,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-    # Setup Node.js for building React affiliates
+    # Setup Node.js for building React tool-recommends
     - name: Setup Node.js
       uses: actions/setup-node@v3
       with:
@@ -26,31 +26,31 @@ jobs:
         ruby-version: '3.2'
         bundler-cache: true
 
-    # Build affiliate landing pages
-    - name: Build affiliate pages
+    # Build tool-recommend landing pages
+    - name: Build tool-recommend pages
       run: |
-        echo "🚀 Building affiliate landing pages..."
+        echo "🚀 Building tool-recommend landing pages..."
         mkdir -p _site
 
         # Build product-1
         echo "📦 Building product-1..."
-        cd _affiliates/product-1
+        cd _tool-recommends/product-1
         npm install --legacy-peer-deps > /dev/null 2>&1
         npm run build > /dev/null 2>&1
         cd ../..
-        mkdir -p _site/affiliate/product-1
-        cp -r _affiliates/product-1/build/* _site/affiliate/product-1/
+        mkdir -p _site/tool-recommend/product-1
+        cp -r _tool-recommends/product-1/build/* _site/tool-recommend/product-1/
 
         # Build product-2
         echo "📦 Building product-2..."
-        cd _affiliates/product-2
+        cd _tool-recommends/product-2
         npm install --legacy-peer-deps > /dev/null 2>&1
         npm run build > /dev/null 2>&1
         cd ../..
-        mkdir -p _site/affiliate/product-2
-        cp -r _affiliates/product-2/build/* _site/affiliate/product-2/
+        mkdir -p _site/tool-recommend/product-2
+        cp -r _tool-recommends/product-2/build/* _site/tool-recommend/product-2/
 
-        echo "✅ Affiliate pages built successfully!"
+        echo "✅ Tool recommend pages built successfully!"
 
     # Build Jekyll site
     - name: Build Jekyll site

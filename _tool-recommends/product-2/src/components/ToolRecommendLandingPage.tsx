@@ -26,7 +26,7 @@ interface LandingPageProps {
   socialProof?: SocialProofItem[]; // Array of social proof metrics (leave empty to hide section)
 }
 
-export function AffiliateLandingPage({
+export function ToolRecommendLandingPage({
   headline = "Discover the Secret Tool That's Transforming How Thousands Work Smarter, Not Harder",
   highlights = [
     { text: "Secret Tool", style: "gradient" },
