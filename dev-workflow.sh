@@ -1,7 +1,7 @@
 #!/bin/bash
 
-# Integrated development workflow for Jekyll + Affiliate Landing Pages
-# This script handles the timing issues between Jekyll and affiliate builds
+# Integrated development workflow for Jekyll + Tool Recommend Landing Pages
+# This script handles the timing issues between Jekyll and tool-recommend builds
 
 set -e
 
@@ -14,9 +14,9 @@ BLUE='\033[0;34m'
 YELLOW='\033[1;33m'
 NC='\033[0m' # No Color
 
-# Step 1: Initial build of affiliates
-echo -e "${BLUE}Step 1: Building affiliate landing pages...${NC}"
-./build-affiliates.sh
+# Step 1: Initial build of tool-recommends
+echo -e "${BLUE}Step 1: Building tool-recommend landing pages...${NC}"
+./build-tool-recommends.sh
 echo ""
 
 # Step 2: Start Jekyll in background
@@ -30,22 +30,22 @@ echo ""
 echo -e "${YELLOW}Waiting for Jekyll to initialize...${NC}"
 sleep 3
 
-# Step 3: Rebuild affiliates after Jekyll starts
-echo -e "${BLUE}Step 3: Rebuilding affiliates after Jekyll initialization...${NC}"
-./build-affiliates.sh
+# Step 3: Rebuild tool-recommends after Jekyll starts
+echo -e "${BLUE}Step 3: Rebuilding tool-recommends after Jekyll initialization...${NC}"
+./build-tool-recommends.sh
 echo ""
 
 # Step 4: Instructions
 echo -e "${GREEN}✅ Development environment ready!${NC}"
 echo ""
 echo -e "${BLUE}Access your sites at:${NC}"
-echo "  📚 Blog:           http://127.0.0.1:4000/blog/"
-echo "  🔗 Affiliate 1:    http://127.0.0.1:4000/blog/affiliate/product-1/"
-echo "  🔗 Affiliate 2:    http://127.0.0.1:4000/blog/affiliate/product-2/"
+echo "  📚 Blog:              http://127.0.0.1:4000/blog/"
+echo "  🔗 Tool Recommend 1:  http://127.0.0.1:4000/blog/tool-recommend/product-1/"
+echo "  🔗 Tool Recommend 2:  http://127.0.0.1:4000/blog/tool-recommend/product-2/"
 echo ""
 echo -e "${YELLOW}Important workflow:${NC}"
-echo "  1. Edit affiliate content in _affiliates/product-1/ or product-2/"
-echo "  2. Run: ./build-affiliates.sh"
+echo "  1. Edit tool-recommend content in _tool-recommends/product-1/ or product-2/"
+echo "  2. Run: ./build-tool-recommends.sh"
 echo "  3. Refresh your browser"
 echo ""
 echo -e "${YELLOW}To stop the server:${NC}"
