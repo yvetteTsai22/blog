@@ -5,9 +5,21 @@
     <description>About AI, ML, LLMs and more by Yvette Tsai.</description>
     <link>https://yvettetsai22.github.io/blog/</link>
     <atom:link href="https://yvettetsai22.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 21 Dec 2025 17:02:12 +0000</pubDate>
-    <lastBuildDate>Sun, 21 Dec 2025 17:02:12 +0000</lastBuildDate>
+    <pubDate>Mon, 23 Feb 2026 09:17:45 +0000</pubDate>
+    <lastBuildDate>Mon, 23 Feb 2026 09:17:45 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</title>
+        <description>&lt;p&gt;Large Language Models (LLMs) are rapidly transforming how we interact with technology. But with great power comes great… complexity. Understanding what’s happening inside these intricate models is crucial for performance optimization, debugging, and ensuring responsible AI practices. That’s where observability comes in.&lt;/p&gt; &lt;p&gt;While automated observability tools offer a quick start, sometimes you need to get your hands dirty. You need granular control over what data you collect and how you analyze it. That’s where manual instrumentation shines. In this post, we’ll explore how to leverage manual instrumentation with Google’s ADK (Application Development Kit) to gain deeper insights into your LLM...</description>
+        <pubDate>Sun, 22 Feb 2026 16:40:15 +0000</pubDate>
+        <link>https://yvettetsai22.github.io/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/</link>
+        <guid isPermaLink="true">https://yvettetsai22.github.io/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/</guid>
+        
+        <category>blog</category>
+        
+        <category></category>
+      </item>
     
       <item>
         <title>Getting Started with Bing Custom Search API</title>
