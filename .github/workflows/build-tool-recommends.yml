@@ -53,7 +53,16 @@ jobs:
         mkdir -p _site/tool-recommend/product-2
         cp -r _tool-recommends/product-2/build/* _site/tool-recommend/product-2/
 
-        echo "✅ Tool recommend pages built successfully!"
+        # Build fire-calculator
+        echo "📦 Building fire-calculator..."
+        cd fire-calculator
+        npm install > /dev/null 2>&1
+        npm run build > /dev/null 2>&1
+        cd ..
+        mkdir -p _site/fire-calculator
+        cp -r fire-calculator/dist/* _site/fire-calculator/
+
+        echo "✅ All pages built successfully!"
 
     # Deploy to GitHub Pages
     - name: Deploy to GitHub Pages
