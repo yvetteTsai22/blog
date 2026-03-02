@@ -37,10 +37,24 @@ mkdir -p _site/tool-recommend/product-2
 echo "📋 Copying product-2 to _site/tool-recommend/product-2..."
 cp -r _tool-recommends/product-2/build/* _site/tool-recommend/product-2/
 
+# Build fire-calculator
+echo "📦 Building fire-calculator..."
+cd fire-calculator
+npm run build > /dev/null 2>&1
+cd ..
+
+# Create fire-calculator directory in _site
+mkdir -p _site/fire-calculator
+
+# Copy fire-calculator to _site
+echo "📋 Copying fire-calculator to _site/fire-calculator..."
+cp -r fire-calculator/dist/* _site/fire-calculator/
+
 echo ""
-echo "✅ Done! Tool recommend pages built:"
+echo "✅ Done! Pages built:"
 echo "   - _site/tool-recommend/product-1/"
 echo "   - _site/tool-recommend/product-2/"
+echo "   - _site/fire-calculator/"
 echo ""
 echo "📌 Note: Jekyll will regenerate _site on each change."
 echo "   Your tool-recommend pages need to be rebuilt after Jekyll runs:"
