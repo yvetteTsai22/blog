@@ -47,6 +47,7 @@ sass:
 # Keep affiliate files even when Jekyll regenerates _site
 keep_files:
   - affiliate
+  - fire-calculator
 
 # Plugins
 plugins:
@@ -67,7 +68,8 @@ exclude: [
   'vendor',
   '.bundle',
   '_affiliates',
-  'node_modules'
+  'node_modules',
+  'fire-calculator'
 ]
 
 # Theme
