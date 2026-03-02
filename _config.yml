@@ -89,6 +89,7 @@ sass:
 # Keep tool-recommend files even when Jekyll regenerates _site
 keep_files:
   - tool-recommend
+  - fire-calculator
 
 # Plugins
 plugins:
@@ -109,7 +110,8 @@ exclude: [
   'vendor',
   '.bundle',
   '_tool-recommends',
-  'node_modules'
+  'node_modules',
+  'fire-calculator'
 ]
 
 # Theme
