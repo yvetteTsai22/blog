@@ -32,22 +32,31 @@ function formatFullCurrency(value: number): string {
 }
 
 function App() {
-  const [currentSavings, setCurrentSavings] = useState<number>(50000);
-  const [monthlyIncome, setMonthlyIncome] = useState<number>(8000);
-  const [monthlyExpenses, setMonthlyExpenses] = useState<number>(4000);
-  const [annualExpenses, setAnnualExpenses] = useState<number>(5000);
-  const [expectedReturn, setExpectedReturn] = useState<number>(7);
-  const [withdrawalRate, setWithdrawalRate] = useState<number>(4);
-  const [currentDebt, setCurrentDebt] = useState<number>(0);
-  const [debtInterestRate, setDebtInterestRate] = useState<number>(6);
+  const [currentSavings, setCurrentSavings] = useState('50000');
+  const [monthlyIncome, setMonthlyIncome] = useState('8000');
+  const [monthlyExpenses, setMonthlyExpenses] = useState('4000');
+  const [annualExpenses, setAnnualExpenses] = useState('5000');
+  const [expectedReturn, setExpectedReturn] = useState('7');
+  const [withdrawalRate, setWithdrawalRate] = useState('4');
+  const [currentDebt, setCurrentDebt] = useState('0');
+  const [debtInterestRate, setDebtInterestRate] = useState('6');
 
   const calculations = useMemo(() => {
-    const monthlyReturn = expectedReturn / 100 / 12;
-    const monthlyDebtRate = debtInterestRate / 100 / 12;
-    const monthlySavings = monthlyIncome - monthlyExpenses;
-    const totalAnnualExpenses = (monthlyExpenses * 12) + annualExpenses;
-    const fireNumber = totalAnnualExpenses / (withdrawalRate / 100);
-    const savingsRate = monthlyIncome > 0 ? (monthlySavings / monthlyIncome) * 100 : 0;
+    const savings = parseFloat(currentSavings) || 0;
+    const income = parseFloat(monthlyIncome) || 0;
+    const expenses = parseFloat(monthlyExpenses) || 0;
+    const annual = parseFloat(annualExpenses) || 0;
+    const returnRate = parseFloat(expectedReturn) || 0;
+    const withdrawal = parseFloat(withdrawalRate) || 0;
+    const debt = parseFloat(currentDebt) || 0;
+    const debtRate = parseFloat(debtInterestRate) || 0;
+
+    const monthlyReturn = returnRate / 100 / 12;
+    const monthlyDebtRate = debtRate / 100 / 12;
+    const monthlySavings = income - expenses;
+    const totalAnnualExpenses = (expenses * 12) + annual;
+    const fireNumber = totalAnnualExpenses / (withdrawal / 100);
+    const savingsRate = income > 0 ? (monthlySavings / income) * 100 : 0;
 
     // Check if FIRE is achievable
     const canAchieveFire = monthlySavings > 0;
@@ -58,9 +67,9 @@ function App() {
 
     if (canAchieveFire) {
       // Net worth = assets - debt
-      let currentAssets = currentSavings;
-      let remainingDebt = currentDebt;
-      let totalContributions = currentSavings;
+      let currentAssets = savings;
+      let remainingDebt = debt;
+      let totalContributions = savings;
       let month = 0;
       const maxMonths = 600; // 50 years max
 
@@ -150,7 +159,10 @@ function App() {
       projections,
       canAchieveFire,
       totalAnnualExpenses,
-      currentDebt,
+      currentDebt: debt,
+      income,
+      expenses,
+      withdrawal,
     };
   }, [currentSavings, monthlyIncome, monthlyExpenses, annualExpenses, expectedReturn, withdrawalRate, currentDebt, debtInterestRate]);
 
@@ -204,7 +216,8 @@ function App() {
                     <input
                       type="number"
                       value={currentSavings}
-                      onChange={(e) => setCurrentSavings(Number(e.target.value))}
+                      onChange={(e) => setCurrentSavings(e.target.value)}
+                      onBlur={(e) => { const n = parseFloat(e.target.value); if (!isNaN(n)) setCurrentSavings(String(n)); }}
                       className="input-field"
                       placeholder="50000"
                     />
@@ -220,7 +233,8 @@ function App() {
                     <input
                       type="number"
                       value={monthlyIncome}
-                      onChange={(e) => setMonthlyIncome(Number(e.target.value))}
+                      onChange={(e) => setMonthlyIncome(e.target.value)}
+                      onBlur={(e) => { const n = parseFloat(e.target.value); if (!isNaN(n)) setMonthlyIncome(String(n)); }}
                       className="input-field"
                       placeholder="8000"
                     />
@@ -236,7 +250,8 @@ function App() {
                     <input
                       type="number"
                       value={monthlyExpenses}
-                      onChange={(e) => setMonthlyExpenses(Number(e.target.value))}
+                      onChange={(e) => setMonthlyExpenses(e.target.value)}
+                      onBlur={(e) => { const n = parseFloat(e.target.value); if (!isNaN(n)) setMonthlyExpenses(String(n)); }}
                       className="input-field"
                       placeholder="4000"
                     />
@@ -252,7 +267,8 @@ function App() {
                     <input
                       type="number"
                       value={annualExpenses}
-                      onChange={(e) => setAnnualExpenses(Number(e.target.value))}
+                      onChange={(e) => setAnnualExpenses(e.target.value)}
+                      onBlur={(e) => { const n = parseFloat(e.target.value); if (!isNaN(n)) setAnnualExpenses(String(n)); }}
                       className="input-field"
                       placeholder="5000"
                     />
@@ -275,7 +291,8 @@ function App() {
                         <input
                           type="number"
                           value={currentDebt}
-                          onChange={(e) => setCurrentDebt(Number(e.target.value))}
+                          onChange={(e) => setCurrentDebt(e.target.value)}
+                          onBlur={(e) => { const n = parseFloat(e.target.value); if (!isNaN(n)) setCurrentDebt(String(n)); }}
                           className="input-field"
                           placeholder="0"
                         />
@@ -292,7 +309,8 @@ function App() {
                         <input
                           type="number"
                           value={debtInterestRate}
-                          onChange={(e) => setDebtInterestRate(Number(e.target.value))}
+                          onChange={(e) => setDebtInterestRate(e.target.value)}
+                          onBlur={(e) => { const n = parseFloat(e.target.value); if (!isNaN(n)) setDebtInterestRate(String(n)); }}
                           className="input-field"
                           placeholder="6"
                           step="0.5"
@@ -315,7 +333,8 @@ function App() {
                         <input
                           type="number"
                           value={expectedReturn}
-                          onChange={(e) => setExpectedReturn(Number(e.target.value))}
+                          onChange={(e) => setExpectedReturn(e.target.value)}
+                          onBlur={(e) => { const n = parseFloat(e.target.value); if (!isNaN(n)) setExpectedReturn(String(n)); }}
                           className="input-field"
                           placeholder="7"
                           step="0.5"
@@ -332,7 +351,8 @@ function App() {
                         <input
                           type="number"
                           value={withdrawalRate}
-                          onChange={(e) => setWithdrawalRate(Number(e.target.value))}
+                          onChange={(e) => setWithdrawalRate(e.target.value)}
+                          onBlur={(e) => { const n = parseFloat(e.target.value); if (!isNaN(n)) setWithdrawalRate(String(n)); }}
                           className="input-field"
                           placeholder="4"
                           step="0.25"
@@ -355,7 +375,7 @@ function App() {
                   <div>
                     <h3 className="text-lg font-semibold text-amber-400">Expenses Exceed Income</h3>
                     <p className="text-slate-300 mt-1">
-                      Your monthly expenses ({formatFullCurrency(monthlyExpenses)}) are greater than or equal to your income ({formatFullCurrency(monthlyIncome)}).
+                      Your monthly expenses ({formatFullCurrency(calculations.expenses)}) are greater than or equal to your income ({formatFullCurrency(calculations.income)}).
                       Reduce expenses or increase income to calculate a valid FIRE date.
                     </p>
                   </div>
@@ -512,7 +532,7 @@ function App() {
                 </p>
                 <div className="mt-4 p-3 bg-white/5 rounded-lg">
                   <code className="text-sm text-slate-300">
-                    {formatFullCurrency(calculations.totalAnnualExpenses)} × {(100 / withdrawalRate).toFixed(0)} = {formatFullCurrency(calculations.fireNumber)}
+                    {formatFullCurrency(calculations.totalAnnualExpenses)} × {(100 / calculations.withdrawal).toFixed(0)} = {formatFullCurrency(calculations.fireNumber)}
                   </code>
                 </div>
               </div>
@@ -526,7 +546,7 @@ function App() {
                 </p>
                 <div className="mt-4 p-3 bg-white/5 rounded-lg">
                   <code className="text-sm text-slate-300">
-                    ({formatFullCurrency(monthlyIncome)} - {formatFullCurrency(monthlyExpenses)}) / {formatFullCurrency(monthlyIncome)} = {calculations.savingsRate.toFixed(1)}%
+                    ({formatFullCurrency(calculations.income)} - {formatFullCurrency(calculations.expenses)}) / {formatFullCurrency(calculations.income)} = {calculations.savingsRate.toFixed(1)}%
                   </code>
                 </div>
               </div>
