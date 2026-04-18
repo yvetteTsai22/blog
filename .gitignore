@@ -23,3 +23,7 @@ _site/tool-recommend/*
 !_site/tool-recommend/product-1/**/*
 !_site/tool-recommend/product-2/
 !_site/tool-recommend/product-2/**/*
+.gitnexus
+.claude/
+docs/plans/
+infographic/
