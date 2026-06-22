@@ -1,5 +1,5 @@
 export const config = {
-  affiliateUrl: "https://instadoodle.com/cb-special?hop=yycode&hopId=a66373f9-7ef8-4863-822e-11cb6c9c2e22",
+  affiliateUrl: "https://d69e8wbz17mpcv4aoi33mev4s9.hop.clickbank.net",
   productName: "InstaDoodle",
   price: "$37",
   priceNote: "one-time payment — no monthly fees",
