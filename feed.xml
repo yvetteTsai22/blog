@@ -5,9 +5,63 @@
     <description>About AI, ML, LLMs and more by Yvette Tsai.</description>
     <link>https://yvettetsai22.github.io/blog/</link>
     <atom:link href="https://yvettetsai22.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 25 Jun 2026 15:50:10 +0000</pubDate>
-    <lastBuildDate>Thu, 25 Jun 2026 15:50:10 +0000</lastBuildDate>
+    <pubDate>Thu, 25 Jun 2026 22:57:24 +0000</pubDate>
+    <lastBuildDate>Thu, 25 Jun 2026 22:57:24 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</title>
+        <description>&lt;p&gt;The most dangerous bug is the one that doesn’t crash.&lt;/p&gt; &lt;p&gt;Today I shipped a form-panel editing feature for a forecasting chatbot. Users can now edit time slots directly from the UI without typing natural language commands — the feature routes all edits through a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/update-slots&lt;/code&gt; command that reuses the same validation guards as the chat path.&lt;/p&gt; &lt;p&gt;What shipped: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;run_slot_update()&lt;/code&gt; extracted as a shared function, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UpdateSlotsCommand&lt;/code&gt; with 12/12 tests green, and a WebSocket handler refactored from 218 down to 132 lines with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_handle_form_edit&lt;/code&gt; deleted entirely.&lt;/p&gt; &lt;p&gt;At every step, bugs that didn’t fail...</description>
+        <pubDate>Thu, 25 Jun 2026 08:00:00 +0000</pubDate>
+        <link>https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/</link>
+        <guid isPermaLink="true">https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/</guid>
+        
+        <category>python</category>
+        
+        <category>debugging</category>
+        
+        <category>ai</category>
+        
+        <category>tutorial</category>
+        
+        <category>code</category>
+      </item>
+    
+      <item>
+        <title>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</title>
+        <description>&lt;h2 id=&quot;bug-1-applyreplace-always-returned-true&quot;&gt;Bug 1: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_apply_replace&lt;/code&gt; always returned &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt;&lt;/h2&gt; &lt;p&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_merge_slot_entries&lt;/code&gt; called &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_apply_replace&lt;/code&gt; to detect whether a slot value had changed. The function compared nothing. It returned &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;True&lt;/code&gt; unconditionally.&lt;/p&gt; &lt;p&gt;This meant the “no changes detected” early-return in &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;run_slot_update&lt;/code&gt; never fired — any update, even one with identical values, passed through as a real change. Tests that expected the guard to catch no-ops were passing for the wrong reason.&lt;/p&gt; &lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;# Before: unconditional return &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;_apply_replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;slot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;new_value&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;slot&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;value&lt;/span&gt;...</description>
+        <pubDate>Thu, 25 Jun 2026 08:00:00 +0000</pubDate>
+        <link>https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/2/</link>
+        <guid isPermaLink="true">https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/2/</guid>
+        
+        <category>python</category>
+        
+        <category>debugging</category>
+        
+        <category>ai</category>
+        
+        <category>tutorial</category>
+        
+        <category>code</category>
+      </item>
+    
+      <item>
+        <title>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</title>
+        <description>&lt;p&gt;The most dangerous bug is the one that doesn’t crash.&lt;/p&gt; &lt;p&gt;Today I shipped a form-panel editing feature for a forecasting chatbot. Users can now edit time slots directly from the UI without typing natural language commands — the feature routes all edits through a new &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;/update-slots&lt;/code&gt; command that reuses the same validation guards as the chat path.&lt;/p&gt; &lt;p&gt;What shipped: &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;run_slot_update()&lt;/code&gt; extracted as a shared function, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;UpdateSlotsCommand&lt;/code&gt; with 12/12 tests green, and a WebSocket handler refactored from 218 down to 132 lines with &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;_handle_form_edit&lt;/code&gt; deleted entirely.&lt;/p&gt; &lt;p&gt;At every step, bugs that didn’t fail...</description>
+        <pubDate>Thu, 25 Jun 2026 08:00:00 +0000</pubDate>
+        <link>https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/view-all/</link>
+        <guid isPermaLink="true">https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/view-all/</guid>
+        
+        <category>python</category>
+        
+        <category>debugging</category>
+        
+        <category>ai</category>
+        
+        <category>tutorial</category>
+        
+        <category>code</category>
+      </item>
     
       <item>
         <title>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</title>

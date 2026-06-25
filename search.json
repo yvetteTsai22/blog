@@ -3,6 +3,14 @@
   
   
     {
+      "title"    : "Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature",
+      "tags"     : "python, debugging, ai, and tutorial",
+      "categories" : "code",
+      "url"      : "/blog/everything-returned-true-debugging-silent-failures/",
+      "date"     : "06/25/2026"
+    } ,
+  
+    {
       "title"    : "Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK",
       "tags"     : "blog",
       "categories" : "",
