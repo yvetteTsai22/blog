@@ -30,37 +30,35 @@ jobs:
     - name: Build Jekyll site
       run: bundle exec jekyll build --baseurl '/blog'
 
-    # Build tool-recommend landing pages AFTER Jekyll (so they don't get overwritten)
+    # Build tool-recommend landing pages AFTER Jekyll (so they don't get overwritten).
+    # Auto-discovers any subdirectory of _tool-recommends/ that has a package.json —
+    # no changes needed here when adding a new product.
     - name: Build tool-recommend pages
       run: |
         echo "🚀 Building tool-recommend landing pages..."
 
-        # Build product-1
-        echo "📦 Building product-1..."
-        cd _tool-recommends/product-1
-        npm install --legacy-peer-deps > /dev/null 2>&1
-        npm run build > /dev/null 2>&1
-        cd ../..
-        mkdir -p _site/tool-recommend/product-1
-        cp -r _tool-recommends/product-1/build/* _site/tool-recommend/product-1/
+        for pkg in _tool-recommends/*/package.json; do
+          dir=$(dirname "$pkg")
+          name=$(basename "$dir")
 
-        # Build product-2
-        echo "📦 Building product-2..."
-        cd _tool-recommends/product-2
-        npm install --legacy-peer-deps > /dev/null 2>&1
-        npm run build > /dev/null 2>&1
-        cd ../..
-        mkdir -p _site/tool-recommend/product-2
-        cp -r _tool-recommends/product-2/build/* _site/tool-recommend/product-2/
+          echo "📦 Building $name..."
+          cd "$dir"
+          npm install --legacy-peer-deps > /dev/null 2>&1
+          npm run build > /dev/null 2>&1
+          cd ../..
 
-        # Build fire-calculator
+          if [ -d "$dir/dist" ]; then out_dir="$dir/dist"; else out_dir="$dir/build"; fi
+          mkdir -p "_site/tool-recommend/$name"
+          cp -r "$out_dir/." "_site/tool-recommend/$name/"
+        done
+
         echo "📦 Building fire-calculator..."
         cd fire-calculator
         npm install > /dev/null 2>&1
         npm run build > /dev/null 2>&1
         cd ..
         mkdir -p _site/fire-calculator
-        cp -r fire-calculator/dist/* _site/fire-calculator/
+        cp -r fire-calculator/dist/. _site/fire-calculator/
 
         echo "✅ All pages built successfully!"
 

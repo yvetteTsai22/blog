@@ -1,70 +1,54 @@
 #!/bin/bash
 
-# Build script for tool-recommend landing pages
-# This builds all tool-recommend products and prepares them for Jekyll serving
+# Build script for tool-recommend landing pages.
+# Auto-discovers any subdirectory of _tool-recommends/ that has a package.json.
+# Adding a new product requires no changes here — just create the directory.
 
-set -e  # Exit on error
+set -e
 
 echo "🚀 Building tool-recommend landing pages..."
 echo ""
 
-# Make sure _site directory exists
 mkdir -p _site
 
-# Build product-1
-echo "📦 Building product-1..."
-cd _tool-recommends/product-1
-npm run build > /dev/null 2>&1
-cd ../..
+# Auto-build all products in _tool-recommends/ that have a package.json
+for pkg in _tool-recommends/*/package.json; do
+  dir=$(dirname "$pkg")
+  name=$(basename "$dir")
 
-# Create tool-recommend directory in _site (will be preserved by Jekyll)
-mkdir -p _site/tool-recommend/product-1
+  echo "📦 Building $name..."
+  cd "$dir"
+  npm run build > /dev/null 2>&1
+  cd ../..
 
-# Copy product-1 to _site (preserve after Jekyll runs)
-echo "📋 Copying product-1 to _site/tool-recommend/product-1..."
-cp -r _tool-recommends/product-1/build/* _site/tool-recommend/product-1/
+  # Support both Vite (dist/) and CRA-style (build/) output dirs
+  if [ -d "$dir/dist" ]; then
+    out_dir="$dir/dist"
+  else
+    out_dir="$dir/build"
+  fi
 
-# Build product-2
-echo "📦 Building product-2..."
-cd _tool-recommends/product-2
-npm run build > /dev/null 2>&1
-cd ../..
+  mkdir -p "_site/tool-recommend/$name"
+  cp -r "$out_dir/." "_site/tool-recommend/$name/"
+  echo "   ✓ copied to _site/tool-recommend/$name/"
+done
 
-# Create tool-recommend directory in _site
-mkdir -p _site/tool-recommend/product-2
-
-# Copy product-2 to _site
-echo "📋 Copying product-2 to _site/tool-recommend/product-2..."
-cp -r _tool-recommends/product-2/build/* _site/tool-recommend/product-2/
-
-# Build fire-calculator
+# Build fire-calculator (lives outside _tool-recommends/)
 echo "📦 Building fire-calculator..."
 cd fire-calculator
 npm run build > /dev/null 2>&1
 cd ..
-
-# Create fire-calculator directory in _site
 mkdir -p _site/fire-calculator
-
-# Copy fire-calculator to _site
-echo "📋 Copying fire-calculator to _site/fire-calculator..."
-cp -r fire-calculator/dist/* _site/fire-calculator/
+cp -r fire-calculator/dist/. _site/fire-calculator/
+echo "   ✓ copied to _site/fire-calculator/"
 
 echo ""
-echo "✅ Done! Pages built:"
-echo "   - _site/tool-recommend/product-1/"
-echo "   - _site/tool-recommend/product-2/"
-echo "   - _site/fire-calculator/"
+echo "✅ Done!"
 echo ""
 echo "📌 Note: Jekyll will regenerate _site on each change."
-echo "   Your tool-recommend pages need to be rebuilt after Jekyll runs:"
-echo "   ./build-tool-recommends.sh"
+echo "   Rebuild tool-recommend pages after Jekyll runs: ./build-tool-recommends.sh"
 echo ""
 echo "To develop:"
 echo "  1. bundle exec jekyll serve --baseurl '/blog' &"
 echo "  2. ./build-tool-recommends.sh"
-echo "  3. Visit: http://127.0.0.1:4000/blog/tool-recommend/product-1/"
-echo ""
-echo "After editing tool-recommend content:"
-echo "  1. ./build-tool-recommends.sh"
-echo "  2. Refresh browser"
+echo "  3. Visit: http://127.0.0.1:4000/blog/tool-recommend/<product-name>/"
