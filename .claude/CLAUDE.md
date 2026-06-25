@@ -42,7 +42,38 @@ The affiliate pages are built *after* Jekyll (since Jekyll clears `_site/`) and 
 ### Tool-Recommend Pattern
 - All product content lives in `src/config.ts` — no component editing needed for content changes
 - Shared UI components live in `_tool-recommends/shared/components/` as a reference; they are **copied** into each product's `src/components/` for build isolation
-- Each product's `vite.config.ts` sets a unique base path: `/blog/tool-recommend/product-N/`
+- Each product's `vite.config.ts` sets a unique base path: `/blog/tool-recommend/<product-name>/`
+
+### Adding a New Product Landing Page
+
+The build system auto-discovers any subdirectory of `_tool-recommends/` that has a `package.json`. No changes to `build-tool-recommends.sh` or the GitHub Actions workflow are needed.
+
+**Steps:**
+
+1. **Create the product directory** by copying an existing one as a template:
+   ```bash
+   cp -r _tool-recommends/instadoodle _tool-recommends/<product-name>
+   cd _tool-recommends/<product-name>
+   npm install --legacy-peer-deps
+   ```
+
+2. **Update `vite.config.ts`** — change the `base` path:
+   ```ts
+   base: '/blog/tool-recommend/<product-name>/',
+   ```
+
+3. **Edit `src/config.ts`** — all product content (title, description, affiliate URL, features, FAQ, etc.) lives here. No component editing needed.
+
+4. **Test locally:**
+   ```bash
+   npm run dev
+   # visit http://localhost:3002/blog/tool-recommend/<product-name>/
+   ```
+
+5. **Commit and push** — CI will auto-build and deploy to:
+   ```
+   https://yvettetsai22.github.io/blog/tool-recommend/<product-name>/
+   ```
 
 ### Content Structure
 - Blog posts: `_posts/YYYY-MM-DD-title.md` with YAML front matter
