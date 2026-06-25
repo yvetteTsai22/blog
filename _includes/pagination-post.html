@@ -10,7 +10,7 @@
                 <span class="text">{{ site.translations.pagination.next_page | default: "Next Page" }} <svg class="arrow"><use xlink:href="#icon-arrow-right"></use></svg></span>
             </a>
         {% else if next_posts.first %}
-            <a href="{{ next_posts.first.url }}">
+            <a href="{{ next_posts.first.url | prepend: site.baseurl }}">
                 {% if include.progressBar %}
                     {% include progress-bar.html finished=true %}
                 {% endif %}

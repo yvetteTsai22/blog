@@ -1,0 +1,288 @@
+---
+layout: page
+title: My Recommended Tools
+permalink: /my-affiliate/
+sitemap: false
+robots: "noindex, nofollow"
+---
+
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --rule:     #E8E2D9;
+    --text:     #1A1714;
+    --sub:      #706A61;
+    --faint:    #A09890;
+    --accent:   #B8511F;
+    --accent-h: #963F14;
+    --star:     #C9870A;
+    --row-hover: rgba(180, 160, 140, 0.09);
+    --sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --mono: 'JetBrains Mono', 'Courier New', monospace;
+  }
+
+  .aff-page {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem 4rem;
+    font-family: var(--sans);
+    color: var(--text);
+    box-sizing: border-box;
+  }
+
+  .aff-page *, .aff-page *::before, .aff-page *::after {
+    box-sizing: inherit;
+  }
+
+  /* ── Page header ── */
+  .aff-header {
+    padding: 2.5rem 0 0.875rem;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.5rem;
+    border-bottom: 2px solid var(--text);
+  }
+
+  .aff-title {
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .aff-count {
+    font-family: var(--mono);
+    font-size: 0.68rem;
+    color: var(--faint);
+  }
+
+  /* ── Grid shared between header and rows ── */
+  .db-grid {
+    display: grid;
+    grid-template-columns: 1fr 66px 58px 172px;
+    gap: 0 1.25rem;
+    align-items: center;
+  }
+
+  /* ── Column headers ── */
+  .db-head {
+    padding: 0.5rem 0.75rem 0.5rem;
+    margin: 0 -0.75rem;
+  }
+
+  .db-head span {
+    font-family: var(--mono);
+    font-size: 0.6rem;
+    color: var(--faint);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .db-head .h-price,
+  .db-head .h-rating {
+    text-align: right;
+  }
+
+  .db-head .h-links {
+    text-align: right;
+  }
+
+  /* ── Row list ── */
+  .db-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .db-row {
+    padding: 0.6rem 0.75rem;
+    margin: 0 -0.75rem;
+    border-bottom: 1px solid var(--rule);
+    border-radius: 4px;
+    transition: background 0.1s;
+  }
+
+  .db-row:last-child {
+    border-bottom: none;
+  }
+
+  .db-row:hover {
+    background: var(--row-hover);
+  }
+
+  /* ── Name cell ── */
+  .cell-name {
+    display: flex;
+    flex-direction: column;
+    gap: 0.08rem;
+    min-width: 0;
+  }
+
+  .tool-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text);
+    margin: 0;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tool-tagline {
+    font-size: 0.73rem;
+    color: var(--sub);
+    line-height: 1.4;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  /* ── Price cell ── */
+  .cell-price {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .price-val {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .price-empty {
+    font-family: var(--mono);
+    font-size: 0.8rem;
+    color: var(--faint);
+  }
+
+  /* ── Rating cell ── */
+  .cell-rating {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .rating-val {
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--star);
+    white-space: nowrap;
+  }
+
+  /* ── Links cell ── */
+  .cell-links {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.6rem;
+  }
+
+  .btn-aff {
+    display: inline-block;
+    background: var(--accent);
+    color: #fff !important;
+    text-decoration: none;
+    padding: 0.28rem 0.6rem;
+    border-radius: 3px;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    transition: background 0.12s;
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .btn-aff:hover { background: var(--accent-h); }
+
+  .btn-aff:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  .btn-lp {
+    font-family: var(--mono);
+    font-size: 0.63rem;
+    color: var(--sub);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.12s, border-color 0.12s;
+    white-space: nowrap;
+  }
+
+  .btn-lp:hover {
+    color: var(--text);
+    border-bottom-color: var(--sub);
+  }
+
+  .btn-lp:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 540px) {
+    .aff-page { padding: 0 1rem 2.5rem; }
+    .db-grid { grid-template-columns: 1fr auto; }
+    .db-head, .cell-price, .cell-rating { display: none; }
+    .db-row { padding: 0.7rem 0.5rem; margin: 0 -0.5rem; }
+  }
+</style>
+
+<div class="aff-page">
+  <div class="aff-header">
+    <h1 class="aff-title">Affiliate Products</h1>
+    <span class="aff-count">{{ site.data.tools | size }} tools</span>
+  </div>
+
+  <div class="db-grid db-head">
+    <span>Product</span>
+    <span class="h-price">Price</span>
+    <span class="h-rating">Rating</span>
+    <span class="h-links">Links</span>
+  </div>
+
+  <ul class="db-list">
+    {% for tool in site.data.tools %}
+    <li class="db-row db-grid">
+
+      <div class="cell-name">
+        <span class="tool-name">{{ tool.name }}</span>
+        <span class="tool-tagline">{{ tool.description | truncate: 75 }}</span>
+      </div>
+
+      <div class="cell-price">
+        {% if tool.price and tool.price != "" %}
+          <span class="price-val">{{ tool.price }}</span>
+        {% else %}
+          <span class="price-empty">—</span>
+        {% endif %}
+      </div>
+
+      <div class="cell-rating">
+        {% if tool.rating %}
+          <span class="rating-val">★ {{ tool.rating }}</span>
+        {% endif %}
+      </div>
+
+      <div class="cell-links">
+        {% if tool.slug %}
+          <a href="{{ site.baseurl }}/tool-recommend/{{ tool.slug }}/" class="btn-aff">Affiliate →</a>
+        {% endif %}
+      </div>
+
+    </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -3,7 +3,7 @@
   price: "$37"
   price_note: "one-time payment — no monthly fees"
   rating: "4.9"
-  user_count: "90,000+"
+  user_count: ""
   guarantee: "60"
   benefits:
     - "Create professional whiteboard videos in minutes — no drawing skill required"
@@ -18,8 +18,7 @@
       label: "Average Rating"
     - value: "$37"
       label: "One-Time Payment"
-  affiliate_url: "https://d69e8wbz17mpcv4aoi33mev4s9.hop.clickbank.net"
-  landing_url: "/tool-recommend/instadoodle/"
+  slug: "instadoodle"
   image_url: "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80"
   cta_text: "Get InstaDoodle Now ✦"
 
@@ -43,8 +42,7 @@
       label: "Average Rating"
     - value: "10+ Hours"
       label: "Saved Per Week"
-  affiliate_url: "#your-affiliate-link-here"
-  landing_url: "/tool-recommend/product-1/"
+  slug: "product-1"
   image_url: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80"
   cta_text: "Unlock Instant Access"
 
@@ -68,7 +66,6 @@
       label: "Star Rating"
     - value: "99.9%"
       label: "Uptime"
-  affiliate_url: "#your-product-2-affiliate-link"
-  landing_url: "/tool-recommend/product-2/"
+  slug: "product-2"
   image_url: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&q=80"
   cta_text: "Get Started Free Today"
