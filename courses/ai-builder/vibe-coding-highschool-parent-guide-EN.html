@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>From Idea to Product · High-School AI Vibe Coding — A Guide for Parents</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@400;600;700;900&family=Noto+Sans:wght@300;400;500;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F4F6F8;
+    --card:#FFFFFF;
+    --ink:#16213A;
+    --ink-soft:#3C4762;
+    --muted:#727E94;
+    --blue:#1F4E9B;
+    --blue-deep:#163D7C;
+    --blue-soft:#E7EEF8;
+    --amber:#DE820A;
+    --amber-soft:#FBEFD9;
+    --line:#DBE1EA;
+    --display:'Fraunces',Georgia,serif;
+    --body:'Noto Sans',system-ui,sans-serif;
+    --mono:'Space Mono',monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    color:var(--ink);
+    background:var(--paper);
+    line-height:1.7;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:840px;margin:0 auto;padding:0 28px;}
+
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:.72rem;
+    letter-spacing:.2em;
+    text-transform:uppercase;
+    color:var(--blue);
+    display:inline-flex;align-items:center;gap:.6em;
+  }
+  .eyebrow::before{content:"";width:26px;height:1px;background:var(--blue);display:inline-block;}
+  h2.sec{
+    font-family:var(--display);
+    font-weight:600;
+    font-size:clamp(1.6rem,4.4vw,2.15rem);
+    line-height:1.2;
+    color:var(--ink);
+    margin:.5rem 0 1.4rem;
+    letter-spacing:-.01em;
+  }
+  section{padding:56px 0;border-top:1px solid var(--line);}
+
+  /* hero */
+  header{
+    background:linear-gradient(180deg,#FFFFFF 0%,var(--paper) 100%);
+    position:relative;overflow:hidden;border-bottom:1px solid var(--line);
+  }
+  header::before{
+    content:"";position:absolute;inset:0;
+    background-image:
+      linear-gradient(var(--blue-soft) 1px,transparent 1px),
+      linear-gradient(90deg,var(--blue-soft) 1px,transparent 1px);
+    background-size:34px 34px;
+    -webkit-mask-image:radial-gradient(120% 90% at 100% 0%,#000 0%,transparent 62%);
+            mask-image:radial-gradient(120% 90% at 100% 0%,#000 0%,transparent 62%);
+    opacity:.7;pointer-events:none;
+  }
+  .hero{position:relative;padding:66px 0 60px;}
+  .hero .eyebrow{margin-bottom:26px;}
+  .hero h1{
+    font-family:var(--display);
+    font-weight:900;
+    font-size:clamp(2.1rem,6vw,3.2rem);
+    line-height:1.12;
+    letter-spacing:-.015em;
+    max-width:17ch;
+  }
+  .hero h1 .mark{color:var(--blue);}
+  .hero h1 .spark{color:var(--amber);}
+  .hero .sub{
+    margin-top:22px;font-size:1.12rem;color:var(--ink-soft);max-width:52ch;font-weight:300;
+  }
+  .chips{margin-top:30px;display:flex;flex-wrap:wrap;gap:10px;}
+  .chip{
+    font-size:.86rem;background:var(--card);border:1px solid var(--line);color:var(--ink-soft);
+    padding:7px 15px;border-radius:100px;display:inline-flex;align-items:center;gap:.5em;
+  }
+  .chip b{color:var(--blue);font-weight:700;}
+
+  /* why */
+  .why-grid{display:grid;gap:18px;margin-top:8px;}
+  .why-card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;}
+  .why-card h3{font-family:var(--display);font-size:1.2rem;font-weight:600;margin-bottom:8px;}
+  .why-card p{color:var(--ink-soft);font-size:.98rem;}
+  .plainbox{
+    margin-top:26px;background:var(--blue-soft);border-left:4px solid var(--blue);
+    border-radius:0 12px 12px 0;padding:20px 24px;
+  }
+  .plainbox p{color:var(--blue-deep);font-size:1rem;}
+  .plainbox b{font-weight:700;}
+
+  /* how */
+  .how-intro{color:var(--ink-soft);margin-bottom:34px;max-width:62ch;}
+  .pbl-steps{display:grid;gap:14px;margin-bottom:44px;}
+  .pbl{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:start;
+    background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px 22px;}
+  .pbl .n{font-family:var(--mono);font-weight:700;font-size:.9rem;color:var(--amber);
+    background:var(--amber-soft);width:38px;height:38px;border-radius:9px;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .pbl h4{font-size:1.02rem;font-weight:700;margin-bottom:3px;}
+  .pbl p{color:var(--ink-soft);font-size:.95rem;}
+
+  .classbox{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:28px 26px 26px;}
+  .classbox .top{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px;margin-bottom:22px;}
+  .classbox .top h4{font-family:var(--display);font-size:1.25rem;font-weight:600;}
+  .classbox .top .dur{font-family:var(--mono);font-size:.85rem;color:var(--muted);}
+  .timebar{display:flex;height:52px;border-radius:9px;overflow:hidden;border:1px solid var(--line);}
+  .seg{position:relative;display:flex;align-items:center;justify-content:center;}
+  .seg span{font-family:var(--mono);font-size:.68rem;color:#fff;padding:0 6px;text-align:center;line-height:1.2;}
+  .s1{flex:10;background:#9FB4D4;}
+  .s2{flex:40;background:var(--blue);}
+  .s3{flex:22;background:var(--blue-deep);}
+  .s4{flex:20;background:var(--amber);}
+  .legend{margin-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:10px 22px;}
+  .lg{display:flex;gap:9px;align-items:flex-start;font-size:.9rem;color:var(--ink-soft);}
+  .lg .dot{width:12px;height:12px;border-radius:3px;margin-top:5px;flex-shrink:0;}
+  .lg b{color:var(--ink);font-weight:700;}
+  .highlight-note{margin-top:20px;font-size:.92rem;color:var(--amber);background:var(--amber-soft);
+    border-radius:10px;padding:12px 16px;display:flex;gap:10px;align-items:flex-start;}
+  .highlight-note b{color:#9A5A05;}
+
+  /* timeline */
+  .phase-lead{color:var(--ink-soft);margin-bottom:34px;max-width:60ch;}
+  .phase-head{display:flex;align-items:center;gap:14px;margin:30px 0 16px;}
+  .phase-head:first-child{margin-top:0;}
+  .phase-tag{font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;color:#fff;
+    background:var(--blue-deep);padding:5px 11px;border-radius:6px;white-space:nowrap;}
+  .phase-head h3{font-family:var(--display);font-size:1.22rem;font-weight:600;}
+  .weeks{position:relative;margin-left:6px;padding-left:26px;border-left:2px solid var(--line);}
+  .wk{position:relative;padding:0 0 22px 0;}
+  .wk:last-child{padding-bottom:2px;}
+  .wk::before{content:"";position:absolute;left:-33px;top:5px;width:12px;height:12px;border-radius:50%;
+    background:#fff;border:2.5px solid var(--blue);}
+  .wk.proj::before{border-color:var(--amber);background:var(--amber);}
+  .wk .num{font-family:var(--mono);font-size:.76rem;color:var(--blue);font-weight:700;letter-spacing:.04em;}
+  .wk.proj .num{color:var(--amber);}
+  .wk h4{font-size:1.05rem;font-weight:700;margin:2px 0 3px;}
+  .wk p{color:var(--ink-soft);font-size:.94rem;}
+  .wk .proj-flag{display:inline-block;font-family:var(--mono);font-size:.66rem;letter-spacing:.06em;
+    color:var(--amber);border:1px solid var(--amber);border-radius:5px;padding:2px 7px;margin-top:8px;}
+
+  /* outcomes */
+  .out-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .out{background:var(--card);border:1px solid var(--line);border-radius:13px;padding:20px;}
+  .out .ic{font-family:var(--mono);color:var(--amber);font-weight:700;font-size:.8rem;margin-bottom:9px;letter-spacing:.05em;}
+  .out h4{font-size:1.02rem;font-weight:700;margin-bottom:4px;}
+  .out p{color:var(--ink-soft);font-size:.92rem;}
+
+  /* facts */
+  .facts{background:var(--blue-deep);color:#fff;border-radius:18px;padding:36px 32px;}
+  .facts .eyebrow{color:#9DBBEC;}
+  .facts .eyebrow::before{background:#9DBBEC;}
+  .facts h2{font-family:var(--display);color:#fff;font-size:1.55rem;font-weight:600;margin:.5rem 0 26px;}
+  .fact-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;background:rgba(255,255,255,.14);border-radius:12px;overflow:hidden;}
+  .fact{background:var(--blue-deep);padding:18px 20px;}
+  .fact .k{font-family:var(--mono);font-size:.7rem;letter-spacing:.08em;color:#9DBBEC;text-transform:uppercase;margin-bottom:6px;}
+  .fact .v{font-size:1.05rem;font-weight:500;line-height:1.5;}
+  .fact .v small{display:block;font-size:.82rem;color:#C6D6F0;font-weight:300;margin-top:2px;}
+
+  /* faq */
+  .faq{display:grid;gap:2px;background:var(--line);border-radius:14px;overflow:hidden;border:1px solid var(--line);}
+  .qa{background:var(--card);padding:22px 24px;}
+  .qa .q{font-weight:700;font-size:1rem;display:flex;gap:11px;align-items:baseline;}
+  .qa .q .mk{font-family:var(--mono);color:var(--amber);font-weight:700;}
+  .qa .a{color:var(--ink-soft);font-size:.95rem;margin-top:7px;padding-left:26px;}
+
+  footer{padding:40px 0 64px;border-top:1px solid var(--line);}
+  .foot-note{font-size:.86rem;color:var(--muted);line-height:1.7;}
+  .foot-note b{color:var(--ink-soft);}
+
+  @media (max-width:640px){
+    section{padding:44px 0;}
+    .out-grid,.fact-grid,.legend{grid-template-columns:1fr;}
+    .facts{padding:30px 22px;}
+    .timebar{height:auto;flex-direction:column;}
+    .seg{padding:9px 0;}
+    .s1,.s2,.s3,.s4{flex:none;}
+  }
+  @media print{
+    body{background:#fff;}
+    header::before{display:none;}
+    section,header{border-color:#ccc;}
+    .facts{background:#fff;color:#000;border:1px solid #ccc;}
+    .facts h2,.facts .fact .v{color:#000;}
+    .fact,.fact-grid{background:#fff;}
+    .phase-tag{background:#333;}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .fade{opacity:0;transform:translateY(14px);animation:rise .7s ease forwards;}
+    @keyframes rise{to{opacity:1;transform:none;}}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap hero">
+    <span class="eyebrow fade">A Guide for Parents</span>
+    <h1 class="fade">Let your teen use <span class="spark">AI</span> to turn their own <span class="mark">ideas</span> into something they can show</h1>
+    <p class="sub fade">An introductory AI coding course designed for high-school students. No programming background needed — your child learns to build their own web pages, tools, and small games simply by describing what they want to an AI.</p>
+    <div class="chips fade">
+      <span class="chip">🎯 <b>No</b> coding background needed</span>
+      <span class="chip">🧩 <b>10</b> lessons · one per week</span>
+      <span class="chip">👤 <b>1-on-1</b> private lessons</span>
+      <span class="chip">🚀 Finish a <b>real, shareable</b> project</span>
+    </div>
+  </div>
+</header>
+
+<section id="why">
+  <div class="wrap">
+    <span class="eyebrow">What this course teaches</span>
+    <h2 class="sec">Not "memorizing code" — "making ideas real"</h2>
+    <div class="why-grid">
+      <div class="why-card">
+        <h3>Just describe it, and build</h3>
+        <p>Vibe coding is a new way to build: your child tells an AI what they want in plain language, and the AI helps turn it into something that runs. The focus shifts from "can you write code" to "can you describe your idea clearly."</p>
+      </div>
+      <div class="why-card">
+        <h3>The skills last longer than any tool</h3>
+        <p>Along the way, your child practises breaking a fuzzy idea into steps, trying things out, fixing mistakes, and improving until it's done. These problem-solving habits outlast any single tool or app.</p>
+      </div>
+    </div>
+    <div class="plainbox">
+      <p><b>In one sentence:</b> by the end of the course, your child will have built a small project of their own, from scratch — one they can open and share with others — starting from nothing more than "I have an idea."</p>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="wrap">
+    <span class="eyebrow">How I teach</span>
+    <h2 class="sec">Learning by doing: every student has their own project</h2>
+    <p class="how-intro">I use Project-Based Learning in a private 1-on-1 format. At the start of the course, I work with your child to set a small goal they genuinely want to build, and to work on it in their own time. Each session is for introducing new ideas, live demonstrations, and helping your child get unstuck — paced entirely around them.</p>
+
+    <div class="pbl-steps">
+      <div class="pbl">
+        <div class="n">01</div>
+        <div><h4>Pick your own small goal</h4><p>For example: a web page to help you revise vocabulary, a sign-up form for a club, or a simple game. The goal belongs to the student — motivation comes from "I want to make this."</p></div>
+      </div>
+      <div class="pbl">
+        <div class="n">02</div>
+        <div><h4>Build it in your own time</h4><p>Apply what you learn in class to your own project. The real learning happens in the doing — getting stuck, and finding a way through.</p></div>
+      </div>
+      <div class="pbl">
+        <div class="n">03</div>
+        <div><h4>Dedicated help every session</h4><p>Because it's 1-on-1, every session is shaped around your child. We spend time wherever they're stuck and move at exactly their pace — no waiting, no falling behind.</p></div>
+      </div>
+    </div>
+
+    <div class="classbox">
+      <div class="top">
+        <h4>What a lesson looks like</h4>
+        <span class="dur">90 minutes per lesson</span>
+      </div>
+      <div class="timebar">
+        <div class="seg s1"><span>Recap<br>10′</span></div>
+        <div class="seg s2"><span>New idea + live demo　40′</span></div>
+        <div class="seg s3"><span>Hands-on　20′</span></div>
+        <div class="seg s4"><span>Project help<br>10–20′</span></div>
+      </div>
+      <div class="legend">
+        <div class="lg"><span class="dot" style="background:#9FB4D4"></span><span><b>Recap</b>　quick review of last week and homework</span></div>
+        <div class="lg"><span class="dot" style="background:var(--blue)"></span><span><b>New idea</b>　introduce one new topic with a live demo</span></div>
+        <div class="lg"><span class="dot" style="background:var(--blue-deep)"></span><span><b>Hands-on</b>　students try it once themselves in class</span></div>
+        <div class="lg"><span class="dot" style="background:var(--amber)"></span><span><b>Project help</b>　direction for each person's project</span></div>
+      </div>
+      <div class="highlight-note">
+        <span>💡</span>
+        <span><b>The amber project time is the heart of this course.</b> It connects "what we learn in class" with "what your child is actually building," so nobody stays stuck for long.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="path">
+  <div class="wrap">
+    <span class="eyebrow">The learning journey</span>
+    <h2 class="sec">Ten weeks, from first taste to a public showcase</h2>
+    <p class="phase-lead">The course runs in four phases, step by step. The weeks marked in amber are the key moments when your child's own project moves forward.</p>
+
+    <div class="timeline">
+
+      <div class="phase">
+        <div class="phase-head"><span class="phase-tag">PHASE 1</span><h3>Getting started</h3></div>
+        <div class="weeks">
+          <div class="wk proj">
+            <div class="num">W01</div>
+            <h4>Make something with AI for the first time</h4>
+            <p>Build a working little web page or game within minutes, and feel first-hand how "just describe it" works. Start thinking: what do I want to make?</p>
+            <span class="proj-flag">▹ Start planning your project</span>
+          </div>
+          <div class="wk">
+            <div class="num">W02</div>
+            <h4>Meet your AI coding partner</h4>
+            <p>Learn to use Claude Code — describing tasks in plain language and watching it build, step by step, while you stay in control.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head"><span class="phase-tag">PHASE 2</span><h3>From idea to prototype</h3></div>
+        <div class="weeks">
+          <div class="wk proj">
+            <div class="num">W03</div>
+            <h4>Find a good idea</h4>
+            <p>Learn how to judge whether an idea is worth building and how to describe it clearly. This week each student locks in their project topic.</p>
+            <span class="proj-flag">▹ Project topic locked in</span>
+          </div>
+          <div class="wk">
+            <div class="num">W04</div>
+            <h4>Build your first screen</h4>
+            <p>Turn your idea into a visible single-page prototype — give your project a face first.</p>
+          </div>
+          <div class="wk">
+            <div class="num">W05</div>
+            <h4>Add pages and interaction</h4>
+            <p>Make it clickable, switch between pages, and respond to actions — it starts to feel like a real product.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head"><span class="phase-tag">PHASE 3</span><h3>Make it smarter</h3></div>
+        <div class="weeks">
+          <div class="wk">
+            <div class="num">W06</div>
+            <h4>Give your project AI powers</h4>
+            <p>Add AI features — like generating text or images — into your own project.</p>
+          </div>
+          <div class="wk">
+            <div class="num">W07</div>
+            <h4>When things break</h4>
+            <p>More advanced work, plus the most important lesson of all: errors are normal. How to track down a problem step by step and get the AI to help fix it.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="phase">
+        <div class="phase-head"><span class="phase-tag">PHASE 4</span><h3>Finish and show</h3></div>
+        <div class="weeks">
+          <div class="wk proj">
+            <div class="num">W08</div>
+            <h4>Polish and gather feedback</h4>
+            <p>Move your project from "works" to "works well," and share it with friends or family to get real feedback.</p>
+            <span class="proj-flag">▹ Project polish</span>
+          </div>
+          <div class="wk proj">
+            <div class="num">W09</div>
+            <h4>Publish to the web</h4>
+            <p>Learn to put your project online as a link anyone can open — actually "ship" it.</p>
+            <span class="proj-flag">▹ Project goes live</span>
+          </div>
+          <div class="wk proj">
+            <div class="num">W10</div>
+            <h4>Showcase day</h4>
+            <p>Every student presents their project from zero to finished — the original idea, the obstacles, and how they solved them.</p>
+            <span class="proj-flag">▹ Public showcase</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section id="outcomes">
+  <div class="wrap">
+    <span class="eyebrow">What your child takes away</span>
+    <h2 class="sec">Concrete gains by the end</h2>
+    <div class="out-grid">
+      <div class="out">
+        <div class="ic">01</div>
+        <h4>A real project</h4>
+        <p>A personal project they can open, share, and put online — built from their own idea.</p>
+      </div>
+      <div class="out">
+        <div class="ic">02</div>
+        <h4>The ability to work with AI</h4>
+        <p>Knowing how to describe an idea clearly and direct an AI to build it, step by step.</p>
+      </div>
+      <div class="out">
+        <div class="ic">03</div>
+        <h4>Problem-solving habits</h4>
+        <p>Breaking problems down, facing errors, and improving — instead of giving up at the first hurdle.</p>
+      </div>
+      <div class="out">
+        <div class="ic">04</div>
+        <h4>A real sense of achievement</h4>
+        <p>Living through the whole journey from a single thought to a finished result, building "I can do this" confidence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="facts">
+  <div class="wrap">
+    <div class="facts">
+      <span class="eyebrow">Course at a glance</span>
+      <h2>Time and structure at a glance</h2>
+      <div class="fact-grid">
+        <div class="fact"><div class="k">Lessons</div><div class="v">10<small>four phases, step by step</small></div></div>
+        <div class="fact"><div class="k">Frequency</div><div class="v">One per week</div></div>
+        <div class="fact"><div class="k">Each lesson</div><div class="v">90 minutes<small>incl. 10–20 min project help</small></div></div>
+        <div class="fact"><div class="k">Outside class</div><div class="v">~1–2 hours / week<small>for your own project</small></div></div>
+        <div class="fact"><div class="k">Format</div><div class="v">1-on-1 private<small>fully paced around your child</small></div></div>
+        <div class="fact"><div class="k">Prerequisites</div><div class="v">None<small>designed from zero</small></div></div>
+        <div class="fact"><div class="k">What's needed</div><div class="v">Computer + Claude Code<small>Windows or Mac; stable internet; Claude Code subscription (required before first session)</small></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <span class="eyebrow">Parent FAQ</span>
+    <h2 class="sec">Things you might be wondering</h2>
+    <div class="faq">
+      <div class="qa">
+        <div class="q"><span class="mk">Q</span>My child has never coded — is that okay?</div>
+        <div class="a">Yes — that's exactly the starting point. We assume no background and build up from "make your first thing just by describing it."</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="mk">Q</span>Do we need to buy expensive equipment?</div>
+        <div class="a">No. A regular laptop with a stable internet connection (Windows or Mac) is enough.</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="mk">Q</span>I don't know how to code — can I still support my child?</div>
+        <div class="a">You don't need any coding knowledge. The best support is simply asking now and then: "What are you making? How's it going?" — giving them a chance to explain their project to you.</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="mk">Q</span>What is Claude Code, and do we need to pay for it?</div>
+        <div class="a">Claude Code is the AI coding tool we use throughout the course. A paid Claude subscription is required — please set this up before the first session. I can send you setup instructions once you enrol.</div>
+      </div>
+      <div class="qa">
+        <div class="q"><span class="mk">Q</span>Is using AI tools safe?</div>
+        <div class="a">The course uses mainstream, public AI coding tools. I guide students to use them correctly and responsibly, and cover basic online and data-safety habits.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p class="foot-note"><b>About this plan:</b> The lesson count, timing, and out-of-class hours above are suggested. Actual arrangements can flex to the class and each student's level. Every child's project moves at its own pace, and I give guidance and challenge to match.<br><br>Course philosophy and structure are adapted from the Datawhale open-source tutorial <b>easy-vibe</b> (licensed CC BY-NC-SA 4.0), with the teaching pace and project-based format redesigned for high-school students.</p>
+  </div>
+</footer>
+
+</body>
+</html>
