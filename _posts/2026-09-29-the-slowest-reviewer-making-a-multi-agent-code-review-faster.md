@@ -6,9 +6,9 @@ slug: speeding-up-multi-agent-code-review-claude-code
 subtitle: "Measure before you tune: model turns are the real clock, and parallelism stops at the rate limit."
 description: >-
   Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.
-image: https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop
+image: https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop
 optimized_image: >-
-  https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop
+  https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop
 category: code
 tags:
   - ai-agents
