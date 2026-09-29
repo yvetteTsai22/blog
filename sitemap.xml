@@ -195,6 +195,27 @@
     
     
         <url>
+            <loc>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/</loc>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+            <lastmod>2026-09-29</lastmod>
+        </url>
+    
+        <url>
+            <loc>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/2/</loc>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+            <lastmod>2026-09-29</lastmod>
+        </url>
+    
+        <url>
+            <loc>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/</loc>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+            <lastmod>2026-09-29</lastmod>
+        </url>
+    
+        <url>
             <loc>https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>

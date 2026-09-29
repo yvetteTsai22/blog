@@ -1,0 +1,140 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "Where the bugs reviewer's time went",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1000,
+      600
+    ],
+    "column_fit": "spread"
+  },
+  "participants": [
+    {
+      "id": "orch",
+      "type": "external",
+      "label": "Orchestrator",
+      "sublabel": "review run"
+    },
+    {
+      "id": "model",
+      "type": "backend",
+      "label": "Reviewer model",
+      "sublabel": "thinks each turn"
+    },
+    {
+      "id": "shell",
+      "type": "messagebus",
+      "label": "Shell tool",
+      "sublabel": "grep / sed"
+    }
+  ],
+  "segments": [
+    {
+      "from": 150,
+      "to": 250,
+      "label": "Turn 1"
+    },
+    {
+      "from": 260,
+      "to": 360,
+      "label": "Turn 2"
+    },
+    {
+      "from": 370,
+      "to": 480,
+      "label": "… 18 turns"
+    }
+  ],
+  "messages": [
+    {
+      "id": "start",
+      "from": "orch",
+      "to": "model",
+      "y": 165,
+      "label": "review this diff",
+      "variant": "emphasis"
+    },
+    {
+      "id": "call1",
+      "from": "model",
+      "to": "shell",
+      "y": 205,
+      "label": "think 20–60s, then grep callers"
+    },
+    {
+      "id": "res1",
+      "from": "shell",
+      "to": "model",
+      "y": 235,
+      "label": "result in ~1s",
+      "variant": "return"
+    },
+    {
+      "id": "call2",
+      "from": "model",
+      "to": "shell",
+      "y": 295,
+      "label": "think 20–60s, then read a function"
+    },
+    {
+      "id": "res2",
+      "from": "shell",
+      "to": "model",
+      "y": 325,
+      "label": "result in ~1s",
+      "variant": "return"
+    },
+    {
+      "id": "call3",
+      "from": "model",
+      "to": "shell",
+      "y": 400,
+      "label": "think again, next lookup"
+    },
+    {
+      "id": "res3",
+      "from": "shell",
+      "to": "model",
+      "y": 430,
+      "label": "result",
+      "variant": "return"
+    },
+    {
+      "id": "done",
+      "from": "model",
+      "to": "orch",
+      "y": 465,
+      "label": "findings after ~157s median",
+      "variant": "return"
+    }
+  ],
+  "activations": [
+    {
+      "participant": "model",
+      "from": 165,
+      "to": 470,
+      "type": "backend"
+    },
+    {
+      "participant": "shell",
+      "from": 200,
+      "to": 240,
+      "type": "messagebus"
+    },
+    {
+      "participant": "shell",
+      "from": 290,
+      "to": 330,
+      "type": "messagebus"
+    },
+    {
+      "participant": "shell",
+      "from": 395,
+      "to": 435,
+      "type": "messagebus"
+    }
+  ]
+}

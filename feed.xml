@@ -5,9 +5,75 @@
     <description>About AI, ML, LLMs and more by Yvette Tsai.</description>
     <link>https://yvettetsai22.github.io/blog/</link>
     <atom:link href="https://yvettetsai22.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 10 Sep 2026 13:46:05 +0000</pubDate>
-    <lastBuildDate>Thu, 10 Sep 2026 13:46:05 +0000</lastBuildDate>
+    <pubDate>Tue, 29 Sep 2026 13:20:58 +0000</pubDate>
+    <lastBuildDate>Tue, 29 Sep 2026 13:20:58 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Speeding Up a Multi-Agent Code Review in Claude Code</title>
+        <description>&lt;p&gt;My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.&lt;/p&gt; &lt;p&gt;One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.&lt;/p&gt; &lt;p&gt;I asked the obvious question: why is it slow, and can I make it faster? The answers were not what I expected.&lt;/p&gt; &lt;h2 id=&quot;lesson-1-measure-first-from-the-logs-you-already-have&quot;&gt;Lesson 1: measure first, from the logs...</description>
+        <pubDate>Tue, 29 Sep 2026 10:00:00 +0000</pubDate>
+        <link>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/</link>
+        <guid isPermaLink="true">https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/</guid>
+        
+        <category>ai-agents</category>
+        
+        <category>claude-code</category>
+        
+        <category>code-review</category>
+        
+        <category>multi-agent</category>
+        
+        <category>performance</category>
+        
+        <category>rate-limiting</category>
+        
+        <category>code</category>
+      </item>
+    
+      <item>
+        <title>Speeding Up a Multi-Agent Code Review in Claude Code</title>
+        <description>&lt;h2 id=&quot;lesson-4-splitting-moves-the-bottleneck-it-doesnt-remove-it&quot;&gt;Lesson 4: splitting moves the bottleneck, it doesn’t remove it&lt;/h2&gt; &lt;p&gt;The good news: &lt;strong&gt;a 16,000-line diff finished at all.&lt;/strong&gt; The old single reviewer had never run on anything over 6,000 lines. At that size it would likely have run out of context or taken a quarter of an hour. Seven slices in parallel meant the bugs stage took as long as the slowest slice, about seven minutes.&lt;/p&gt; &lt;p&gt;The less good news came in two parts.&lt;/p&gt; &lt;p&gt;&lt;strong&gt;Per line, the new slices weren’t faster.&lt;/strong&gt; Slices of 1,300 to 2,200 lines had a median of about 170 seconds. The old reviewer’s median...</description>
+        <pubDate>Tue, 29 Sep 2026 10:00:00 +0000</pubDate>
+        <link>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/2/</link>
+        <guid isPermaLink="true">https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/2/</guid>
+        
+        <category>ai-agents</category>
+        
+        <category>claude-code</category>
+        
+        <category>code-review</category>
+        
+        <category>multi-agent</category>
+        
+        <category>performance</category>
+        
+        <category>rate-limiting</category>
+        
+        <category>code</category>
+      </item>
+    
+      <item>
+        <title>Speeding Up a Multi-Agent Code Review in Claude Code</title>
+        <description>&lt;p&gt;My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.&lt;/p&gt; &lt;p&gt;One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.&lt;/p&gt; &lt;p&gt;I asked the obvious question: why is it slow, and can I make it faster? The answers were not what I expected.&lt;/p&gt; &lt;h2 id=&quot;lesson-1-measure-first-from-the-logs-you-already-have&quot;&gt;Lesson 1: measure first, from the logs...</description>
+        <pubDate>Tue, 29 Sep 2026 10:00:00 +0000</pubDate>
+        <link>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/</link>
+        <guid isPermaLink="true">https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/</guid>
+        
+        <category>ai-agents</category>
+        
+        <category>claude-code</category>
+        
+        <category>code-review</category>
+        
+        <category>multi-agent</category>
+        
+        <category>performance</category>
+        
+        <category>rate-limiting</category>
+        
+        <category>code</category>
+      </item>
     
       <item>
         <title>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</title>

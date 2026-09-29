@@ -17,30 +17,30 @@
     
     
 
-    <title>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature | YY AI</title>
-    <meta name="description" content="A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they rev...">
+    <title>Speeding Up a Multi-Agent Code Review in Claude Code | YY AI</title>
+    <meta name="description" content="Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.">
     
-        <meta name="keywords" content="python, debugging, ai, tutorial">
+        <meta name="keywords" content="ai-agents, claude-code, code-review, multi-agent, performance, rate-limiting">
     
     
 
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature | YY AI">
-    <meta name="twitter:description" content="A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they rev...">
+    <meta name="twitter:title" content="Speeding Up a Multi-Agent Code Review in Claude Code | YY AI">
+    <meta name="twitter:description" content="Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.">
 
     
-        <meta property="twitter:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop">
+        <meta property="twitter:image" content="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop">
     
     
     <!-- Styles -->
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="https://yvettetsai22.github.io/blog/blog/everything-returned-true-debugging-silent-failures/">
-    <meta property="og:title" content="Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature | YY AI">
-    <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop">
-    <meta property="og:description" content="A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they rev...">
+    <meta property="og:url" content="https://yvettetsai22.github.io/blog/blog/speeding-up-multi-agent-code-review-claude-code/">
+    <meta property="og:title" content="Speeding Up a Multi-Agent Code Review in Claude Code | YY AI">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop">
+    <meta property="og:description" content="Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.">
     <meta property="og:site_name" content="YY AI | AI with Yvette Tsai">
 
     <!-- Favicon -->
@@ -72,7 +72,7 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
-    <link rel="canonical" href="https://yvettetsai22.github.io/blog/blog/everything-returned-true-debugging-silent-failures/">
+    <link rel="canonical" href="https://yvettetsai22.github.io/blog/blog/speeding-up-multi-agent-code-review-claude-code/">
     <link rel="alternate" type="application/rss+xml" title="YY AI | AI with Yvette Tsai" href="https://yvettetsai22.github.io/blog/feed.xml" />
 
     <!-- Include extra styles -->
@@ -179,7 +179,7 @@
             <article role="article" class="post-content">
                 
                 <p class="post-continued">
-                    <a href="/blog/everything-returned-true-debugging-silent-failures/">Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</a>
+                    <a href="/blog/speeding-up-multi-agent-code-review-claude-code/">Speeding Up a Multi-Agent Code Review in Claude Code</a>
                     <span>· Part 2 of 2</span>
                 </p>
                 
@@ -188,120 +188,71 @@
 
 
                 
-<h2 id="bug-1-applyreplace-always-returned-true">Bug 1: <code class="language-plaintext highlighter-rouge">_apply_replace</code> always returned <code class="language-plaintext highlighter-rouge">True</code></h2>
+<h2 id="lesson-4-splitting-moves-the-bottleneck-it-doesnt-remove-it">Lesson 4: splitting moves the bottleneck, it doesn’t remove it</h2>
 
-<p><code class="language-plaintext highlighter-rouge">_merge_slot_entries</code> called <code class="language-plaintext highlighter-rouge">_apply_replace</code> to detect whether a slot value had changed. The function compared nothing. It returned <code class="language-plaintext highlighter-rouge">True</code> unconditionally.</p>
+<p>The good news: <strong>a 16,000-line diff finished at all.</strong> The old single reviewer had never run on anything over 6,000 lines. At that size it would likely have run out of context or taken a quarter of an hour. Seven slices in parallel meant the bugs stage took as long as the slowest slice, about seven minutes.</p>
 
-<p>This meant the “no changes detected” early-return in <code class="language-plaintext highlighter-rouge">run_slot_update</code> never fired — any update, even one with identical values, passed through as a real change. Tests that expected the guard to catch no-ops were passing for the wrong reason.</p>
+<p>The less good news came in two parts.</p>
 
-<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Before: unconditional return
-</span><span class="k">def</span> <span class="nf">_apply_replace</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span> <span class="n">new_value</span><span class="p">):</span>
-    <span class="n">slot</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">new_value</span>
-    <span class="k">return</span> <span class="bp">True</span>  <span class="c1"># always "changed"
-</span>
-<span class="c1"># After: compare first
-</span><span class="k">def</span> <span class="nf">_apply_replace</span><span class="p">(</span><span class="n">slot</span><span class="p">,</span> <span class="n">new_value</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">slot</span><span class="p">.</span><span class="n">value</span> <span class="o">==</span> <span class="n">new_value</span><span class="p">:</span>
-        <span class="k">return</span> <span class="bp">False</span>
-    <span class="n">slot</span><span class="p">.</span><span class="n">value</span> <span class="o">=</span> <span class="n">new_value</span>
-    <span class="k">return</span> <span class="bp">True</span>
+<p><strong>Per line, the new slices weren’t faster.</strong> Slices of 1,300 to 2,200 lines had a median of about 170 seconds. The old reviewer’s median on diffs of 800 to 2,500 lines was 106 seconds. Smaller inputs don’t help much when the cost is thinking per turn.</p>
+
+<p><strong>The bottleneck moved.</strong> I had sliced <code class="language-plaintext highlighter-rouge">bugs</code> seven ways but left <code class="language-plaintext highlighter-rouge">reach</code> as a single agent over the whole 16,000 lines. It became the longest-running agent: 31 serial turns, still going after six minutes, reading whole files. Every time you parallelise part of a pipeline, look at what’s now at the back of the queue.</p>
+
+<p>So <code class="language-plaintext highlighter-rouge">reach</code> gets sliced too, with the same groups. Each slice sees the whole diff for context but only reports problems that <em>start</em> in its own slice.</p>
+
+<h2 id="lesson-5-parallelism-has-a-ceiling-and-its-the-api">Lesson 5: parallelism has a ceiling, and it’s the API</h2>
+
+<p>Mid-run, the terminal started showing this:</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>429 {"detail":"Rate limited. Retry after 0.4s"} · Retrying in 17s · attempt 7/10
 </code></pre></div></div>
 
-<p>A function named “apply” and a function named “detect change” are different functions. When they share a body, one of them lies.</p>
+<p>I had caused it. To make the review faster I’d also <strong>pipelined the verifiers</strong>: instead of waiting for all reviewers to finish, each reviewer’s findings went to verifiers the moment it reported. Add seven bug slices and a <code class="language-plaintext highlighter-rouge">reach</code> agent, and the session peaked at <strong>17 agents running at once</strong>, 34 over the whole run. 26 of them hit a 429 at some point. One verifier that normally takes about 150 seconds took <strong>621</strong>, mostly waiting to retry.</p>
 
-<blockquote>
-  <p><strong>Rule:</strong> Verify the postcondition, not just the return value. Check what actually changed in the data, not what the return value claimed.</p>
-</blockquote>
+<p>Parallelism works until you hit the rate limit. Past that point, extra concurrency just turns into retry backoff.</p>
 
-<h2 id="bug-2-slotentry-cant-hold-what-the-form-sends">Bug 2: <code class="language-plaintext highlighter-rouge">SlotEntry</code> can’t hold what the form sends</h2>
+<p>The fix is a cap, not less parallelism:</p>
 
-<p>The task brief assumed all form edits could route through <code class="language-plaintext highlighter-rouge">SlotEntry</code>. But <code class="language-plaintext highlighter-rouge">SlotEntry.values</code> is typed <code class="language-plaintext highlighter-rouge">str | int | float | list[str|int|float] | None</code>. Constraint and property values from the form panel are already in API format — they’re dicts.</p>
+<ul>
+  <li><strong>at most 8 agents in flight</strong>, reviewers and verifiers together;</li>
+  <li><strong>one queue</strong>: reviewers first, longest first (bug and reach slices, then the rest), verifiers behind any reviewer that hasn’t started yet;</li>
+  <li><strong>fewer, fatter slices</strong>: at most three groups of 2,000 to 4,000 lines, so the two bug agents use at most six slots;</li>
+  <li>if a 429 still shows up, drop the cap to 6 for the rest of the run.</li>
+</ul>
 
-<p>Pydantic rejects them. No crash in all conditions, just a silent coercion failure that surfaces downstream when the wrong shape reaches the guards.</p>
+<p><img src="/blog/assets/diagrams/slowest-reviewer/pipeline.png" alt="Workflow diagram: the scout builds a call-graph digest in the background; bugs, reach and five other reviewers run in parallel; all findings go into one queue capped at 8 agents, then one verifier per finding, then the report" />
+<em>The pipeline after all the changes: split reviewers, a pre-built call graph, and one capped queue. <a href="/blog/assets/diagrams/slowest-reviewer/pipeline.html">Interactive version</a></em></p>
 
-<p>The fix was a dual-path: a <code class="language-plaintext highlighter-rouge">_coerce_to_slot_entry_values()</code> helper that tries the <code class="language-plaintext highlighter-rouge">SlotEntry</code> path first; if it returns <code class="language-plaintext highlighter-rouge">None</code>, falls through to a direct-apply path that runs guards manually against the raw value.</p>
+<p>I deliberately did <em>not</em> batch several findings into one verifier. The point of a verifier is an independent judgement of one claim. Grading a list invites the first answer to anchor the rest. I’d rather queue them than lose that independence.</p>
 
-<blockquote>
-  <p><strong>Rule:</strong> “Just pass it through” is never a safe assumption across a type boundary. Verify the schema on both sides before assuming one shape can traverse both.</p>
-</blockquote>
-
-<h2 id="bug-3-delta-was-a-variable-that-didnt-exist">Bug 3: <code class="language-plaintext highlighter-rouge">delta</code> was a variable that didn’t exist</h2>
-
-<p>The plan template referenced <code class="language-plaintext highlighter-rouge">delta.get("validation_errors")</code> in the WebSocket handler. In the actual codebase, there is no <code class="language-plaintext highlighter-rouge">delta</code> alias — the correct reference is <code class="language-plaintext highlighter-rouge">event.actions.state_delta</code>.</p>
-
-<p>The template was written from memory of how the code <em>should</em> look, not how it did. Variable names don’t survive translation from a planning document into a codebase.</p>
-
-<blockquote>
-  <p><strong>Rule:</strong> Always verify variable names by reading the actual function context. Plans drift. Code has scope.</p>
-</blockquote>
-
-<h2 id="bug-4-passthrough-fallbacks-are-where-schema-bugs-hide">Bug 4: Passthrough fallbacks are where schema bugs hide</h2>
-
-<p>This was the hardest one. The natural-language path and the UI form path used different schemas for the same constraint data.</p>
-
-<p>The NL path produces:</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"dimensions"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nl">"index"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nl">"values"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"UK"</span><span class="p">]</span><span class="w"> </span><span class="p">}],</span><span class="w">
-  </span><span class="nl">"max_spend"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p>The UI modal was sending:</p>
-
-<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"dims"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nl">"dimIndex"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w"> </span><span class="nl">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="w"> </span><span class="p">}],</span><span class="w">
-  </span><span class="nl">"min_spend"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre></div></div>
-
-<p><code class="language-plaintext highlighter-rouge">slot_merger._decode_constraint_values</code> only handles s-expression strings. When it encountered a raw UI object, it passed it through unchanged — no error, no warning. So <code class="language-plaintext highlighter-rouge">dimIndex: "1"</code> got stored verbatim as a string, and “UK” appeared in the constraints panel under the wrong dimension index. Nothing crashed.</p>
-
-<p>The fix was bidirectional translation in <code class="language-plaintext highlighter-rouge">ConstraintsEditModal.jsx</code>: <code class="language-plaintext highlighter-rouge">useEffect</code> to convert backend shape into UI dims on load, and <code class="language-plaintext highlighter-rouge">handleSave</code> to group by <code class="language-plaintext highlighter-rouge">Number(dimIndex)</code> and emit the backend <code class="language-plaintext highlighter-rouge">dimensions[]</code> shape. Also: explicit empty-field stripping, and <code class="language-plaintext highlighter-rouge">Number()</code> casting for React’s string-returning number inputs (a trap that bites every time).</p>
-
-<p>The pattern that enabled this bug: <strong>passthrough fallbacks</strong> — code that says “I don’t recognize this format, so I’ll return it unchanged.” Silent passthrough is silent data corruption when the shapes don’t match. The merge function saw an object it didn’t understand and cooperated anyway.</p>
-
-<blockquote>
-  <p><strong>Rule:</strong> Passthrough is where schema bugs go to hide. Every format boundary needs an explicit translation, not a graceful shrug.</p>
-</blockquote>
-
-<h2 id="bug-5-the-worktree-needed-npm-install">Bug 5: The worktree needed <code class="language-plaintext highlighter-rouge">npm install</code></h2>
-
-<p><code class="language-plaintext highlighter-rouge">make dev</code> failed with <code class="language-plaintext highlighter-rouge">sh: vite: command not found</code>. The fix was <code class="language-plaintext highlighter-rouge">npm install</code>. Five seconds.</p>
-
-<p>The cost wasn’t the fix — it was context. I was mid-flow on a different problem when the environment broke. Isolated git worktrees don’t inherit <code class="language-plaintext highlighter-rouge">node_modules</code>.</p>
-
-<blockquote>
-  <p><strong>Rule:</strong> Bootstrap an isolated environment before you start work, not when it fails at the worst moment.</p>
-</blockquote>
-
-<h2 id="bug-6-uv-run-pip-install-is-the-wrong-command">Bug 6: <code class="language-plaintext highlighter-rouge">uv run pip install</code> is the wrong command</h2>
-
-<p>In a <code class="language-plaintext highlighter-rouge">uv</code>-managed Python project, the correct command is <code class="language-plaintext highlighter-rouge">uv pip install</code>. Running <code class="language-plaintext highlighter-rouge">uv run pip install</code> wraps pip in a subprocess that doesn’t write to the right environment. The install succeeds; the package doesn’t appear where you expect it.</p>
-
-<p>If the repo has <code class="language-plaintext highlighter-rouge">uv.lock</code> or <code class="language-plaintext highlighter-rouge">.python-version</code>, use <code class="language-plaintext highlighter-rouge">uv</code> for everything. The verbs matter.</p>
+<p>Eight is a guess. The real limit depends on the account, and the next run will tell me whether it’s right.</p>
 
 <hr />
 
 <h2 id="the-shared-pattern">The shared pattern</h2>
 
-<p>Every bug here had the same structure: code that looked like it was doing the job, returned something that looked like success, and quietly failed to change anything that mattered.</p>
+<p>Every lesson here is the same one wearing different clothes: <strong>the thing you think is expensive usually isn’t.</strong></p>
 
-<p><code class="language-plaintext highlighter-rouge">_apply_replace</code> returned <code class="language-plaintext highlighter-rouge">True</code>. Passthrough returned the object. Template variables resolved to the wrong name. The wrong schema stored without complaint.</p>
+<ul>
+  <li>I thought the tools were slow; it was the model’s turns.</li>
+  <li>I thought a smaller diff would make each slice faster; the cost was thinking per turn, not reading.</li>
+  <li>I thought an instruction would change behaviour; the numbers said it didn’t.</li>
+  <li>I thought more parallelism was free; the API disagreed.</li>
+</ul>
 
-<p>When you’re building on AI infrastructure — LLMs, typed ADK pipelines, multiple API shapes in the same call chain — silent no-ops are especially hard to catch. Nothing crashes. Logs look fine. The assertion just doesn’t fire because the data is subtly wrong three layers up.</p>
-
-<p>The fix is the same every time: verify the postcondition, not just the return value. Check the actual data after the merge. Assert the schema after the translation. Run the test that depends on the guard, not just the guard itself.</p>
+<p>None of these were visible from the terminal. All of them were visible in the transcripts. The most valuable thing I built wasn’t the call graph or the split agent. It was the fifty-line script that turned transcripts into a table, because it let me check every change against the old numbers.</p>
 
 <hr />
 
 <h2 id="whats-still-open">What’s still open</h2>
 
-<p>Two items carried out as known unknowns — which is better than the other kind.</p>
+<ul>
+  <li><strong>The hard batching rule</strong> is written and unmeasured. If calls per turn don’t move off ~1.1, the next lever is fewer, deeper turns rather than more parallel calls.</li>
+  <li><strong>The concurrency cap</strong> of 8 is an estimate. One clean run without a 429 will confirm it; another 429 means 6.</li>
+  <li><strong>Sliced <code class="language-plaintext highlighter-rouge">reach</code></strong> should remove the new bottleneck. The comparison to make is total review time on a similar-sized diff, not per-agent time.</li>
+</ul>
 
-<p>The <code class="language-plaintext highlighter-rouge">PerformanceAdjustmentsEditModal</code> needs the same dual-path pattern and schema translation as the constraint modal. And the ADK command-dispatch path needs explicit OpenTelemetry <code class="language-plaintext highlighter-rouge">execute_tool</code> spans — the LLM-invoked tool path gets them automatically, but command dispatch bypasses that instrumentation entirely and is currently invisible in traces.</p>
-
-<p>Naming the open work matters. A bug you’ve located and deferred is much less dangerous than one you don’t know exists.</p>
+<p>The next large diff will answer all three. Until then, these are hypotheses, not results.</p>
 
 
                 <!-- Pagination links -->
@@ -309,7 +260,7 @@
     
     <div class="pagination pagination-post ">
         
-            <a href="/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
+            <a href="/blog/everything-returned-true-debugging-silent-failures/">
                 
                 <span class="text">Next Post <svg class="arrow"><use xlink:href="#icon-arrow-right"></use></svg></span>
             </a>
@@ -327,15 +278,6 @@
                         
                         
                             <li>
-                                <a href="/blog/bing-custom-search-api/">
-                                    
-                                        <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270">
-                                    
-                                    <h3>Getting Started with Bing Custom Search API</h3>
-                                </a>
-                            </li>
-                        
-                            <li>
                                 <a href="/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
                                     
                                         <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
@@ -345,11 +287,20 @@
                             </li>
                         
                             <li>
-                                <a href="/blog/speeding-up-multi-agent-code-review-claude-code/">
+                                <a href="/blog/bing-custom-search-api/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop">
+                                        <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270">
                                     
-                                    <h3>Speeding Up a Multi-Agent Code Review in Claude Code</h3>
+                                    <h3>Getting Started with Bing Custom Search API</h3>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/blog/everything-returned-true-debugging-silent-failures/">
+                                    
+                                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop">
+                                    
+                                    <h3>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</h3>
                                 </a>
                             </li>
                         
@@ -379,14 +330,14 @@
                 
                 
                     <li>
-                        <a href="/blog/speeding-up-multi-agent-code-review-claude-code/">
+                        <a href="/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
                             <figure>
                                 
-                                    <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
                                 
                             </figure>
-                            <h3>Speeding Up a Multi-Agent Code Review in Claude Code</h3>
-                            <p>Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.</p>
+                            <h3>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</h3>
+                            <p></p>
                         </a>
                     </li>
                 
@@ -417,11 +368,11 @@
 
         <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they reveal about building on LLM infrastructure.&quot;%20https://yvettetsai22.github.io/everything-returned-true-debugging-silent-failures/2/%20via%20&#64;&hashtags=python,debugging,ai,tutorial"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.&quot;%20https://yvettetsai22.github.io/speeding-up-multi-agent-code-review-claude-code/2/%20via%20&#64;&hashtags=ai-agents,claude-code,code-review,multi-agent,performance,rate-limiting"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://yvettetsai22.github.io/everything-returned-true-debugging-silent-failures/2/"
+    <a aria-label="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://yvettetsai22.github.io/speeding-up-multi-agent-code-review-claude-code/2/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
@@ -589,132 +540,83 @@
         {
             "@context": "http://schema.org",
             "@type": "BlogPosting",
-            "name": "Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature",
-            "headline": "Six bugs from a day shipping form-panel editing — and the pattern they share.",
-            "description": "A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they reveal about building on LLM infrastructure.",
-            "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop",
-            "url": "https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/2/",
+            "name": "Speeding Up a Multi-Agent Code Review in Claude Code",
+            "headline": "Measure before you tune: model turns are the real clock, and parallelism stops at the rate limit.",
+            "description": "Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.",
+            "image": "https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop",
+            "url": "https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/2/",
             "articleBody": "
-Bug 1: _apply_replace always returned True
+Lesson 4: splitting moves the bottleneck, it doesn’t remove it
 
-_merge_slot_entries called _apply_replace to detect whether a slot value had changed. The function compared nothing. It returned True unconditionally.
+The good news: a 16,000-line diff finished at all. The old single reviewer had never run on anything over 6,000 lines. At that size it would likely have run out of context or taken a quarter of an hour. Seven slices in parallel meant the bugs stage took as long as the slowest slice, about seven minutes.
 
-This meant the “no changes detected” early-return in run_slot_update never fired — any update, even one with identical values, passed through as a real change. Tests that expected the guard to catch no-ops were passing for the wrong reason.
+The less good news came in two parts.
 
-# Before: unconditional return
-def _apply_replace(slot, new_value):
-    slot.value = new_value
-    return True  # always &quot;changed&quot;
+Per line, the new slices weren’t faster. Slices of 1,300 to 2,200 lines had a median of about 170 seconds. The old reviewer’s median on diffs of 800 to 2,500 lines was 106 seconds. Smaller inputs don’t help much when the cost is thinking per turn.
 
-# After: compare first
-def _apply_replace(slot, new_value):
-    if slot.value == new_value:
-        return False
-    slot.value = new_value
-    return True
+The bottleneck moved. I had sliced bugs seven ways but left reach as a single agent over the whole 16,000 lines. It became the longest-running agent: 31 serial turns, still going after six minutes, reading whole files. Every time you parallelise part of a pipeline, look at what’s now at the back of the queue.
 
+So reach gets sliced too, with the same groups. Each slice sees the whole diff for context but only reports problems that start in its own slice.
 
-A function named “apply” and a function named “detect change” are different functions. When they share a body, one of them lies.
+Lesson 5: parallelism has a ceiling, and it’s the API
+
+Mid-run, the terminal started showing this:
+
+429 {&quot;detail&quot;:&quot;Rate limited. Retry after 0.4s&quot;} · Retrying in 17s · attempt 7/10
 
 
-  Rule: Verify the postcondition, not just the return value. Check what actually changed in the data, not what the return value claimed.
+I had caused it. To make the review faster I’d also pipelined the verifiers: instead of waiting for all reviewers to finish, each reviewer’s findings went to verifiers the moment it reported. Add seven bug slices and a reach agent, and the session peaked at 17 agents running at once, 34 over the whole run. 26 of them hit a 429 at some point. One verifier that normally takes about 150 seconds took 621, mostly waiting to retry.
+
+Parallelism works until you hit the rate limit. Past that point, extra concurrency just turns into retry backoff.
+
+The fix is a cap, not less parallelism:
 
 
-Bug 2: SlotEntry can’t hold what the form sends
-
-The task brief assumed all form edits could route through SlotEntry. But SlotEntry.values is typed str | int | float | list[str|int|float] | None. Constraint and property values from the form panel are already in API format — they’re dicts.
-
-Pydantic rejects them. No crash in all conditions, just a silent coercion failure that surfaces downstream when the wrong shape reaches the guards.
-
-The fix was a dual-path: a _coerce_to_slot_entry_values() helper that tries the SlotEntry path first; if it returns None, falls through to a direct-apply path that runs guards manually against the raw value.
+  at most 8 agents in flight, reviewers and verifiers together;
+  one queue: reviewers first, longest first (bug and reach slices, then the rest), verifiers behind any reviewer that hasn’t started yet;
+  fewer, fatter slices: at most three groups of 2,000 to 4,000 lines, so the two bug agents use at most six slots;
+  if a 429 still shows up, drop the cap to 6 for the rest of the run.
 
 
-  Rule: “Just pass it through” is never a safe assumption across a type boundary. Verify the schema on both sides before assuming one shape can traverse both.
 
+The pipeline after all the changes: split reviewers, a pre-built call graph, and one capped queue. Interactive version
 
-Bug 3: delta was a variable that didn’t exist
+I deliberately did not batch several findings into one verifier. The point of a verifier is an independent judgement of one claim. Grading a list invites the first answer to anchor the rest. I’d rather queue them than lose that independence.
 
-The plan template referenced delta.get(&quot;validation_errors&quot;) in the WebSocket handler. In the actual codebase, there is no delta alias — the correct reference is event.actions.state_delta.
-
-The template was written from memory of how the code should look, not how it did. Variable names don’t survive translation from a planning document into a codebase.
-
-
-  Rule: Always verify variable names by reading the actual function context. Plans drift. Code has scope.
-
-
-Bug 4: Passthrough fallbacks are where schema bugs hide
-
-This was the hardest one. The natural-language path and the UI form path used different schemas for the same constraint data.
-
-The NL path produces:
-
-{
-  &quot;dimensions&quot;: [{ &quot;index&quot;: 1, &quot;values&quot;: [&quot;UK&quot;] }],
-  &quot;max_spend&quot;: 1000
-}
-
-
-The UI modal was sending:
-
-{
-  &quot;dims&quot;: [{ &quot;dimIndex&quot;: &quot;1&quot;, &quot;value&quot;: &quot;UK&quot; }],
-  &quot;min_spend&quot;: 1000
-}
-
-
-slot_merger._decode_constraint_values only handles s-expression strings. When it encountered a raw UI object, it passed it through unchanged — no error, no warning. So dimIndex: &quot;1&quot; got stored verbatim as a string, and “UK” appeared in the constraints panel under the wrong dimension index. Nothing crashed.
-
-The fix was bidirectional translation in ConstraintsEditModal.jsx: useEffect to convert backend shape into UI dims on load, and handleSave to group by Number(dimIndex) and emit the backend dimensions[] shape. Also: explicit empty-field stripping, and Number() casting for React’s string-returning number inputs (a trap that bites every time).
-
-The pattern that enabled this bug: passthrough fallbacks — code that says “I don’t recognize this format, so I’ll return it unchanged.” Silent passthrough is silent data corruption when the shapes don’t match. The merge function saw an object it didn’t understand and cooperated anyway.
-
-
-  Rule: Passthrough is where schema bugs go to hide. Every format boundary needs an explicit translation, not a graceful shrug.
-
-
-Bug 5: The worktree needed npm install
-
-make dev failed with sh: vite: command not found. The fix was npm install. Five seconds.
-
-The cost wasn’t the fix — it was context. I was mid-flow on a different problem when the environment broke. Isolated git worktrees don’t inherit node_modules.
-
-
-  Rule: Bootstrap an isolated environment before you start work, not when it fails at the worst moment.
-
-
-Bug 6: uv run pip install is the wrong command
-
-In a uv-managed Python project, the correct command is uv pip install. Running uv run pip install wraps pip in a subprocess that doesn’t write to the right environment. The install succeeds; the package doesn’t appear where you expect it.
-
-If the repo has uv.lock or .python-version, use uv for everything. The verbs matter.
+Eight is a guess. The real limit depends on the account, and the next run will tell me whether it’s right.
 
 
 
 The shared pattern
 
-Every bug here had the same structure: code that looked like it was doing the job, returned something that looked like success, and quietly failed to change anything that mattered.
+Every lesson here is the same one wearing different clothes: the thing you think is expensive usually isn’t.
 
-_apply_replace returned True. Passthrough returned the object. Template variables resolved to the wrong name. The wrong schema stored without complaint.
 
-When you’re building on AI infrastructure — LLMs, typed ADK pipelines, multiple API shapes in the same call chain — silent no-ops are especially hard to catch. Nothing crashes. Logs look fine. The assertion just doesn’t fire because the data is subtly wrong three layers up.
+  I thought the tools were slow; it was the model’s turns.
+  I thought a smaller diff would make each slice faster; the cost was thinking per turn, not reading.
+  I thought an instruction would change behaviour; the numbers said it didn’t.
+  I thought more parallelism was free; the API disagreed.
 
-The fix is the same every time: verify the postcondition, not just the return value. Check the actual data after the merge. Assert the schema after the translation. Run the test that depends on the guard, not just the guard itself.
+
+None of these were visible from the terminal. All of them were visible in the transcripts. The most valuable thing I built wasn’t the call graph or the split agent. It was the fifty-line script that turned transcripts into a table, because it let me check every change against the old numbers.
 
 
 
 What’s still open
 
-Two items carried out as known unknowns — which is better than the other kind.
 
-The PerformanceAdjustmentsEditModal needs the same dual-path pattern and schema translation as the constraint modal. And the ADK command-dispatch path needs explicit OpenTelemetry execute_tool spans — the LLM-invoked tool path gets them automatically, but command dispatch bypasses that instrumentation entirely and is currently invisible in traces.
+  The hard batching rule is written and unmeasured. If calls per turn don’t move off ~1.1, the next lever is fewer, deeper turns rather than more parallel calls.
+  The concurrency cap of 8 is an estimate. One clean run without a 429 will confirm it; another 429 means 6.
+  Sliced reach should remove the new bottleneck. The comparison to make is total review time on a similar-sized diff, not per-agent time.
 
-Naming the open work matters. A bug you’ve located and deferred is much less dangerous than one you don’t know exists.
+
+The next large diff will answer all three. Until then, these are hypotheses, not results.
 ",
-            "wordcount": "1137",
+            "wordcount": "769",
             "inLanguage": "en",
-            "dateCreated": "2026-06-25/",
-            "datePublished": "2026-06-25/",
-            "dateModified": "2026-06-25/",
+            "dateCreated": "2026-09-29/",
+            "datePublished": "2026-09-29/",
+            "dateModified": "2026-09-29/",
             "author": {
                 "@type": "Person",
                 "name": "Thiago Rossener",
@@ -741,7 +643,7 @@ Naming the open work matters. A bug you’ve located and deferred is much less d
             "mainEntityOfPage": "True",
             "genre": "code",
             "articleSection": "code",
-            "keywords": ["python","debugging","ai","tutorial"]
+            "keywords": ["ai-agents","claude-code","code-review","multi-agent","performance","rate-limiting"]
         }
         </script>
     </body>

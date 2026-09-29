@@ -3,6 +3,14 @@
   
   
     {
+      "title"    : "Speeding Up a Multi-Agent Code Review in Claude Code",
+      "tags"     : "ai-agents, claude-code, code-review, multi-agent, performance, and rate-limiting",
+      "categories" : "code",
+      "url"      : "/blog/speeding-up-multi-agent-code-review-claude-code/",
+      "date"     : "09/29/2026"
+    } ,
+  
+    {
       "title"    : "Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature",
       "tags"     : "python, debugging, ai, and tutorial",
       "categories" : "code",

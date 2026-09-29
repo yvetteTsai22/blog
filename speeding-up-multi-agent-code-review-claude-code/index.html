@@ -17,30 +17,30 @@
     
     
 
-    <title>Getting Started with Bing Custom Search API | YY AI</title>
-    <meta name="description" content="Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything int...">
+    <title>Speeding Up a Multi-Agent Code Review in Claude Code | YY AI</title>
+    <meta name="description" content="Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.">
     
-        <meta name="keywords" content="blog">
+        <meta name="keywords" content="ai-agents, claude-code, code-review, multi-agent, performance, rate-limiting">
     
     
 
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Getting Started with Bing Custom Search API | YY AI">
-    <meta name="twitter:description" content="Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything int...">
+    <meta name="twitter:title" content="Speeding Up a Multi-Agent Code Review in Claude Code | YY AI">
+    <meta name="twitter:description" content="Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.">
 
     
-        <meta property="twitter:image" content="https://yvettetsai22.github.io/blog/assets/img/blog-image.png">
+        <meta property="twitter:image" content="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop">
     
     
     <!-- Styles -->
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="https://yvettetsai22.github.io/blog/bing-custom-search-api/">
-    <meta property="og:title" content="Getting Started with Bing Custom Search API | YY AI">
-    <meta property="og:image" content="https://yvettetsai22.github.io/blog/assets/img/blog-image.png">
-    <meta property="og:description" content="Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything int...">
+    <meta property="og:url" content="https://yvettetsai22.github.io/blog/blog/speeding-up-multi-agent-code-review-claude-code/">
+    <meta property="og:title" content="Speeding Up a Multi-Agent Code Review in Claude Code | YY AI">
+    <meta property="og:image" content="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop">
+    <meta property="og:description" content="Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.">
     <meta property="og:site_name" content="YY AI | AI with Yvette Tsai">
 
     <!-- Favicon -->
@@ -72,7 +72,7 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
-    <link rel="canonical" href="https://yvettetsai22.github.io/blog/bing-custom-search-api/">
+    <link rel="canonical" href="https://yvettetsai22.github.io/blog/blog/speeding-up-multi-agent-code-review-claude-code/">
     <link rel="alternate" type="application/rss+xml" title="YY AI | AI with Yvette Tsai" href="https://yvettetsai22.github.io/blog/feed.xml" />
 
     <!-- Include extra styles -->
@@ -181,23 +181,45 @@
                 <p class="post-info">
                     
                         <svg class="icon-calendar" id="date"><use xlink:href="#icon-calendar"></use></svg>
-                        <time class="date" datetime="2023-08-30T12:05:21+00:00">
+                        <time class="date" datetime="2026-09-29T10:00:00+00:00">
                             
 
 
-August 30, 2023
+September 29, 2026
 
                         </time>
                     
                     <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
-                    <span>2 min to read</span>
+                    <span>5 min to read</span>
                 </p>
-                <h1 class="post-title">Getting Started with Bing Custom Search API</h1>
-                <p class="post-subtitle"></p>
+                <h1 class="post-title">Speeding Up a Multi-Agent Code Review in Claude Code</h1>
+                <p class="post-subtitle">Measure before you tune: model turns are the real clock, and parallelism stops at the rate limit.</p>
 
                 
 
                 <!-- Pagination links -->
+
+    
+    <div class="pagination pagination-post ">
+        
+            <a href="/blog/speeding-up-multi-agent-code-review-claude-code/2/">
+                
+                    
+    <div class="progress-bar ">
+        
+            <div class="bar completed"></div>
+        
+            <div class="bar "></div>
+        
+        <svg class="star"><use xlink:href="#icon-star"></use></svg>
+    </div>
+
+
+                
+                <span class="text">Next Page <svg class="arrow"><use xlink:href="#icon-arrow-right"></use></svg></span>
+            </a>
+        
+    </div>
 
 
                 
@@ -205,96 +227,138 @@ August 30, 2023
                 <!-- Add your table of contents here -->
 
 
-                <p>Bing Custom Search API lets you build a focused search engine that returns results only from domains you trust. Instead of the entire web, you define a curated set of sites. This sharpens relevance, improves compliance, and makes answers faster and cleaner for your users. It’s ideal for internal knowledge portals, customer-facing help centers, and vertical search experiences where control matters more than breadth.</p>
+                <p>My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.</p>
 
-<p>Compared to general Bing Web Search, you get domain scoping, ranking controls, pinned results, and filters you can tune without code. You’ll create two things:</p>
-<ol>
-  <li>a <strong>Custom Bing Search instance</strong>,<br />
-where you configure domains and rules</li>
-  <li>an <strong>Azure Bing Search resource</strong>,<br />
-which provides keys, quotas, and enterprise-grade management.</li>
-</ol>
+<p>One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.</p>
 
-<p>You’ll then call an endpoint that includes your customConfig ID and your subscription key.</p>
+<p>I asked the obvious question: why is it slow, and can I make it faster? The answers were not what I expected.</p>
 
-<h2 id="architecture-at-a-glance">Architecture at a Glance</h2>
+<h2 id="lesson-1-measure-first-from-the-logs-you-already-have">Lesson 1: measure first, from the logs you already have</h2>
+
+<p>Claude Code writes every subagent’s transcript to disk, with timestamps, token usage, and every tool call. That meant I didn’t have to guess. A short script over <strong>114 past runs</strong> of the bugs reviewer gave me a baseline:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>reviewer</th>
+      <th>median</th>
+      <th>p90</th>
+      <th>turns</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>bugs</strong></td>
+      <td><strong>157s</strong></td>
+      <td><strong>308s</strong></td>
+      <td>18</td>
+    </tr>
+    <tr>
+      <td>spec</td>
+      <td>122s</td>
+      <td>219s</td>
+      <td>23</td>
+    </tr>
+    <tr>
+      <td>history</td>
+      <td>103s</td>
+      <td>205s</td>
+      <td>21</td>
+    </tr>
+    <tr>
+      <td>guidelines</td>
+      <td>73s</td>
+      <td>161s</td>
+      <td>15</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>My first guess was that the tools were slow: all that <code class="language-plaintext highlighter-rouge">grep</code>ing and <code class="language-plaintext highlighter-rouge">sed</code>ing around the codebase. It was wrong. Out of 1,284 shell calls, <strong>one</strong> took longer than ten seconds.</p>
+
+<p>The time was going into <strong>model round-trips</strong>. The bugs reviewer made about 11 tool calls across 18 turns, almost always one call per turn. Each turn is a full round of the model thinking on the largest model tier, and that thinking costs 20 to 60 seconds. The tool call itself costs about one second.</p>
+
+<p><img src="/blog/assets/diagrams/slowest-reviewer/turns.png" alt="Sequence diagram: each turn the reviewer model thinks for 20 to 60 seconds, then makes one shell call that returns in about a second, repeated for about 18 turns" />
+<em>One tool call per turn: the thinking, not the tool, sets the pace. <a href="/blog/assets/diagrams/slowest-reviewer/turns.html">Interactive version</a></em></p>
+
+<blockquote>
+  <p><strong>Rule:</strong> in an agent loop, the clock is the number of sequential turns, not the work done inside each one.</p>
+</blockquote>
+
+<h2 id="lesson-2-the-slow-agent-was-the-one-asked-to-leave-the-diff">Lesson 2: the slow agent was the one asked to leave the diff</h2>
+
+<p>The other reviewers mostly read the diff. The bugs reviewer’s instructions asked it to go further:</p>
+
 <ul>
-  <li>Custom Search Instance (customsearch.ai): Define domains, filters, safe search, pinned results, and refinements.</li>
-  <li>Azure Bing Resource: Holds your API keys, pricing tier, region, and monitoring.</li>
-  <li>Call Flow: Client → Bing endpoint (/v7.0/custom/search) → Uses customConfig to apply your instance settings → Returns scoped results.</li>
-  <li>Consumers: Web apps, bots (like PVA), back-end services, or low-code flows.</li>
+  <li>for every function the PR newly <em>calls</em>, read that function’s body and check its assumptions still hold;</li>
+  <li>check that no new import closes a cycle;</li>
+  <li>follow any secret to every place it could leak (logs, exception text, <code class="language-plaintext highlighter-rouge">repr</code>, response bodies).</li>
 </ul>
 
-<h2 id="prerequisites--access">Prerequisites &amp; Access</h2>
+<p>Each of those is “grep, read the result, decide the next grep”. It’s a chain of dependent lookups, and dependent lookups are serial turns.</p>
+
+<p>So I made two structural changes:</p>
+
+<ol>
+  <li><strong>Split the agent in two.</strong> <code class="language-plaintext highlighter-rouge">bugs</code> now reviews only the changed lines: logic, identity, degenerate input, fixes that are too broad. A new <code class="language-plaintext highlighter-rouge">reach</code> agent owns everything outside the diff. They run at the same time.</li>
+  <li><strong>Pre-compute the lookups.</strong> Before the reviewers start, a script builds a call-graph digest of the diff with <a href="https://github.com/abhigyanpatwari/GitNexus">GitNexus</a> and writes it to a file. It lists each changed symbol’s callers, its callees, the <em>unchanged</em> functions the changed code calls, and any import cycles. The agents read one file instead of grepping their way to the same facts.</li>
+</ol>
+
+<p>Two details mattered more than I expected:</p>
 
 <ul>
-  <li>Azure subscription with permissions to create resources.</li>
-  <li>Access to Bing Custom Search portal (customsearch.ai) to create and edit your instance.</li>
-  <li>RBAC setup (Owner/Contributor) for your resource group.</li>
-  <li>Region &amp; pricing tier chosen based on expected traffic.</li>
-  <li>Security: Plan for secret storage (Azure Key Vault) and rotation.</li>
+  <li><strong>Use the CLI, not the MCP server.</strong> My review agents deliberately have no MCP tools, because MCP tool descriptions eat context before the agent reads a line of code. The GitNexus CLI (<code class="language-plaintext highlighter-rouge">analyze --index-only</code>, <code class="language-plaintext highlighter-rouge">cypher</code>, <code class="language-plaintext highlighter-rouge">check --cycles</code>) gives the same data through a plain shell script, and the agent just reads a text file.</li>
+  <li><strong>The index has to match the code under review.</strong> An index of <code class="language-plaintext highlighter-rouge">main</code> from yesterday describes the wrong code. The script refreshes the index of the review worktree first: about 30 seconds cold, a few seconds warm, in the background while the scout runs. So it costs nothing on the critical path.</li>
 </ul>
 
-<h2 id="create-a-custom-bing-search-instance">Create a Custom Bing Search Instance</h2>
-<ol>
-  <li>
-    <p>add an instance in <strong>custom bing search</strong></p>
+<p>One gotcha cost me an hour: the GitNexus CLI <strong>truncates piped output at 64 KB</strong>, because the process exits before the pipe drains. Writing stdout to a temp file fixed it. If a CLI’s JSON comes back “unterminated”, check the pipe before you check the parser.</p>
 
-    <p><a href="https://www.customsearch.ai/application/2fb5152d-594b-40bd-95ee-c28d9caeceda/prod/endpoint">Bing Custom Search</a></p>
+<p>The file also carries its own warnings, because static call graphs have blind spots. A call through a Protocol, a callback, or a registry is often missing, so an empty caller list is a lower bound, not proof there are no callers.</p>
 
-    <p><img src="../assets/img/2023-08-30-bing-custom-search-api/Untitled.png" alt="Untitled" /></p>
+<h2 id="lesson-3-batch-your-tool-calls-is-not-an-instruction-the-model-follows">Lesson 3: “batch your tool calls” is not an instruction the model follows</h2>
 
-    <p><img src="../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(1).png" alt="Untitled" /></p>
+<p>I also added a polite line to both agents: <em>collect everything you need, then fetch it all in one message with parallel tool calls.</em></p>
 
-    <p>add domain to search on</p>
-  </li>
-</ol>
+<p>Then I measured the first real run, a 16,000-line diff split into seven slices:</p>
 
-<h2 id="register-the-azure-bing-resource">Register the Azure Bing Resource</h2>
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>calls per turn</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>old bugs reviewer</td>
+      <td>1.05</td>
+    </tr>
+    <tr>
+      <td>new bugs slices</td>
+      <td>1.00 to 1.33</td>
+    </tr>
+  </tbody>
+</table>
 
-<ol>
-  <li>
-    <p>register a <strong>Bing Custom Search</strong> in azure subscription</p>
+<p>Essentially no change. The agents did chain commands with <code class="language-plaintext highlighter-rouge">;</code> inside a single shell call, which is half a batch, but they still thought, fetched, thought, fetched.</p>
 
-    <p><a href="https://portal.azure.com/#@TrendMicro.onmicrosoft.com/resource/subscriptions/847a5749-fae0-42df-a6f0-d943651bcbd9/resourceGroups/Workshop_2/providers/Microsoft.Bing/accounts/test_BSP/overview"></a></p>
+<p>A suggestion didn’t change the behaviour, so I rewrote it as a procedure with a violation clause: turn 1 reads every input in parallel; turn 2 lists every lookup and emits them all at once as separate tool calls; at most two more fetch turns after that; “a turn with a single tool call while more reads are foreseeable is a violation”. Anything the agent couldn’t afford to check goes into an <code class="language-plaintext highlighter-rouge">unverified:</code> list instead of being fetched one at a time.</p>
 
-    <p><img src="../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(2).png" alt="Untitled" /></p>
-  </li>
-</ol>
+<p>I haven’t measured that version yet. Prompts are hypotheses until the transcripts say otherwise.</p>
 
-<h2 id="connect-custom-config-to-azure">Connect Custom Config to Azure</h2>
-<ol>
-  <li>access the azure resource
-    <ul>
-      <li>use this endpoint, the endpoint in the sample code is not working
-        <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>  https://api.bing.microsoft.com/v7.0/custom/search?q=@{triggerBody()['text']}&amp;customconfig=5ffcd700-1ab8-4382-8c77-32bc455916e0&amp;mkt=en-US
-</code></pre></div>        </div>
-
-        <p>replace the custom config with that in <strong>custom bing search</strong></p>
-
-        <p><img src="../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(3).png" alt="Untitled" /></p>
-      </li>
-      <li>
-        <p>Send the search key in the header</p>
-
-        <p><code class="language-plaintext highlighter-rouge">Ocp-Apim-Subscription-Key: &lt;azure bing search key&gt;</code>
-  <img src="../assets/img/2023-08-30-bing-custom-search-api/Untitled%20(4).png" alt="Untitled" /></p>
-      </li>
-    </ul>
-  </li>
-</ol>
-
-<h2 id="conclusion">Conclusion</h2>
-
-<p>With a well-tuned Bing Custom Search API setup—custom instance, Azure resource, correct endpoint, and secure headers—you’ll deliver focused, trustworthy results from approved sources. Add PVA for conversational access, monitor usage, and keep domains/rules current. The result is faster answers, better compliance, and a smoother user experience for your audience.</p>
-
-<h2 id="ßhelpful-external-resource">ßHelpful External Resource</h2>
-<ul>
-  <li>Microsoft Docs: Bing Custom Search — feature overview, setup, and API reference: https://learn.microsoft.com/bing/search-apis/bing-custom-search/overview</li>
-</ul>
 
 
                 <!-- Pagination links -->
+
+    
+    <div class="pagination pagination-post ">
+        
+            <a href="/blog/speeding-up-multi-agent-code-review-claude-code/2/">
+                
+                <span class="text">Next Page <svg class="arrow"><use xlink:href="#icon-arrow-right"></use></svg></span>
+            </a>
+        
+    </div>
 
 
             </article>
@@ -316,20 +380,20 @@ which provides keys, quotas, and enterprise-grade management.</li>
                             </li>
                         
                             <li>
+                                <a href="/blog/bing-custom-search-api/">
+                                    
+                                        <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270">
+                                    
+                                    <h3>Getting Started with Bing Custom Search API</h3>
+                                </a>
+                            </li>
+                        
+                            <li>
                                 <a href="/blog/everything-returned-true-debugging-silent-failures/">
                                     
                                         <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop">
                                     
                                     <h3>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</h3>
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="/blog/speeding-up-multi-agent-code-review-claude-code/">
-                                    
-                                        <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop">
-                                    
-                                    <h3>Speeding Up a Multi-Agent Code Review in Claude Code</h3>
                                 </a>
                             </li>
                         
@@ -340,37 +404,6 @@ which provides keys, quotas, and enterprise-grade management.</li>
         </section>
 
         <!-- Add time bar only for pages without pagination -->
-        
-            <div class="time-bar" data-minutes="2">
-    <span class="time-completed"></span>
-    <span class="time-remaining"></span>
-    <div class="bar">
-        <span class="completed" style="width:0%;"></span>
-        <span class="remaining" style="width:100%;"></span>
-    </div>
-</div>
-
-            <div class="recommendation">
-    <div class="message">
-        <strong>Why don't you read something next?</strong>
-        <div>
-            <button>
-                <svg><use xlink:href="#icon-arrow-right"></use></svg>
-                <span>Go back to top</span>
-            </button>
-        </div>
-    </div>
-    
-    <a href="/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/" class="post-preview">
-        <div class="image">
-            
-                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-            
-        </div>
-        <h3 class="title">Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</h3>
-    </a>
-</div>
-
         
 
         <!-- Show modal if the post is the last one -->
@@ -383,11 +416,11 @@ which provides keys, quotas, and enterprise-grade management.</li>
 
         <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything into Power Virtual Agents (PVA) step-by-step.&quot;%20https://yvettetsai22.github.io/bing-custom-search-api/%20via%20&#64;&hashtags=blog"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.&quot;%20https://yvettetsai22.github.io/speeding-up-multi-agent-code-review-claude-code/%20via%20&#64;&hashtags=ai-agents,claude-code,code-review,multi-agent,performance,rate-limiting"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
-    <a aria-label="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://yvettetsai22.github.io/bing-custom-search-api/"
+    <a aria-label="Share on Facebook" href="https://www.facebook.com/sharer/sharer.php?u=https://yvettetsai22.github.io/speeding-up-multi-agent-code-review-claude-code/"
     onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;" title="Share on Facebook">
         <svg class="icon icon-facebook"><use xlink:href="#icon-facebook"></use></svg>
     </a>
@@ -555,104 +588,136 @@ which provides keys, quotas, and enterprise-grade management.</li>
         {
             "@context": "http://schema.org",
             "@type": "BlogPosting",
-            "name": "Getting Started with Bing Custom Search API",
-            "headline": "",
-            "description": "Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything into Power Virtual Agents (PVA) step-by-step.",
-            "image": "",
-            "url": "https://yvettetsai22.github.io/blog/bing-custom-search-api/",
-            "articleBody": "Bing Custom Search API lets you build a focused search engine that returns results only from domains you trust. Instead of the entire web, you define a curated set of sites. This sharpens relevance, improves compliance, and makes answers faster and cleaner for your users. It’s ideal for internal knowledge portals, customer-facing help centers, and vertical search experiences where control matters more than breadth.
+            "name": "Speeding Up a Multi-Agent Code Review in Claude Code",
+            "headline": "Measure before you tune: model turns are the real clock, and parallelism stops at the rate limit.",
+            "description": "Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.",
+            "image": "https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop",
+            "url": "https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/",
+            "articleBody": "My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.
 
-Compared to general Bing Web Search, you get domain scoping, ranking controls, pinned results, and filters you can tune without code. You’ll create two things:
+One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.
 
-  a Custom Bing Search instance,
-where you configure domains and rules
-  an Azure Bing Search resource,
-which provides keys, quotas, and enterprise-grade management.
+I asked the obvious question: why is it slow, and can I make it faster? The answers were not what I expected.
 
+Lesson 1: measure first, from the logs you already have
 
-You’ll then call an endpoint that includes your customConfig ID and your subscription key.
-
-Architecture at a Glance
-
-  Custom Search Instance (customsearch.ai): Define domains, filters, safe search, pinned results, and refinements.
-  Azure Bing Resource: Holds your API keys, pricing tier, region, and monitoring.
-  Call Flow: Client → Bing endpoint (/v7.0/custom/search) → Uses customConfig to apply your instance settings → Returns scoped results.
-  Consumers: Web apps, bots (like PVA), back-end services, or low-code flows.
-
-
-Prerequisites &amp;amp; Access
-
-
-  Azure subscription with permissions to create resources.
-  Access to Bing Custom Search portal (customsearch.ai) to create and edit your instance.
-  RBAC setup (Owner/Contributor) for your resource group.
-  Region &amp;amp; pricing tier chosen based on expected traffic.
-  Security: Plan for secret storage (Azure Key Vault) and rotation.
-
-
-Create a Custom Bing Search Instance
-
-  
-    add an instance in custom bing search
-
-    Bing Custom Search
-
-    
-
-    
-
-    add domain to search on
-  
-
-
-Register the Azure Bing Resource
+Claude Code writes every subagent’s transcript to disk, with timestamps, token usage, and every tool call. That meant I didn’t have to guess. A short script over 114 past runs of the bugs reviewer gave me a baseline:
 
 
   
-    register a Bing Custom Search in azure subscription
-
     
-
+      reviewer
+      median
+      p90
+      turns
+    
+  
+  
+    
+      bugs
+      157s
+      308s
+      18
+    
+    
+      spec
+      122s
+      219s
+      23
+    
+    
+      history
+      103s
+      205s
+      21
+    
+    
+      guidelines
+      73s
+      161s
+      15
     
   
 
 
-Connect Custom Config to Azure
+My first guess was that the tools were slow: all that greping and seding around the codebase. It was wrong. Out of 1,284 shell calls, one took longer than ten seconds.
 
-  access the azure resource
-    
-      use this endpoint, the endpoint in the sample code is not working
-          https://api.bing.microsoft.com/v7.0/custom/search?q=@{triggerBody()[&apos;text&apos;]}&amp;amp;customconfig=5ffcd700-1ab8-4382-8c77-32bc455916e0&amp;amp;mkt=en-US
-        
+The time was going into model round-trips. The bugs reviewer made about 11 tool calls across 18 turns, almost always one call per turn. Each turn is a full round of the model thinking on the largest model tier, and that thinking costs 20 to 60 seconds. The tool call itself costs about one second.
 
-        replace the custom config with that in custom bing search
 
-        
-      
-      
-        Send the search key in the header
+One tool call per turn: the thinking, not the tool, sets the pace. Interactive version
 
-        Ocp-Apim-Subscription-Key: &amp;lt;azure bing search key&amp;gt;
+
+  Rule: in an agent loop, the clock is the number of sequential turns, not the work done inside each one.
+
+
+Lesson 2: the slow agent was the one asked to leave the diff
+
+The other reviewers mostly read the diff. The bugs reviewer’s instructions asked it to go further:
+
+
+  for every function the PR newly calls, read that function’s body and check its assumptions still hold;
+  check that no new import closes a cycle;
+  follow any secret to every place it could leak (logs, exception text, repr, response bodies).
+
+
+Each of those is “grep, read the result, decide the next grep”. It’s a chain of dependent lookups, and dependent lookups are serial turns.
+
+So I made two structural changes:
+
+
+  Split the agent in two. bugs now reviews only the changed lines: logic, identity, degenerate input, fixes that are too broad. A new reach agent owns everything outside the diff. They run at the same time.
+  Pre-compute the lookups. Before the reviewers start, a script builds a call-graph digest of the diff with GitNexus and writes it to a file. It lists each changed symbol’s callers, its callees, the unchanged functions the changed code calls, and any import cycles. The agents read one file instead of grepping their way to the same facts.
+
+
+Two details mattered more than I expected:
+
+
+  Use the CLI, not the MCP server. My review agents deliberately have no MCP tools, because MCP tool descriptions eat context before the agent reads a line of code. The GitNexus CLI (analyze --index-only, cypher, check --cycles) gives the same data through a plain shell script, and the agent just reads a text file.
+  The index has to match the code under review. An index of main from yesterday describes the wrong code. The script refreshes the index of the review worktree first: about 30 seconds cold, a few seconds warm, in the background while the scout runs. So it costs nothing on the critical path.
+
+
+One gotcha cost me an hour: the GitNexus CLI truncates piped output at 64 KB, because the process exits before the pipe drains. Writing stdout to a temp file fixed it. If a CLI’s JSON comes back “unterminated”, check the pipe before you check the parser.
+
+The file also carries its own warnings, because static call graphs have blind spots. A call through a Protocol, a callback, or a registry is often missing, so an empty caller list is a lower bound, not proof there are no callers.
+
+Lesson 3: “batch your tool calls” is not an instruction the model follows
+
+I also added a polite line to both agents: collect everything you need, then fetch it all in one message with parallel tool calls.
+
+Then I measured the first real run, a 16,000-line diff split into seven slices:
+
+
   
-      
+    
+       
+      calls per turn
+    
+  
+  
+    
+      old bugs reviewer
+      1.05
+    
+    
+      new bugs slices
+      1.00 to 1.33
     
   
 
 
-Conclusion
+Essentially no change. The agents did chain commands with ; inside a single shell call, which is half a batch, but they still thought, fetched, thought, fetched.
 
-With a well-tuned Bing Custom Search API setup—custom instance, Azure resource, correct endpoint, and secure headers—you’ll deliver focused, trustworthy results from approved sources. Add PVA for conversational access, monitor usage, and keep domains/rules current. The result is faster answers, better compliance, and a smoother user experience for your audience.
+A suggestion didn’t change the behaviour, so I rewrote it as a procedure with a violation clause: turn 1 reads every input in parallel; turn 2 lists every lookup and emits them all at once as separate tool calls; at most two more fetch turns after that; “a turn with a single tool call while more reads are foreseeable is a violation”. Anything the agent couldn’t afford to check goes into an unverified: list instead of being fetched one at a time.
 
-ßHelpful External Resource
-
-  Microsoft Docs: Bing Custom Search — feature overview, setup, and API reference: https://learn.microsoft.com/bing/search-apis/bing-custom-search/overview
+I haven’t measured that version yet. Prompts are hypotheses until the transcripts say otherwise.
 
 ",
-            "wordcount": "443",
+            "wordcount": "957",
             "inLanguage": "en",
-            "dateCreated": "2023-08-30/",
-            "datePublished": "2023-08-30/",
-            "dateModified": "2023-08-30/",
+            "dateCreated": "2026-09-29/",
+            "datePublished": "2026-09-29/",
+            "dateModified": "2026-09-29/",
             "author": {
                 "@type": "Person",
                 "name": "Thiago Rossener",
@@ -677,9 +742,9 @@ With a well-tuned Bing Custom Search API setup—custom instance, Azure resource
                 }
             },
             "mainEntityOfPage": "True",
-            "genre": "blog",
-            "articleSection": "blog",
-            "keywords": ["blog"]
+            "genre": "code",
+            "articleSection": "code",
+            "keywords": ["ai-agents","claude-code","code-review","multi-agent","performance","rate-limiting"]
         }
         </script>
     </body>
