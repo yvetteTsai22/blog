@@ -11,6 +11,9 @@ local_files/
 _site/
 tmp/
 
+.agents/skills/
+skills-lock.json
+
 # Tool recommends - exclude source and node_modules
 _tool-recommends/*/node_modules/
 _tool-recommends/*/build/
@@ -27,3 +30,6 @@ _site/tool-recommend/*
 .claude/
 docs/plans/
 infographic/
+
+
+.env
