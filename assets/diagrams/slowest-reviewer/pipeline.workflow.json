@@ -1,0 +1,193 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Multi-agent review pipeline, after the changes",
+    "locale": "en",
+    "quality_profile": "showcase"
+  },
+  "lanes": [
+    {
+      "id": "prep",
+      "label": "Prepare"
+    },
+    {
+      "id": "review",
+      "label": "Review in parallel"
+    },
+    {
+      "id": "verify",
+      "label": "Verify"
+    }
+  ],
+  "mainPath": [
+    "diff",
+    "scout",
+    "bugs",
+    "queue",
+    "verifiers",
+    "report"
+  ],
+  "nodes": [
+    {
+      "id": "diff",
+      "lane": "prep",
+      "col": 0,
+      "type": "external",
+      "label": "PR diff",
+      "sublabel": "local branch"
+    },
+    {
+      "id": "scout",
+      "lane": "prep",
+      "col": 1,
+      "type": "backend",
+      "label": "Scout",
+      "sublabel": "summarise diff"
+    },
+    {
+      "id": "digest",
+      "lane": "prep",
+      "col": 2,
+      "type": "database",
+      "label": "Call graph",
+      "sublabel": "GitNexus CLI",
+      "tag": "built in background"
+    },
+    {
+      "id": "report",
+      "lane": "verify",
+      "col": 5,
+      "type": "frontend",
+      "label": "Report",
+      "sublabel": "confirmed findings"
+    },
+    {
+      "id": "bugs",
+      "lane": "review",
+      "col": 1,
+      "type": "backend",
+      "label": "bugs",
+      "sublabel": "changed lines",
+      "tag": "up to 3 slices"
+    },
+    {
+      "id": "reach",
+      "lane": "review",
+      "col": 2,
+      "type": "backend",
+      "label": "reach",
+      "sublabel": "outside the diff",
+      "tag": "up to 3 slices"
+    },
+    {
+      "id": "others",
+      "lane": "review",
+      "col": 3,
+      "type": "backend",
+      "label": "5 others",
+      "sublabel": "spec, history, …"
+    },
+    {
+      "id": "queue",
+      "lane": "verify",
+      "col": 3,
+      "type": "messagebus",
+      "label": "One queue",
+      "sublabel": "max 8 in flight",
+      "tag": "429: cap drops to 6"
+    },
+    {
+      "id": "verifiers",
+      "lane": "verify",
+      "col": 4,
+      "type": "security",
+      "label": "Verifiers",
+      "sublabel": "one per finding"
+    }
+  ],
+  "edges": [
+    {
+      "id": "diff-scout",
+      "from": "diff",
+      "to": "scout"
+    },
+    {
+      "id": "scout-digest",
+      "from": "scout",
+      "to": "digest",
+      "label": "index refresh",
+      "variant": "dashed",
+      "role": "async"
+    },
+    {
+      "id": "scout-bugs",
+      "from": "scout",
+      "to": "bugs",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "digest-reach",
+      "from": "digest",
+      "to": "reach",
+      "variant": "dashed",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "bugs-queue",
+      "from": "bugs",
+      "to": "queue",
+      "label": "findings",
+      "variant": "emphasis",
+      "fromSide": "bottom",
+      "toSide": "left"
+    },
+    {
+      "id": "reach-queue",
+      "from": "reach",
+      "to": "queue",
+      "fromSide": "bottom",
+      "toSide": "left"
+    },
+    {
+      "id": "others-queue",
+      "from": "others",
+      "to": "queue",
+      "fromSide": "bottom",
+      "toSide": "top"
+    },
+    {
+      "id": "queue-verifiers",
+      "from": "queue",
+      "to": "verifiers",
+      "variant": "emphasis"
+    },
+    {
+      "id": "verifiers-report",
+      "from": "verifiers",
+      "to": "report",
+      "variant": "emphasis"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Split and pre-compute",
+      "items": [
+        "bugs keeps the diff; reach owns everything outside it",
+        "Lookups come from one digest file, not a grep chain"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Cap, not less parallelism",
+      "items": [
+        "Reviewers first, longest first; verifiers queue behind",
+        "One verifier per finding keeps each judgement independent"
+      ]
+    }
+  ]
+}
