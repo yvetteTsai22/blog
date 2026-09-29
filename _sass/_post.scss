@@ -87,6 +87,17 @@
     padding-top: 0;
   }
 
+  p.post-continued {
+    color: darken($lightGray, 30%);
+    font-size: rem(15px);
+    margin: rem(5px) auto rem(30px);
+
+    a {
+      color: inherit;
+      font-weight: 600;
+    }
+  }
+
   p.post-subtitle {
     color: darken($lightGray, 30%);
     font-size: rem(17px);
