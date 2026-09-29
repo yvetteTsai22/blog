@@ -8,6 +8,12 @@
 
         <section class="post {% if site.two_columns_layout %}two-columns{% else %}one-column{% endif %}">
             <article role="article" class="post-content">
+                {% if paginator.has_previous %}
+                <p class="post-continued">
+                    <a href="{{ paginator.first_page_path }}">{{ page.title }}</a>
+                    <span>· Part {{ paginator.page }} of {{ paginator.total_pages }}</span>
+                </p>
+                {% else %}
                 <p class="post-info">
                     {% if page.date %}
                         <svg class="icon-calendar" id="date"><use xlink:href="#icon-calendar"></use></svg>
@@ -26,6 +32,7 @@
                 {% endif %}
 
                 {% include pagination-post.html progressBar=true %}
+                {% endif %}
 
                 {% include toc.html %}
 
