@@ -10,14 +10,6 @@
         </url>
     
         <url>
-            <loc>https://yvettetsai22.github.io/blog/category/NLP/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
-    
-        <url>
             <loc>https://yvettetsai22.github.io/blog/about/</loc>
             
                 <changefreq>monthly</changefreq>
@@ -26,15 +18,7 @@
         </url>
     
         <url>
-            <loc>https://yvettetsai22.github.io/blog/category/blog/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
-    
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/code/</loc>
+            <loc>https://yvettetsai22.github.io/blog/category/agents/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -50,15 +34,7 @@
         </url>
     
         <url>
-            <loc>https://yvettetsai22.github.io/blog/category/css/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
-    
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/diet/</loc>
+            <loc>https://yvettetsai22.github.io/blog/category/debugging/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -67,6 +43,14 @@
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/feed.xml</loc>
+            
+                <changefreq>monthly</changefreq>
+                <priority>0.5</priority>
+            
+        </url>
+    
+        <url>
+            <loc>https://yvettetsai22.github.io/blog/category/guides/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -98,7 +82,7 @@
         </url>
     
         <url>
-            <loc>https://yvettetsai22.github.io/blog/category/music/</loc>
+            <loc>https://yvettetsai22.github.io/blog/category/patterns/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>
@@ -147,46 +131,6 @@
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/tags/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
-    
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/tips/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
-    
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/tool/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
-    
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/travel/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
-    
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/tutorial/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
-    
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/work/</loc>
             
                 <changefreq>monthly</changefreq>
                 <priority>0.5</priority>

@@ -5,31 +5,31 @@
     {
       "title"    : "Speeding Up a Multi-Agent Code Review in Claude Code",
       "tags"     : "ai-agents, claude-code, code-review, multi-agent, performance, and rate-limiting",
-      "categories" : "code",
+      "categories" : "agents",
       "url"      : "/blog/speeding-up-multi-agent-code-review-claude-code/",
       "date"     : "09/29/2026"
     } ,
   
     {
       "title"    : "Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature",
-      "tags"     : "python, debugging, ai, and tutorial",
-      "categories" : "code",
+      "tags"     : "python and debugging",
+      "categories" : "debugging",
       "url"      : "/blog/everything-returned-true-debugging-silent-failures/",
       "date"     : "06/25/2026"
     } ,
   
     {
       "title"    : "Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK",
-      "tags"     : "blog",
-      "categories" : "",
+      "tags"     : "llm-observability, python, and ai-agents",
+      "categories" : "guides",
       "url"      : "/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/",
       "date"     : "02/22/2026"
     } ,
   
     {
       "title"    : "Getting Started with Bing Custom Search API",
-      "tags"     : "blog",
-      "categories" : "blog",
+      "tags"     : "azure and ai-agents",
+      "categories" : "guides",
       "url"      : "/blog/bing-custom-search-api/",
       "date"     : "08/30/2023"
     } 
