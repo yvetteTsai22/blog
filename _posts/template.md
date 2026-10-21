@@ -9,9 +9,10 @@ image: >-
   https://unsplash.com/photos/TQYTWfN1b7M
 optimized_image: >-
   https://res.cloudinary.com/dm7h7e8xj/image/upload/c_scale,w_380/v1559821647/theme6_qeeojf.jpg
-category: blog
+category: guides
 tags:
-  - life
+  - ai-agents
+  - python
 author: yvetteTsai
 paginate: true
 ---

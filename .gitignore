@@ -2,7 +2,7 @@
 .DS_Store
 .sass-cache
 Gemfile.lock
-package-json.lock
+package-lock.json
 node_modules
 _drafts
 vendor/
@@ -33,3 +33,10 @@ infographic/
 
 
 .env
+# Blog pipeline: local-only secrets and config (never commit; .env is ignored above)
+pipeline.local.yml
+market-signals.local.yml
+pipeline/.venv/
+__pycache__/
+.pytest_cache/
+*.pyc

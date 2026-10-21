@@ -1,0 +1,1 @@
+d="${BLOG_PIPELINE_STATE_DIR:-$HOME/.local/state/blog-pipeline}"; q="$d/pending-queue.txt"; o="$d/outbox"; [ -d "$d" ] && [ -r "$d" ] || exit 0; if [ -e "$q" ]; then [ -f "$q" ] && [ -r "$q" ] || exit 0; grep -q '[^[:space:]]' "$q"; [ $? -eq 1 ] || exit 0; fi; if [ -e "$o" ]; then [ -d "$o" ] && [ -r "$o" ] || exit 0; n=$(ls -A "$o") || exit 0; [ -z "$n" ] || exit 0; fi; exit 1

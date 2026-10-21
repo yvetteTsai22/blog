@@ -8,12 +8,10 @@ description: >-
 image: https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop
 optimized_image: >-
   https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop
-category: code
+category: debugging
 tags:
   - python
   - debugging
-  - ai
-  - tutorial
 author: yvetteTsai
 paginate: true
 ---

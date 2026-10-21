@@ -9,7 +9,7 @@ description: >-
 image: https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop
 optimized_image: >-
   https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop
-category: code
+category: agents
 tags:
   - ai-agents
   - claude-code
