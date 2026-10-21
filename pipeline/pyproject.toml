@@ -1,0 +1,24 @@
+[project]
+name = "blog-pipeline"
+version = "0.1.0"
+description = "Daily blog-topic pipeline: session queue, nightly batch, 21:00 topic list"
+requires-python = ">=3.11"
+dependencies = [
+    "fastembed>=0.4",
+    "pyyaml>=6.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+]
+
+[tool.uv]
+# Not an installable package: modules are run from this directory
+# (`uv run python -m setup.check_prereqs`), so later tickets can add
+# top-level packages (batch/, daily/, ...) without editing this file.
+package = false
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["."]

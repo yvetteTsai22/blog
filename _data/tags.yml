@@ -1,0 +1,11 @@
+# Allowed post tags (spec §5.3). Posts use 2–6 of these; new tags need approval.
+- ai-agents
+- claude-code
+- multi-agent
+- code-review
+- llm-observability
+- python
+- performance
+- rate-limiting
+- debugging
+- azure

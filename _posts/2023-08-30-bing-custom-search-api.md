@@ -6,9 +6,10 @@ subtitle:
 description: Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything into Power Virtual Agents (PVA) step-by-step.
 optimized_image: >-
   https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270
-category: blog
+category: guides
 tags:
-  - blog
+  - azure
+  - ai-agents
 author: yvetteTsai
 paginate: false
 ---
