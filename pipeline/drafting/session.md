@@ -38,7 +38,8 @@ publish is blocked: say which fields are missing and stop.
 - `category`: one of `agents` / `debugging` / `patterns` / `guides` / `life` (empty blocks)
 - `image` and `optimized_image`: the same Unsplash photo at `w=2670` and `w=800`; offer 2–3
   candidates and let her pick
-- `date`: the publish time, `+0800`
+- `date`: the publish time with the machine's current UTC offset (`date +%z`, e.g. `+0100`
+  in London summer time); never hard-code an offset
 - `slug`: kebab-case, at most 6 words, frozen after publish
 - `tags`: 2–6, only from `_data/tags.yml`; a new tag needs her approval
 - optional `subtitle`; omit `paginate` unless needed
