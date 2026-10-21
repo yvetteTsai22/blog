@@ -167,8 +167,9 @@ def test_session_instructions_cover_pick_and_publish():
     text = INSTRUCTIONS.read_text(encoding="utf-8")
     for needle in ("pick_status=挑中", "git merge master", "note pending=true", "_drafts/<slug>.md",
                    "git add -f _drafts/<slug>.md", "One commit touches one article", "draft path=",
-                   'says "publish"', "blocked", "w=2670", "_data/tags.yml", "+0800"):
+                   'says "publish"', "blocked", "w=2670", "_data/tags.yml", "date +%z"):
         assert needle in text, needle
+    assert "+0800" not in text
     assert "git push" not in text.split("### Publish")[0]
 
 
