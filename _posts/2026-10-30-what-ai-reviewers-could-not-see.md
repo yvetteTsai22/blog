@@ -33,8 +33,6 @@ The agents weren't failing to follow the rule. Nobody had ever told them.
 
 So I stopped asking how to make the agents faster ([I did that already]({{ site.baseurl }}/speeding-up-multi-agent-code-review-claude-code/)) and asked a different question: what were the humans seeing that the agents weren't?
 
---page-break--
-
 ## Sorting 45 comments into five piles
 
 I pulled the feedback from 17 PRs and sorted every comment by *why* the agents missed it, not by what it was about. Five piles came out:
