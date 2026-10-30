@@ -43,6 +43,8 @@ publish is blocked: say which fields are missing and stop.
 - `slug`: kebab-case, at most 6 words, frozen after publish
 - `tags`: 2–6, only from `_data/tags.yml`; a new tag needs her approval
 - optional `subtitle`; omit `paginate` unless needed
+- `--page-break--` only works with `paginate: true`: if the body has the marker, set
+  `paginate: true`; otherwise remove the marker (it renders as plain text)
 
 Then, step by step, with her confirmation before the push:
 
