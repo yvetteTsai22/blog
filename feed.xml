@@ -5,9 +5,27 @@
     <description>About AI, ML, LLMs and more by Yvette Tsai.</description>
     <link>https://yvettetsai22.github.io/blog/</link>
     <atom:link href="https://yvettetsai22.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 29 Oct 2026 17:28:49 +0000</pubDate>
-    <lastBuildDate>Thu, 29 Oct 2026 17:28:49 +0000</lastBuildDate>
+    <pubDate>Fri, 30 Oct 2026 17:20:34 +0000</pubDate>
+    <lastBuildDate>Fri, 30 Oct 2026 17:20:34 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
+    
+      <item>
+        <title>Eight AI Reviewers, 45 Human Comments: What the Agents Couldn&apos;t See</title>
+        <description>&lt;p&gt;Eight AI reviewers said my PRs were clean. Two colleagues left 45 comments.&lt;/p&gt; &lt;p&gt;My pre-PR review in Claude Code runs eight specialist agents in parallel: bugs, reach, guidelines, history, prior art, comments, spec and design. Every finding then goes to a verifier that tries to knock it down. Only findings that survive with a score of 75 or more block the merge. Everything else is triaged as 🔴 blocker, 🟡 risk or 🔵 nit. Some PRs got a GitHub Copilot review on top.&lt;/p&gt; &lt;p&gt;On a good day the report says: 0 critical, 0 warnings, two blue nits. Branch marked clean....</description>
+        <pubDate>Fri, 30 Oct 2026 17:19:25 +0000</pubDate>
+        <link>https://yvettetsai22.github.io/blog/what-ai-reviewers-could-not-see/</link>
+        <guid isPermaLink="true">https://yvettetsai22.github.io/blog/what-ai-reviewers-could-not-see/</guid>
+        
+        <category>ai-agents</category>
+        
+        <category>claude-code</category>
+        
+        <category>code-review</category>
+        
+        <category>multi-agent</category>
+        
+        <category>agents</category>
+      </item>
     
       <item>
         <title>Speeding Up a Multi-Agent Code Review in Claude Code</title>

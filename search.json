@@ -3,6 +3,14 @@
   
   
     {
+      "title"    : "Eight AI Reviewers, 45 Human Comments: What the Agents Couldn&#39;t See",
+      "tags"     : "ai-agents, claude-code, code-review, and multi-agent",
+      "categories" : "agents",
+      "url"      : "/blog/what-ai-reviewers-could-not-see/",
+      "date"     : "10/30/2026"
+    } ,
+  
+    {
       "title"    : "Speeding Up a Multi-Agent Code Review in Claude Code",
       "tags"     : "ai-agents, claude-code, code-review, multi-agent, performance, and rate-limiting",
       "categories" : "agents",

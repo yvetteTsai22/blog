@@ -139,6 +139,13 @@
     
     
         <url>
+            <loc>https://yvettetsai22.github.io/blog/what-ai-reviewers-could-not-see/</loc>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+            <lastmod>2026-10-30</lastmod>
+        </url>
+    
+        <url>
             <loc>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
