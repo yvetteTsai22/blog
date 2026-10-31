@@ -15,3 +15,5 @@ Start a drafting session now, the same way the 21:00 automation does, but read-o
 
 Never run the opener without `--dry-run`: a real run sends Telegram and advances the
 `推薦過` / cooldown counters. Do not push, stash, or switch branches.
+
+Reply in traditional Chinese in conversation, but write drafts in English.
