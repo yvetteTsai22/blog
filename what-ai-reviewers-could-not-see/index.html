@@ -17,8 +17,8 @@
     
     
 
-    <title>Eight AI Reviewers, 45 Human Comments: What the Agents Couldn't See | YY AI</title>
-    <meta name="description" content="Eight AI reviewers said clean; two humans left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.">
+    <title>My AI Reviewers Said Clean. My Colleagues Didn't. | YY AI</title>
+    <meta name="description" content="My AI reviewers said clean; my colleagues left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.">
     
         <meta name="keywords" content="ai-agents, claude-code, code-review, multi-agent">
     
@@ -26,8 +26,8 @@
 
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Eight AI Reviewers, 45 Human Comments: What the Agents Couldn't See | YY AI">
-    <meta name="twitter:description" content="Eight AI reviewers said clean; two humans left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.">
+    <meta name="twitter:title" content="My AI Reviewers Said Clean. My Colleagues Didn't. | YY AI">
+    <meta name="twitter:description" content="My AI reviewers said clean; my colleagues left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.">
 
     
         <meta property="twitter:image" content="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=2670&auto=format&fit=crop">
@@ -38,9 +38,9 @@
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="https://yvettetsai22.github.io/blog/what-ai-reviewers-could-not-see/">
-    <meta property="og:title" content="Eight AI Reviewers, 45 Human Comments: What the Agents Couldn't See | YY AI">
+    <meta property="og:title" content="My AI Reviewers Said Clean. My Colleagues Didn't. | YY AI">
     <meta property="og:image" content="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=2670&auto=format&fit=crop">
-    <meta property="og:description" content="Eight AI reviewers said clean; two humans left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.">
+    <meta property="og:description" content="My AI reviewers said clean; my colleagues left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.">
     <meta property="og:site_name" content="YY AI | AI with Yvette Tsai">
 
     <!-- Favicon -->
@@ -190,9 +190,9 @@ October 30, 2026
                         </time>
                     
                     <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
-                    <span>8 min to read</span>
+                    <span>7 min to read</span>
                 </p>
-                <h1 class="post-title">Eight AI Reviewers, 45 Human Comments: What the Agents Couldn't See</h1>
+                <h1 class="post-title">My AI Reviewers Said Clean. My Colleagues Didn't.</h1>
                 <p class="post-subtitle">A prompt is a request. A tool boundary is a rule.</p>
 
                 
@@ -207,7 +207,7 @@ October 30, 2026
                 <!-- Add your table of contents here -->
 
 
-                <p>Eight AI reviewers said my PRs were clean. Two colleagues left 45 comments.</p>
+                <p>My AI reviewers said my PRs were clean. My colleagues didn’t: two of them left 45 comments.</p>
 
 <p>My pre-PR review in Claude Code runs eight specialist agents in parallel: bugs, reach, guidelines, history, prior art, comments, spec and design. Every finding then goes to a verifier that tries to knock it down. Only findings that survive with a score of 75 or more block the merge. Everything else is triaged as 🔴 blocker, 🟡 risk or 🔵 nit. Some PRs got a GitHub Copilot review on top.</p>
 
@@ -223,50 +223,26 @@ October 30, 2026
 
 <p>So I stopped asking how to make the agents faster (<a href="/blog/speeding-up-multi-agent-code-review-claude-code/">I did that already</a>) and asked a different question: what were the humans seeing that the agents weren’t?</p>
 
-<h2 id="sorting-45-comments-into-five-piles">Sorting 45 comments into five piles</h2>
+<h2 id="sorting-the-comments-into-five-piles">Sorting the comments into five piles</h2>
 
-<p>I pulled the feedback from 17 PRs and sorted every comment by <em>why</em> the agents missed it, not by what it was about. Five piles came out:</p>
+<p>I pulled the feedback from 17 PRs and sorted every comment by <em>why</em> the agents missed it, not by what it was about. Five piles came out, in two groups.</p>
 
-<table>
-  <thead>
-    <tr>
-      <th>pile</th>
-      <th>what it looks like</th>
-      <th>could an agent catch it?</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>calculation bugs</td>
-      <td>a task dispatched, blocked, then unblocked gets a <em>negative</em> queue time</td>
-      <td>yes, in principle, but only if it plays the timeline through instead of reading the diff</td>
-    </tr>
-    <tr>
-      <td>needs external data</td>
-      <td>a parity test that is skipped on every CI run, because CI has no database</td>
-      <td>no: the answer is in how CI runs, not in the repo</td>
-    </tr>
-    <tr>
-      <td>context gaps</td>
-      <td>“no ticket numbers in comments”; “moving a symbol means updating every caller, not leaving a re-export”</td>
-      <td>only if someone wrote it down</td>
-    </tr>
-    <tr>
-      <td>design issues</td>
-      <td>the same string format parsed in four places, twice in Python and twice in SQL</td>
-      <td>partly: it can flag it, a human decides</td>
-    </tr>
-    <tr>
-      <td>docs and style</td>
-      <td>user docs still describing the old UI</td>
-      <td>yes, and it mostly did</td>
-    </tr>
-  </tbody>
-</table>
+<p><strong>Out of reach: not in the diff at all</strong></p>
 
-<p>The biggest pile by far was context gaps. They showed up on almost every PR, because the same unwritten rule got broken again each time.</p>
+<ul>
+  <li><strong>Unwritten team rules</strong> — “no ticket numbers in comments”</li>
+  <li><strong>How CI actually runs</strong> — a test skipped on every run, because CI has no database</li>
+</ul>
 
-<p>The first and last piles are the agents’ home ground. The middle three are the interesting ones, and they share a shape: the reviewer needed something the diff doesn’t contain. That could be a timeline (“this ran last week, what happened?”), a second source to check against, or the reason behind a decision.</p>
+<p><strong>In reach, with effort</strong></p>
+
+<ul>
+  <li><strong>Timeline bugs</strong> — dispatched, blocked, unblocked: a <em>negative</em> queue time</li>
+  <li><strong>Design drift</strong> — one string format parsed in four places</li>
+  <li><strong>Stale docs</strong> — user docs still describing the old UI</li>
+</ul>
+
+<p>The first group is the one that hurt. The unwritten rules broke on PR after PR, and no amount of reading the diff would have found them. The second group the agents can get to: by playing a timeline through instead of reading it, by flagging duplication for a human to judge, and they already caught most of the stale docs.</p>
 
 <blockquote>
   <p><strong>Rule:</strong> AI review sees what’s in the diff and what it is allowed to reach. Everything else is a blind spot, however many reviewers you run.</p>
@@ -274,7 +250,7 @@ October 30, 2026
 
 <p>Eight agents reading the same diff are eight views of the same thing. Adding a ninth wouldn’t have caught these.</p>
 
-<p>The biggest pile, context gaps, doesn’t need more reach. It just needs someone to write the rule down, and I’ll come back to that at the end. What’s left is the external-data pile, and that one does need the agents to reach outside the repo.</p>
+<p>The unwritten rules don’t need more reach. They just need someone to write them down, and I’ll come back to that at the end. The CI pile is different: to see it, the agents have to reach outside the repo.</p>
 
 <h2 id="the-obvious-fix-and-why-its-scary">The obvious fix, and why it’s scary</h2>
 
@@ -308,7 +284,7 @@ October 30, 2026
 
 <h2 id="the-rule-was-in-the-wrong-place">The rule was in the wrong place</h2>
 
-<p>After sorting the comments, I did the boring fix for the biggest pile: I wrote the unwritten rules down. One line per rule, in a review-lessons file that every reviewer reads before it starts. The comment rule reads: <em>comments that narrate history (“previously”, “used to”, a bare ticket or PR id) instead of explaining the code as it is: history goes in the commit, not the comment.</em></p>
+<p>After sorting the comments, I did the boring fix for the unwritten rules: I wrote the unwritten rules down. One line per rule, in a review-lessons file that every reviewer reads before it starts. The comment rule reads: <em>comments that narrate history (“previously”, “used to”, a bare ticket or PR id) instead of explaining the code as it is: history goes in the commit, not the comment.</em></p>
 
 <p>A few days later, on a new ticket, the review flagged a docstring that told the story of an old incident: <em>“…did exactly that, two minutes after it cloned.”</em> Its reason was that rule. The comment my colleague had been repeating by hand was caught before anyone else saw the PR.</p>
 
@@ -316,7 +292,9 @@ October 30, 2026
 
 <p>The agents can now reach more external data than before, safely. Whether they use it well is the next experiment, and it’s where I’m least sure.</p>
 
-<p>And there’s a bigger gap I only noticed while writing this. That lessons file lives in <em>my</em> setup, not in the repo. My reviewers know the rule now. My colleagues’ agents don’t, Copilot doesn’t, and the decision log at the root of the repo still has four entries. I moved the knowledge out of people’s heads and into my own tools, which is one step better than nowhere, and still not where the team can see it. The next step isn’t a better reviewer. It’s a habit: decisions go into the repo, in a place every agent and every person reads.</p>
+<p>And there’s a bigger gap I only noticed while writing this. That lessons file lives in <em>my</em> setup, not in the repo. My reviewers know the rule now. My colleagues’ agents don’t, Copilot doesn’t, and the decision log at the root of the repo still has four entries.</p>
+
+<p>I moved the knowledge out of people’s heads and into my own tools, which is one step better than nowhere, and still not where the team can see it. The next step isn’t a better reviewer. It’s a habit: decisions go into the repo, in a place every agent and every person reads.</p>
 
 <blockquote>
   <p><strong>Rule:</strong> when a human reviewer keeps leaving the same comment, it’s usually not a review problem. It’s a rule that was never written down.</p>
@@ -340,20 +318,20 @@ October 30, 2026
                         
                         
                             <li>
-                                <a href="/blog/speeding-up-multi-agent-code-review-claude-code/">
-                                    
-                                        <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop">
-                                    
-                                    <h3>Speeding Up a Multi-Agent Code Review in Claude Code</h3>
-                                </a>
-                            </li>
-                        
-                            <li>
                                 <a href="/blog/bing-custom-search-api/">
                                     
                                         <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270">
                                     
                                     <h3>Getting Started with Bing Custom Search API</h3>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/blog/speeding-up-multi-agent-code-review-claude-code/">
+                                    
+                                        <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop">
+                                    
+                                    <h3>Speeding Up a Multi-Agent Code Review in Claude Code</h3>
                                 </a>
                             </li>
                         
@@ -374,7 +352,7 @@ October 30, 2026
 
         <!-- Add time bar only for pages without pagination -->
         
-            <div class="time-bar" data-minutes="8">
+            <div class="time-bar" data-minutes="7">
     <span class="time-completed"></span>
     <span class="time-remaining"></span>
     <div class="bar">
@@ -416,7 +394,7 @@ October 30, 2026
 
         <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Eight AI reviewers said clean; two humans left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.&quot;%20https://yvettetsai22.github.io/what-ai-reviewers-could-not-see/%20via%20&#64;&hashtags=ai-agents,claude-code,code-review,multi-agent"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;My AI reviewers said clean; my colleagues left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.&quot;%20https://yvettetsai22.github.io/what-ai-reviewers-could-not-see/%20via%20&#64;&hashtags=ai-agents,claude-code,code-review,multi-agent"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
@@ -588,12 +566,12 @@ October 30, 2026
         {
             "@context": "http://schema.org",
             "@type": "BlogPosting",
-            "name": "Eight AI Reviewers, 45 Human Comments: What the Agents Couldn't See",
+            "name": "My AI Reviewers Said Clean. My Colleagues Didn't.",
             "headline": "A prompt is a request. A tool boundary is a rule.",
-            "description": "Eight AI reviewers said clean; two humans left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.",
+            "description": "My AI reviewers said clean; my colleagues left 45 comments. What AI review cannot see, and why most of the fix was writing rules down.",
             "image": "https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=2670&auto=format&fit=crop",
             "url": "https://yvettetsai22.github.io/blog/what-ai-reviewers-could-not-see/",
-            "articleBody": "Eight AI reviewers said my PRs were clean. Two colleagues left 45 comments.
+            "articleBody": "My AI reviewers said my PRs were clean. My colleagues didn’t: two of them left 45 comments.
 
 My pre-PR review in Claude Code runs eight specialist agents in parallel: bugs, reach, guidelines, history, prior art, comments, spec and design. Every finding then goes to a verifier that tries to knock it down. Only findings that survive with a score of 75 or more block the merge. Everything else is triaged as 🔴 blocker, 🟡 risk or 🔵 nit. Some PRs got a GitHub Copilot review on top.
 
@@ -609,50 +587,26 @@ The agents weren’t failing to follow the rule. Nobody had ever told them.
 
 So I stopped asking how to make the agents faster (I did that already) and asked a different question: what were the humans seeing that the agents weren’t?
 
-Sorting 45 comments into five piles
+Sorting the comments into five piles
 
-I pulled the feedback from 17 PRs and sorted every comment by why the agents missed it, not by what it was about. Five piles came out:
+I pulled the feedback from 17 PRs and sorted every comment by why the agents missed it, not by what it was about. Five piles came out, in two groups.
 
-
-  
-    
-      pile
-      what it looks like
-      could an agent catch it?
-    
-  
-  
-    
-      calculation bugs
-      a task dispatched, blocked, then unblocked gets a negative queue time
-      yes, in principle, but only if it plays the timeline through instead of reading the diff
-    
-    
-      needs external data
-      a parity test that is skipped on every CI run, because CI has no database
-      no: the answer is in how CI runs, not in the repo
-    
-    
-      context gaps
-      “no ticket numbers in comments”; “moving a symbol means updating every caller, not leaving a re-export”
-      only if someone wrote it down
-    
-    
-      design issues
-      the same string format parsed in four places, twice in Python and twice in SQL
-      partly: it can flag it, a human decides
-    
-    
-      docs and style
-      user docs still describing the old UI
-      yes, and it mostly did
-    
-  
+Out of reach: not in the diff at all
 
 
-The biggest pile by far was context gaps. They showed up on almost every PR, because the same unwritten rule got broken again each time.
+  Unwritten team rules — “no ticket numbers in comments”
+  How CI actually runs — a test skipped on every run, because CI has no database
 
-The first and last piles are the agents’ home ground. The middle three are the interesting ones, and they share a shape: the reviewer needed something the diff doesn’t contain. That could be a timeline (“this ran last week, what happened?”), a second source to check against, or the reason behind a decision.
+
+In reach, with effort
+
+
+  Timeline bugs — dispatched, blocked, unblocked: a negative queue time
+  Design drift — one string format parsed in four places
+  Stale docs — user docs still describing the old UI
+
+
+The first group is the one that hurt. The unwritten rules broke on PR after PR, and no amount of reading the diff would have found them. The second group the agents can get to: by playing a timeline through instead of reading it, by flagging duplication for a human to judge, and they already caught most of the stale docs.
 
 
   Rule: AI review sees what’s in the diff and what it is allowed to reach. Everything else is a blind spot, however many reviewers you run.
@@ -660,7 +614,7 @@ The first and last piles are the agents’ home ground. The middle three are the
 
 Eight agents reading the same diff are eight views of the same thing. Adding a ninth wouldn’t have caught these.
 
-The biggest pile, context gaps, doesn’t need more reach. It just needs someone to write the rule down, and I’ll come back to that at the end. What’s left is the external-data pile, and that one does need the agents to reach outside the repo.
+The unwritten rules don’t need more reach. They just need someone to write them down, and I’ll come back to that at the end. The CI pile is different: to see it, the agents have to reach outside the repo.
 
 The obvious fix, and why it’s scary
 
@@ -694,7 +648,7 @@ With the boundary in place, giving agents more reach stopped being scary. The �
 
 The rule was in the wrong place
 
-After sorting the comments, I did the boring fix for the biggest pile: I wrote the unwritten rules down. One line per rule, in a review-lessons file that every reviewer reads before it starts. The comment rule reads: comments that narrate history (“previously”, “used to”, a bare ticket or PR id) instead of explaining the code as it is: history goes in the commit, not the comment.
+After sorting the comments, I did the boring fix for the unwritten rules: I wrote the unwritten rules down. One line per rule, in a review-lessons file that every reviewer reads before it starts. The comment rule reads: comments that narrate history (“previously”, “used to”, a bare ticket or PR id) instead of explaining the code as it is: history goes in the commit, not the comment.
 
 A few days later, on a new ticket, the review flagged a docstring that told the story of an old incident: “…did exactly that, two minutes after it cloned.” Its reason was that rule. The comment my colleague had been repeating by hand was caught before anyone else saw the PR.
 
@@ -702,7 +656,9 @@ It wasn’t perfect. One of the fixes it offered was “keep one line with the t
 
 The agents can now reach more external data than before, safely. Whether they use it well is the next experiment, and it’s where I’m least sure.
 
-And there’s a bigger gap I only noticed while writing this. That lessons file lives in my setup, not in the repo. My reviewers know the rule now. My colleagues’ agents don’t, Copilot doesn’t, and the decision log at the root of the repo still has four entries. I moved the knowledge out of people’s heads and into my own tools, which is one step better than nowhere, and still not where the team can see it. The next step isn’t a better reviewer. It’s a habit: decisions go into the repo, in a place every agent and every person reads.
+And there’s a bigger gap I only noticed while writing this. That lessons file lives in my setup, not in the repo. My reviewers know the rule now. My colleagues’ agents don’t, Copilot doesn’t, and the decision log at the root of the repo still has four entries.
+
+I moved the knowledge out of people’s heads and into my own tools, which is one step better than nowhere, and still not where the team can see it. The next step isn’t a better reviewer. It’s a habit: decisions go into the repo, in a place every agent and every person reads.
 
 
   Rule: when a human reviewer keeps leaving the same comment, it’s usually not a review problem. It’s a rule that was never written down.
@@ -712,7 +668,7 @@ If you run AI review on your PRs, try this: take the last 20 comments a human le
 
 What’s the review comment your team keeps leaving that no agent has caught yet? I’d love to hear it.
 ",
-            "wordcount": "1477",
+            "wordcount": "1383",
             "inLanguage": "en",
             "dateCreated": "2026-10-30/",
             "datePublished": "2026-10-30/",
