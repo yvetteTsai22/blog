@@ -2,14 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
         <url>
-            <loc>https://yvettetsai22.github.io/blog/404.html</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
-    
-        <url>
             <loc>https://yvettetsai22.github.io/blog/about/</loc>
             
                 <changefreq>monthly</changefreq>
