@@ -131,6 +131,13 @@
     
     
         <url>
+            <loc>https://yvettetsai22.github.io/blog/greenfield-repo-for-coding-agents/</loc>
+            <changefreq>weekly</changefreq>
+            <priority>0.8</priority>
+            <lastmod>2026-11-03</lastmod>
+        </url>
+    
+        <url>
             <loc>https://yvettetsai22.github.io/blog/what-ai-reviewers-could-not-see/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
