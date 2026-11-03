@@ -50,12 +50,11 @@ publish is blocked: say which fields are missing and stop.
 Then, step by step, with her confirmation before the push:
 
 1. In the `master` checkout: `git checkout draft-blog -- _drafts/<slug>.md` (use this
-   worktree's branch name). If the post has images, check out `assets/img/<slug>/` too, but
-   only the files the post uses (SVG/PNG/JPG); diagram sources such as archify `.html` would
-   be published as pages.
+   worktree's branch name). If the post has images, check out the whole `assets/img/<slug>/`
+   too: `_config.yml` excludes `assets/img/*/*.html` and `*.json`, so diagram sources stay in
+   the repo without being published.
 2. Move it to `_posts/<YYYY-MM-DD>-<slug>.md`, add `date`, run
    `bundle exec jekyll build --baseurl '/blog' -d /tmp/blog-publish-check`, commit, and push
    `master` (that deploys).
-3. Delete the draft from `draft-blog` (`git rm`, then commit). Keep `assets/img/<slug>/` there
-   so diagram sources stay editable.
+3. Delete the draft and `assets/img/<slug>/` from `draft-blog` (`git rm`, then commit).
 The 21:00 run marks the permanent note `已發表` once the post is on `master`.

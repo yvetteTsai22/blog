@@ -1,0 +1,339 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {
+    "title": "One agent run, and the scaffold each step depends on",
+    "quality_profile": "showcase",
+    "legend": {
+      "mode": "hidden"
+    }
+  },
+  "components": [
+    {
+      "id": "ticket",
+      "type": "backend",
+      "label": "Ticket assigned",
+      "pos": [
+        40,
+        60
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "container",
+      "type": "backend",
+      "label": "Fresh container",
+      "pos": [
+        210,
+        60
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "clone",
+      "type": "backend",
+      "label": "Clone",
+      "sublabel": "default branch",
+      "pos": [
+        380,
+        60
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "install",
+      "type": "backend",
+      "label": "Install deps",
+      "pos": [
+        550,
+        60
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "read",
+      "type": "backend",
+      "label": "Read rules",
+      "sublabel": "AGENTS.md + specs",
+      "pos": [
+        720,
+        60
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "n_commit",
+      "type": "database",
+      "label": "First commit",
+      "sublabel": "default branch",
+      "pos": [
+        380,
+        170
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "n_lock",
+      "type": "database",
+      "label": "Lock file",
+      "sublabel": "pinned deps",
+      "pos": [
+        550,
+        170
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "n_warm",
+      "type": "database",
+      "label": "Warm image",
+      "sublabel": "faster installs",
+      "tag": "optional, later",
+      "size": [
+        140,
+        68
+      ],
+      "pos": [
+        550,
+        250
+      ]
+    },
+    {
+      "id": "n_rules",
+      "type": "database",
+      "label": "Rules + specs",
+      "sublabel": "committed to repo",
+      "pos": [
+        720,
+        170
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "write",
+      "type": "backend",
+      "label": "Write code",
+      "pos": [
+        40,
+        380
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "check",
+      "type": "backend",
+      "label": "Run check",
+      "pos": [
+        210,
+        380
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "pr",
+      "type": "backend",
+      "label": "Open PR",
+      "pos": [
+        380,
+        380
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "review",
+      "type": "backend",
+      "label": "Human review",
+      "pos": [
+        550,
+        380
+      ],
+      "size": [
+        140,
+        60
+      ]
+    },
+    {
+      "id": "n_design",
+      "type": "database",
+      "label": "Design system",
+      "sublabel": "+ allowed tools",
+      "pos": [
+        40,
+        490
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "n_check",
+      "type": "database",
+      "label": "One check command",
+      "sublabel": "+ one passing test",
+      "pos": [
+        210,
+        490
+      ],
+      "size": [
+        140,
+        56
+      ]
+    },
+    {
+      "id": "n_ci",
+      "type": "database",
+      "label": "CI on every PR",
+      "sublabel": "+ branch protection",
+      "pos": [
+        375,
+        490
+      ],
+      "size": [
+        150,
+        56
+      ]
+    }
+  ],
+  "connections": [
+    {
+      "id": "c1",
+      "from": "ticket",
+      "to": "container",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c2",
+      "from": "container",
+      "to": "clone",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c3",
+      "from": "clone",
+      "to": "install",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c4",
+      "from": "install",
+      "to": "read",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c5",
+      "from": "read",
+      "to": "write",
+      "variant": "emphasis",
+      "fromSide": "right",
+      "toSide": "top",
+      "via": [
+        [
+          890,
+          90
+        ],
+        [
+          890,
+          340
+        ],
+        [
+          110,
+          340
+        ]
+      ]
+    },
+    {
+      "id": "c6",
+      "from": "write",
+      "to": "check",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c7",
+      "from": "check",
+      "to": "pr",
+      "variant": "emphasis"
+    },
+    {
+      "id": "c8",
+      "from": "pr",
+      "to": "review",
+      "variant": "emphasis"
+    },
+    {
+      "id": "d1",
+      "from": "n_commit",
+      "to": "clone",
+      "variant": "dashed"
+    },
+    {
+      "id": "d2",
+      "from": "n_lock",
+      "to": "install",
+      "variant": "dashed"
+    },
+    {
+      "id": "d3",
+      "from": "n_warm",
+      "to": "n_lock",
+      "variant": "dashed"
+    },
+    {
+      "id": "d4",
+      "from": "n_rules",
+      "to": "read",
+      "variant": "dashed"
+    },
+    {
+      "id": "d5",
+      "from": "n_design",
+      "to": "write",
+      "variant": "dashed"
+    },
+    {
+      "id": "d6",
+      "from": "n_check",
+      "to": "check",
+      "variant": "dashed"
+    },
+    {
+      "id": "d7",
+      "from": "n_ci",
+      "to": "pr",
+      "variant": "dashed"
+    }
+  ]
+}

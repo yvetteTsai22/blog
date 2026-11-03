@@ -69,7 +69,9 @@ exclude: [
   '.bundle',
   '_affiliates',
   'node_modules',
-  'fire-calculator'
+  'fire-calculator',
+  'assets/img/*/*.html',
+  'assets/img/*/*.json'
 ]
 
 # Theme

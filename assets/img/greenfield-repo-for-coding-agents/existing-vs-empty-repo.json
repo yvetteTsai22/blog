@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": { "title": "Existing repo vs empty repo: what the agent copies", "quality_profile": "showcase", "legend": { "mode": "hidden" } },
+  "components": [
+    { "id": "e_read", "type": "external", "label": "Agent reads repo", "pos": [80, 90], "size": [200, 60] },
+    { "id": "e_find", "type": "database", "label": "Finds code + patterns", "sublabel": "framework, components, tests", "pos": [80, 210], "size": [200, 60] },
+    { "id": "e_copy", "type": "frontend", "label": "Copies your conventions", "sublabel": "output looks like your team's", "pos": [80, 330], "size": [200, 60] },
+    { "id": "m_read", "type": "external", "label": "Agent reads repo", "pos": [480, 90], "size": [200, 60] },
+    { "id": "m_find", "type": "database", "label": "Finds nothing", "sublabel": "no code to imitate", "pos": [480, 210], "size": [200, 60] },
+    { "id": "m_default", "type": "security", "label": "Falls back to its defaults", "sublabel": "raw HTTP calls to an LLM API", "tag": "generic AI-looking UI", "pos": [480, 330], "size": [200, 68] }
+  ],
+  "boundaries": [
+    { "kind": "region", "label": "Existing repo", "wraps": ["e_read", "e_find", "e_copy"] },
+    { "kind": "region", "label": "Empty repo", "wraps": ["m_read", "m_find", "m_default"] }
+  ],
+  "connections": [
+    { "id": "e1", "from": "e_read", "to": "e_find", "fromSide": "bottom", "toSide": "top" },
+    { "id": "e2", "from": "e_find", "to": "e_copy", "fromSide": "bottom", "toSide": "top" },
+    { "id": "m1", "from": "m_read", "to": "m_find", "fromSide": "bottom", "toSide": "top" },
+    { "id": "m2", "from": "m_find", "to": "m_default", "fromSide": "bottom", "toSide": "top", "variant": "security" }
+  ],
+  "cards": [
+    { "dot": "amber", "title": "Takeaway", "items": ["Whatever you don't decide before the first ticket, the agent decides for you."] }
+  ]
+}
