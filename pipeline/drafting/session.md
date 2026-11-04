@@ -17,12 +17,13 @@ Read literature-note bodies through Notion MCP only after a pick.
    `note pending=true`.
 3. **Draft.** Agree a slug (kebab-case, at most 6 words). Grow the draft from the note into
    `_drafts/<slug>.md`, using the blog `CLAUDE.md`, the `article-writing` skill and the two
-   voice samples above. Front matter follows §5.3 (see the publish checklist below); `date`
-   stays empty until publish.
+   voice samples above. Front matter follows §5.3 (see the publish checklist below). Leave
+   the `date` key out of the draft entirely: an empty `date:` fails the whole Jekyll build.
+   Images for the post go in `assets/img/<slug>/`.
 4. **Before leaving: one commit for this one article.** `_drafts/` is gitignored, so stage it
    with force, and stage nothing else:
 
-       git add -f _drafts/<slug>.md
+       git add -f _drafts/<slug>.md assets/img/<slug>
        git commit -m "📝doc: draft <slug>"
 
    One commit touches one article. Then update the permanent note: `blog status=寫作中`,
@@ -49,7 +50,11 @@ publish is blocked: say which fields are missing and stop.
 Then, step by step, with her confirmation before the push:
 
 1. In the `master` checkout: `git checkout draft-blog -- _drafts/<slug>.md` (use this
-   worktree's branch name).
-2. Move it to `_posts/<YYYY-MM-DD>-<slug>.md`, commit, and push `master` (that deploys).
-3. Delete the file from `draft-blog`.
+   worktree's branch name). If the post has images, check out the whole `assets/img/<slug>/`
+   too: `_config.yml` excludes `assets/img/*/*.html` and `*.json`, so diagram sources stay in
+   the repo without being published.
+2. Move it to `_posts/<YYYY-MM-DD>-<slug>.md`, add `date`, run
+   `bundle exec jekyll build --baseurl '/blog' -d /tmp/blog-publish-check`, commit, and push
+   `master` (that deploys).
+3. Delete the draft and `assets/img/<slug>/` from `draft-blog` (`git rm`, then commit).
 The 21:00 run marks the permanent note `已發表` once the post is on `master`.
