@@ -134,12 +134,15 @@ layout: main
     "url": "{{ site.url }}{{site.baseurl}}/",
     "inLanguage": "{{ site.language }}",
     "isFamilyFriendly": "true",
+    {% assign owner = site.authors | where: "name", "yvetteTsai" | first %}
     "creator": {
-        "@type": "Organization",
-        "name": "{{ site.name }}",
-        "url": "{{ site.url }}{{site.baseurl}}/",
+        "@type": "Person",
+        "name": "{{ owner.display_name }}",
+        "jobTitle": "{{ owner.position }}",
+        "url": "{{ owner.url | prepend: site.baseurl | prepend: site.url }}",
         "sameAs": [
-            {{ social_urls | split: "," | join: "," }}
+            "https://github.com/{{ owner.github_username }}",
+            "https://www.linkedin.com/in/{{ owner.linkedin_username }}"
         ]
     },
     "mainEntity": {
@@ -171,8 +174,8 @@ layout: main
                     "logo": {
                         "@type": "ImageObject",
                         "url": "{{ site.url }}{{site.baseurl}}/assets/img/blog-image.png",
-                        "width": "600",
-                        "height": "315"
+                        "width": 600,
+                        "height": 315
                     }
                 },
                 "mainEntityOfPage": "True",
