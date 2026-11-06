@@ -2,6 +2,8 @@
 layout: main
 ---
 
+<h1 class="visually-hidden">{{ site.name }}</h1>
+
 {% if site.paginate %}
     {% assign posts = paginator.posts | where_exp:"post","post.is_generated != true" %}
 {% else %}
@@ -29,7 +31,7 @@ layout: main
                         {{ featured.date | date: site.date_format }}
                     {% endif %}
                 </time>
-                <h1 class="title">{{ featured.title }}</h1>
+                <h2 class="title">{{ featured.title }}</h2>
                 <p class="description">{{ featured.subtitle }}</p>
                 <div class="buttons">
                     <a href="{{ featured.url | prepend: site.baseurl }}" role="button" class="button">
@@ -53,19 +55,19 @@ layout: main
                     <a class="cover" href="{{ post.url | prepend: site.baseurl }}">
                         {% include loader.html %}
                         {% if post.optimized_image %}
-                            <img src="{{ "/assets/img/placeholder.png" | prepend: site.baseurl }}" width="100%" data-url="{{ post.optimized_image }}" class="preload">
+                            <img src="{{ "/assets/img/placeholder.png" | prepend: site.baseurl }}" width="100%" data-url="{{ post.optimized_image }}" class="preload" alt="{{ post.image_alt | default: post.title | escape }}">
                             <noscript>
-                                <img src="{{ post.optimized_image }}" width="100%">
+                                <img src="{{ post.optimized_image }}" width="100%" alt="{{ post.image_alt | default: post.title | escape }}">
                             </noscript>
                         {% elsif post.image %}
-                            <img src="{{ 'assets/img/placeholder.png' | prepend: site.baseurl }}" width="100%" data-url="{{ post.image }}" class="preload">
+                            <img src="{{ 'assets/img/placeholder.png' | prepend: site.baseurl }}" width="100%" data-url="{{ post.image }}" class="preload" alt="{{ post.image_alt | default: post.title | escape }}">
                             <noscript>
-                                <img src="{{ post.image }}" width="100%">
+                                <img src="{{ post.image }}" width="100%" alt="{{ post.image_alt | default: post.title | escape }}">
                             </noscript>
                         {% else %}
-                            <img src="{{ 'assets/img/placeholder.png'| prepend: site.baseurl }}" width="100%" data-url="/assets/img/off.jpg" class="preload">
+                            <img src="{{ 'assets/img/placeholder.png'| prepend: site.baseurl }}" width="100%" data-url="/assets/img/off.jpg" class="preload" alt="{{ post.image_alt | default: post.title | escape }}">
                             <noscript>
-                                <img src="{{ 'assets/img/off.jpg' | prepend: site.baseurl }}" width="100%">
+                                <img src="{{ 'assets/img/off.jpg' | prepend: site.baseurl }}" width="100%" alt="{{ post.image_alt | default: post.title | escape }}">
                             </noscript>
                         {% endif %}
                         {% include new-post-tag.html date=post.date %}

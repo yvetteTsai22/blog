@@ -18,6 +18,7 @@ layout: minimal
   {% assign tags_list = nil %}
 </div>
 
+<h1 class="visually-hidden">{{ page.title | default: "Tags" }}</h1>
 {% for tag in site.tags  %}
   <a class="post-anchor" id="{{ tag[0] | slugify }}"></a>
   <div class="tag-title">
