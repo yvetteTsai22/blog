@@ -18,11 +18,11 @@
     <a href="{{ recommendation.url | prepend: site.baseurl }}" class="post-preview">
         <div class="image">
             {% if recommendation.optimized_image %}
-                <img src="{{ recommendation.optimized_image }}">
+                <img src="{{ recommendation.optimized_image }}" alt="{{ recommendation.image_alt | default: recommendation.title | escape }}">
             {% elsif recommendation.image %}
-                <img src="{{ recommendation.image }}">
+                <img src="{{ recommendation.image }}" alt="{{ recommendation.image_alt | default: recommendation.title | escape }}">
             {% else %}
-                <img src="/assets/img/off.jpg">
+                <img src="/assets/img/off.jpg" alt="{{ recommendation.image_alt | default: recommendation.title | escape }}">
             {% endif %}
         </div>
         <h3 class="title">{{ recommendation.title }}</h3>
