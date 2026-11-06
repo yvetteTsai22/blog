@@ -15,6 +15,8 @@ mkdir -p _site
 for pkg in _tool-recommends/*/package.json; do
   dir=$(dirname "$pkg")
   name=$(basename "$dir")
+  # Directories starting with _ (e.g. _templates/) are not deployed.
+  case "$name" in _*) continue ;; esac
 
   echo "📦 Building $name..."
   cd "$dir"
