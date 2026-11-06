@@ -36,7 +36,7 @@ Ultimately, manual instrumentation empowers you to move beyond treating your LLM
 
 ### Google ADK: Your Toolkit for Observability
 
-Google's Agent Development Kit (ADK) provides a robust foundation for building observable applications. While it's designed for general application observability, it's easily adaptable for LLMs. The ADK provides libraries and tools for collecting metrics, traces, and logs, which you can then analyze using Google Cloud Observability (formerly Stackdriver).
+Google's Agent Development Kit (ADK) is a framework for building and orchestrating AI agents. It emits OpenTelemetry spans for agent and tool execution; you can add manual spans with the OpenTelemetry SDK and export them to Google Cloud Trace.
 
 Let’s consider how we can leverage ADK for manual instrumentation of our LLM applications.
 
