@@ -1,10 +1,11 @@
 ---
 date: 2026-06-25 08:00:00
 layout: post
+last_modified_at: 2026-11-06
 title: "Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature"
 subtitle: "Six bugs from a day shipping form-panel editing — and the pattern they share."
 description: >-
-  A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they reveal about building on LLM infrastructure.
+  Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.
 image: https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop
 optimized_image: >-
   https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop

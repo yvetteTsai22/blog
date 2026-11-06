@@ -1,6 +1,7 @@
 ---
 date: 2026-09-29 18:00:00 +0800
 layout: post
+last_modified_at: 2026-11-06
 title: "Speeding Up a Multi-Agent Code Review in Claude Code"
 slug: speeding-up-multi-agent-code-review-claude-code
 subtitle: "Measure before you tune: model turns are the real clock, and parallelism stops at the rate limit."
@@ -25,7 +26,7 @@ My pre-PR code review in Claude Code isn't one agent. It's a small team: a scout
 
 One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.
 
-I asked the obvious question: why is it slow, and can I make it faster? The answers were not what I expected.
+I asked the obvious question: why is this multi-agent code review so slow, and can I make it faster? The answers were not what I expected.
 
 ## Lesson 1: measure first, from the logs you already have
 
