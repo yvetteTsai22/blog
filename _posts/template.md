@@ -7,6 +7,7 @@ description: >-
   This is a template. This section will show in the root page.
 image: >-
   https://unsplash.com/photos/TQYTWfN1b7M
+image_alt: 'Describe the featured image for screen readers and search'
 optimized_image: >-
   https://res.cloudinary.com/dm7h7e8xj/image/upload/c_scale,w_380/v1559821647/theme6_qeeojf.jpg
 category: guides

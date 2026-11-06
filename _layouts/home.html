@@ -15,6 +15,7 @@ layout: main
 {% endif %}
 
 <main class="home {% if site.show_hero and paginator == nil or paginator.page == 1 %}no-padding{% endif %}" role="main">
+    <h1 class="visually-hidden">{{ site.name }}</h1>
     {% if site.show_hero and paginator == nil or paginator.page == 1 %}
         <!-- Hero -->
         {% assign featured = posts.first %}
@@ -29,7 +30,7 @@ layout: main
                         {{ featured.date | date: site.date_format }}
                     {% endif %}
                 </time>
-                <h1 class="title">{{ featured.title }}</h1>
+                <h2 class="title">{{ featured.title }}</h2>
                 <p class="description">{{ featured.subtitle }}</p>
                 <div class="buttons">
                     <a href="{{ featured.url | prepend: site.baseurl }}" role="button" class="button">
@@ -53,19 +54,19 @@ layout: main
                     <a class="cover" href="{{ post.url | prepend: site.baseurl }}">
                         {% include loader.html %}
                         {% if post.optimized_image %}
-                            <img src="{{ "/assets/img/placeholder.png" | prepend: site.baseurl }}" width="100%" data-url="{{ post.optimized_image }}" class="preload">
+                            <img src="{{ "/assets/img/placeholder.png" | prepend: site.baseurl }}" width="100%" data-url="{{ post.optimized_image }}" class="preload" alt="{{ post.image_alt | default: post.title | escape }}">
                             <noscript>
-                                <img src="{{ post.optimized_image }}" width="100%">
+                                <img src="{{ post.optimized_image }}" width="100%" alt="{{ post.image_alt | default: post.title | escape }}">
                             </noscript>
                         {% elsif post.image %}
-                            <img src="{{ 'assets/img/placeholder.png' | prepend: site.baseurl }}" width="100%" data-url="{{ post.image }}" class="preload">
+                            <img src="{{ 'assets/img/placeholder.png' | prepend: site.baseurl }}" width="100%" data-url="{{ post.image }}" class="preload" alt="{{ post.image_alt | default: post.title | escape }}">
                             <noscript>
-                                <img src="{{ post.image }}" width="100%">
+                                <img src="{{ post.image }}" width="100%" alt="{{ post.image_alt | default: post.title | escape }}">
                             </noscript>
                         {% else %}
-                            <img src="{{ 'assets/img/placeholder.png'| prepend: site.baseurl }}" width="100%" data-url="/assets/img/off.jpg" class="preload">
+                            <img src="{{ 'assets/img/placeholder.png'| prepend: site.baseurl }}" width="100%" data-url="/assets/img/off.jpg" class="preload" alt="{{ post.image_alt | default: post.title | escape }}">
                             <noscript>
-                                <img src="{{ 'assets/img/off.jpg' | prepend: site.baseurl }}" width="100%">
+                                <img src="{{ 'assets/img/off.jpg' | prepend: site.baseurl }}" width="100%" alt="{{ post.image_alt | default: post.title | escape }}">
                             </noscript>
                         {% endif %}
                         {% include new-post-tag.html date=post.date %}
@@ -133,12 +134,15 @@ layout: main
     "url": "{{ site.url }}{{site.baseurl}}/",
     "inLanguage": "{{ site.language }}",
     "isFamilyFriendly": "true",
+    {% assign owner = site.authors | where: "name", "yvetteTsai" | first %}
     "creator": {
-        "@type": "Organization",
-        "name": "{{ site.name }}",
-        "url": "{{ site.url }}{{site.baseurl}}/",
+        "@type": "Person",
+        "name": "{{ owner.display_name }}",
+        "jobTitle": "{{ owner.position }}",
+        "url": "{{ owner.url | prepend: site.baseurl | prepend: site.url }}",
         "sameAs": [
-            {{ social_urls | split: "," | join: "," }}
+            "https://github.com/{{ owner.github_username }}",
+            "https://www.linkedin.com/in/{{ owner.linkedin_username }}"
         ]
     },
     "mainEntity": {
@@ -170,8 +174,8 @@ layout: main
                     "logo": {
                         "@type": "ImageObject",
                         "url": "{{ site.url }}{{site.baseurl}}/assets/img/blog-image.png",
-                        "width": "600",
-                        "height": "315"
+                        "width": 600,
+                        "height": 315
                     }
                 },
                 "mainEntityOfPage": "True",
