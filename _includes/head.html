@@ -26,12 +26,10 @@
         {% assign description = site.description %}
     {% endif %}
 
-    {% assign url = '' %}
-    {% if paginator.page_trail %}
-        {% assign url = paginator.first_page_path | replace:'index.html','' | prepend: site.baseurl | prepend: site.url %}
-    {% else %}
-        {% assign url = page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url %}
-    {% endif %}
+    {% assign url = page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url %}
+    {% unless image contains '://' %}
+        {% assign image = image | prepend: site.url %}
+    {% endunless %}
 
     <title>{{ title }}</title>
     <meta name="description" content="{{ description }}">
@@ -45,14 +43,7 @@
     <meta name="twitter:title" content="{{ title }}">
     <meta name="twitter:description" content="{{ description }}">
 
-    {% if image contains '://' %}
-        <meta property="twitter:image" content="{{ image }}">
-    {% else %}
-        <meta property="twitter:image" content="{{ image | prepend: site.url }}">
-    {% endif %}
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | prepend: site.baseurl }}">
+    <meta name="twitter:image" content="{{ image }}">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="{{ url }}">
@@ -60,6 +51,12 @@
     <meta property="og:image" content="{{ image }}">
     <meta property="og:description" content="{{ description }}">
     <meta property="og:site_name" content="{{ site.title }}">
+    {% if page.collection == 'posts' %}
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="{{ page.date | date_to_xmlschema }}">
+    {% else %}
+    <meta property="og:type" content="website">
+    {% endif %}
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="{{ site.baseurl }}/assets/img/icons/favicon-96x96.png" sizes="96x96" />
@@ -76,7 +73,11 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ '/assets/css/styles.css' | prepend: site.baseurl }}">
+    {% if paginator.seo.links %}
+    {{ paginator.seo.links }}
+    {% else %}
     <link rel="canonical" href="{{ url }}">
+    {% endif %}
     <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ '/feed.xml' | prepend: site.baseurl | prepend: site.url }}" />
 
     <!-- Include extra styles -->
