@@ -1,4 +1,6 @@
 ---
+noindex: true
+sitemap: false
 layout: author
 photo: /assets/img/uploads/profile.JPG
 name: yvetteTsai

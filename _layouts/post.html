@@ -9,6 +9,7 @@
         <section class="post {% if site.two_columns_layout %}two-columns{% else %}one-column{% endif %}">
             <article role="article" class="post-content">
                 {% if paginator.has_previous %}
+                <h1 class="visually-hidden">{{ page.title }}</h1>
                 <p class="post-continued">
                     <a href="{{ paginator.first_page_path }}">{{ page.title }}</a>
                     <span>· Part {{ paginator.page }} of {{ paginator.total_pages }}</span>
@@ -28,7 +29,7 @@
                 <p class="post-subtitle">{{ page.subtitle }}</p>
 
                 {% if page.image and paginator.activated == nil %}
-                    <img src="{{ page.image }}" alt="Featured image" class="post-cover">
+                    <img src="{{ page.image }}" alt="{{ page.image_alt | default: page.title | escape }}" class="post-cover">
                 {% endif %}
 
                 {% include pagination-post.html progressBar=true %}
@@ -51,11 +52,11 @@
                             <li>
                                 <a href="{{ post.url | prepend: site.baseurl }}">
                                     {% if post.optimized_image %}
-                                        <img src="{{ post.optimized_image }}">
+                                        <img src="{{ post.optimized_image }}" alt="{{ post.image_alt | default: post.title | escape }}">
                                     {% elsif post.image %}
-                                        <img src="{{ post.image }}">
+                                        <img src="{{ post.image }}" alt="{{ post.image_alt | default: post.title | escape }}">
                                     {% else %}
-                                        <img src="/assets/img/off.jpg">
+                                        <img src="/assets/img/off.jpg" alt="{{ post.image_alt | default: post.title | escape }}">
                                     {% endif %}
                                     <h3>{{ post.title }}</h3>
                                 </a>
@@ -89,26 +90,26 @@
         {% include comments.html %}
         {% include footer.html %}
 
-        {% assign author = site.authors | where: "name", post.author | first %}
+        {% assign author = site.authors | where: "name", page.author | first %}
 
         {% assign author_urls = '' %}
         {% if author.github_username %}
-            {% assign author_urls = author_urls | append: '"https://github.com/' | append: author.github_username | append: '",' %}
+            {% assign author_urls = author_urls | append: 'https://github.com/' | append: author.github_username | append: '|' %}
         {% endif %}
         {% if author.facebook_username %}
-            {% assign author_urls = author_urls | append: '"https://www.facebook.com/' | append: author.facebook_username | append: '",' %}
+            {% assign author_urls = author_urls | append: 'https://www.facebook.com/' | append: author.facebook_username | append: '|' %}
         {% endif %}
         {% if author.twitter_username %}
-            {% assign author_urls = author_urls | append: '"https://twitter.com/' | append: author.twitter_username | append: '",' %}
+            {% assign author_urls = author_urls | append: 'https://twitter.com/' | append: author.twitter_username | append: '|' %}
         {% endif %}
         {% if author.medium_username %}
-            {% assign author_urls = author_urls | append: '"https://medium.com/@' | append: author.medium_username | append: '",' %}
+            {% assign author_urls = author_urls | append: 'https://medium.com/@' | append: author.medium_username | append: '|' %}
         {% endif %}
         {% if author.instagram_username %}
-            {% assign author_urls = author_urls | append: '"https://www.instagram.com/' | append: author.instagram_username | append: '",' %}
+            {% assign author_urls = author_urls | append: 'https://www.instagram.com/' | append: author.instagram_username | append: '|' %}
         {% endif %}
         {% if author.linkedin_username %}
-            {% assign author_urls = author_urls | append: '"https://www.linkedin.com/in/' | append: author.linkedin_username | append: '",' %}
+            {% assign author_urls = author_urls | append: 'https://www.linkedin.com/in/' | append: author.linkedin_username | append: '|' %}
         {% endif %}
         {% if page.math %}
         <script>
@@ -122,50 +123,56 @@
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
         </script>
         {% endif %}
+        {% assign ld_url = page.url | prepend: site.baseurl | prepend: site.url %}
+        {% if author.photo %}
+            {% assign ld_author_image = author.photo %}
+        {% else %}
+            {% assign ld_author_image = "/assets/img/user.jpg" %}
+        {% endif %}
+        {% unless ld_author_image contains '://' %}
+            {% assign ld_author_image = ld_author_image | prepend: site.baseurl | prepend: site.url %}
+        {% endunless %}
+        {% assign ld_modified = page.last_modified_at | default: page.date %}
+        {% assign ld_site_url = site.url | append: site.baseurl | append: '/' %}
+        {% assign ld_logo = '/assets/img/blog-image.png' | prepend: site.baseurl | prepend: site.url %}
         <script type="application/ld+json">
         {
-            "@context": "http://schema.org",
+            "@context": "https://schema.org",
             "@type": "BlogPosting",
-            "name": "{{ page.title }}",
-            "headline": "{{ page.subtitle }}",
-            "description": "{{ page.description }}",
-            "image": "{{ page.image }}",
-            "url": "{{ page.url | prepend: site.baseurl | prepend: site.url }}",
-            "articleBody": "{{ content | strip_html | xml_escape | textilize }}",
-            "wordcount": "{{ content | number_of_words }}",
-            "inLanguage": "{{ site.language }}",
-            "dateCreated": "{{ page.date | date: '%Y-%m-%d/' }}",
-            "datePublished": "{{ page.date | date: '%Y-%m-%d/' }}",
-            "dateModified": "{{ page.date | date: '%Y-%m-%d/' }}",
+            "name": {{ page.title | jsonify }},
+            "headline": {{ page.title | jsonify }},
+            "description": {{ page.description | strip_html | strip_newlines | jsonify }},
+            "image": {{ page.image | jsonify }},
+            "url": {{ ld_url | jsonify }},
+            "articleBody": {{ content | strip_html | jsonify }},
+            "wordCount": {{ content | number_of_words | jsonify }},
+            "inLanguage": {{ site.language | jsonify }},
+            "dateCreated": {{ page.date | date_to_xmlschema | jsonify }},
+            "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+            "dateModified": {{ ld_modified | date_to_xmlschema | jsonify }},
             "author": {
                 "@type": "Person",
-                "name": "{{ author.display_name }}",
-                {% if author.photo %}
-                "image": "{{ author.photo }}",
-                {% else %}
-                "image": {{ "/assets/img/user.jpg" | prepend: site.baseurl | prepend: site.url }},
-                {% endif %}
-                "jobTitle": "{{ author.position }}",
-                "url": "{{ author.url | prepend: site.baseurl | prepend: site.url }}",
-                "sameAs": [
-                    {{ author_urls | split: "," | join: "," }}
-                ]
+                "name": {{ author.display_name | jsonify }},
+                "image": {{ ld_author_image | jsonify }},
+                "jobTitle": {{ author.position | jsonify }},
+                "url": {{ author.url | prepend: site.baseurl | prepend: site.url | jsonify }},
+                "sameAs": {{ author_urls | split: "|" | jsonify }}
             },
             "publisher": {
                 "@type": "Organization",
-                "name": "{{ site.name }}",
-                "url": "{{ site.url }}{{site.baseurl}}/",
+                "name": {{ site.name | jsonify }},
+                "url": {{ ld_site_url | jsonify }},
                 "logo": {
                     "@type": "ImageObject",
-                    "url": "{{ site.url }}{{site.baseurl}}/assets/img/blog-image.png",
-                    "width": "600",
-                    "height": "315"
+                    "url": {{ ld_logo | jsonify }},
+                    "width": 600,
+                    "height": 315
                 }
             },
-            "mainEntityOfPage": "True",
-            "genre": "{{ page.category }}",
-            "articleSection": "{{ page.category }}",
-            "keywords": [{{ page.tags | join: '","' | append: '"' | prepend: '"' }}]
+            "mainEntityOfPage": {{ ld_url | jsonify }},
+            "genre": {{ page.category | jsonify }},
+            "articleSection": {{ page.category | jsonify }},
+            "keywords": {{ page.tags | jsonify }}
         }
         </script>
     </body>

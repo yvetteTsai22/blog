@@ -65,18 +65,15 @@
   "url": "{{ site.url }}{{site.baseurl}}/",
   "logo": {
       "@type": "ImageObject",
-      "url": "{{ site.url }}{{site.baseurl}}/assets/img/icons/mediumtile.png",
-      "width": "600",
-      "height": "315"
+      "url": "{{ site.url }}{{site.baseurl}}/assets/img/blog-image.png",
+      "width": 600,
+      "height": 315
   },
   "sameAs": [
     {{ social_urls | split: "," | join: "," }}
   ]
 }
 </script>
-
-<!-- Include the script that allows Netlify CMS login -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- Include the website scripts -->
 <script src="{{ '/assets/js/scripts.min.js' | prepend: site.baseurl }}"></script>

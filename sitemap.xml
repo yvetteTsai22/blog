@@ -4,6 +4,9 @@ layout: null
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     {% for page in site.pages %}{% unless page.sitemap == false %}
+    {% assign last_char = page.url | slice: -1 %}
+    {% assign last_ext = page.url | slice: -5, 5 %}
+    {% if last_char == '/' or last_ext == '.html' %}
         <url>
             <loc>{{ page.url | prepend: site.baseurl | prepend: site.url }}</loc>
             {% if page.layout == 'main' %}
@@ -15,20 +18,23 @@ layout: null
                 <priority>0.5</priority>
             {% endif %}
         </url>
+    {% endif %}
     {% endunless %}{% endfor %}
-    {% for post in site.posts %}
+    {% for post in site.posts %}{% unless post.sitemap == false %}
+    {% if post.pagination_info == nil or post.pagination_info.type == 'single' %}
         <url>
             <loc>{{ post.url | prepend: site.baseurl | prepend: site.url }}</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
-            <lastmod>{{ post.date | date: "%Y-%m-%d" }}</lastmod>
+            <lastmod>{{ post.last_modified_at | default: post.date | date: "%Y-%m-%d" }}</lastmod>
         </url>
-    {% endfor %}
-    {% for author in site.authors %}
+    {% endif %}
+    {% endunless %}{% endfor %}
+    {% for author in site.authors %}{% unless author.sitemap == false %}
         <url>
             <loc>{{ author.url | prepend: site.baseurl | prepend: site.url }}</loc>
             <changefreq>monthly</changefreq>
             <priority>0.5</priority>
         </url>
-    {% endfor %}
+    {% endunless %}{% endfor %}
 </urlset>

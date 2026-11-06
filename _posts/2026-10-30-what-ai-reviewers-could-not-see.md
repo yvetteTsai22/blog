@@ -1,9 +1,10 @@
 ---
 layout: post
+last_modified_at: 2026-11-06
 title: "My AI Reviewers Said Clean. My Colleagues Didn't."
 subtitle: "A prompt is a request. A tool boundary is a rule."
 author: yvetteTsai
-description: "My AI reviewers said clean; my colleagues left 45 comments. What AI review cannot see, and why most of the fix was writing rules down."
+description: "My AI reviewers said clean; two human reviewers left 45 comments. What AI code review cannot see, and why most of the fix was writing rules down."
 category: agents
 image: https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=2670&auto=format&fit=crop
 optimized_image: >-
@@ -33,7 +34,7 @@ The agents weren't failing to follow the rule. Nobody had ever told them.
 
 So I stopped asking how to make the agents faster ([I did that already]({{ site.baseurl }}/speeding-up-multi-agent-code-review-claude-code/)) and asked a different question: what were the humans seeing that the agents weren't?
 
-## Sorting the comments into five piles
+## Sorting the human reviewers' comments into five piles
 
 I pulled the feedback from 17 PRs and sorted every comment by *why* the agents missed it, not by what it was about. Five piles came out, in two groups.
 

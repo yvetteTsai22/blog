@@ -1,4 +1,6 @@
 ---
+noindex: true
+sitemap: false
 layout: category
 title: Patterns
 slug: patterns
