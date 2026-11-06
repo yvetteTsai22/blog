@@ -46,13 +46,14 @@ The affiliate pages are built *after* Jekyll (since Jekyll clears `_site/`) and 
 
 ### Adding a New Product Landing Page
 
-The build system auto-discovers any subdirectory of `_tool-recommends/` that has a `package.json`. No changes to `build-tool-recommends.sh` or the GitHub Actions workflow are needed.
+The build system auto-discovers any subdirectory of `_tool-recommends/` that has a `package.json`, skipping directories whose name starts with `_` (e.g. `_tool-recommends/_templates/`, which holds the unpublished `product-1`/`product-2` templates). No changes to `build-tool-recommends.sh` or the GitHub Actions workflow are needed.
 
 **Steps:**
 
-1. **Create the product directory** by copying an existing one as a template:
+1. **Create the product directory** by copying a template from `_templates/` (or an existing product):
    ```bash
-   cp -r _tool-recommends/instadoodle _tool-recommends/<product-name>
+   cp -r _tool-recommends/_templates/product-1 _tool-recommends/<product-name>
+   rm -rf _tool-recommends/<product-name>/node_modules _tool-recommends/<product-name>/build
    cd _tool-recommends/<product-name>
    npm install --legacy-peer-deps
    ```
