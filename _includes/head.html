@@ -36,7 +36,11 @@
     {% if page.tags %}
         <meta name="keywords" content="{{ page.tags | join: ', ' }}">
     {% endif %}
-    {% if page.robots %}<meta name="robots" content="{{ page.robots }}">{% endif %}
+    {% if page.noindex %}
+        <meta name="robots" content="noindex, follow">
+    {% elsif page.robots %}
+        <meta name="robots" content="{{ page.robots }}">
+    {% endif %}
 
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">

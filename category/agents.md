@@ -1,4 +1,6 @@
 ---
+noindex: true
+sitemap: false
 layout: category
 title: Agents
 slug: agents

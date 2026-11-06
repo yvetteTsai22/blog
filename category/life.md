@@ -1,4 +1,6 @@
 ---
+noindex: true
+sitemap: false
 layout: category
 title: Life
 slug: life

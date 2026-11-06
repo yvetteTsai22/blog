@@ -1,9 +1,10 @@
 ---
 layout: post
+last_modified_at: 2026-11-06
 title: "Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild"
 subtitle: "Whatever you don't decide before the first ticket, the agent decides for you."
 author: yvetteTsai
-description: "Setting up a greenfield repo for a coding agent: what we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop."
+description: "Greenfield repo setup for coding agents: the scaffold we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop."
 category: agents
 image: https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=2670&auto=format&fit=crop
 optimized_image: >-

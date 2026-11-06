@@ -1,9 +1,10 @@
 ---
 date: 2026-02-22 16:40:15
 layout: post
+last_modified_at: 2026-11-06
 title: "Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK"
 subtitle:
-description:
+description: "Add OpenTelemetry tracing to a Google ADK (Agent Development Kit) agent in Python: wrap each stage in a manual span and export traces to Google Cloud Trace."
 image: https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 optimized_image: >- 
  https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
@@ -18,7 +19,7 @@ paginate: false
 
 Large Language Models (LLMs) are rapidly transforming how we interact with technology. But with great power comes great… complexity. Understanding what’s happening inside these intricate models is crucial for performance optimization, debugging, and ensuring responsible AI practices. That’s where observability comes in.
 
-While automated observability tools offer a quick start, sometimes you need to get your hands dirty. You need granular control over what data you collect and how you analyze it. That's where manual instrumentation shines. In this post, we'll explore how to leverage manual instrumentation with Google's ADK (Application Development Kit) to gain deeper insights into your LLM applications.
+While automated observability tools offer a quick start, sometimes you need to get your hands dirty. You need granular control over what data you collect and how you analyze it. That's where manual instrumentation shines. In this post, we'll explore how to leverage manual instrumentation with Google's ADK (Agent Development Kit) to gain deeper insights into your LLM applications.
 
 ### Why Manual Instrumentation? Beyond the Black Box
 
@@ -35,7 +36,7 @@ Ultimately, manual instrumentation empowers you to move beyond treating your LLM
 
 ### Google ADK: Your Toolkit for Observability
 
-Google's Application Development Kit (ADK) provides a robust foundation for building observable applications. While it's designed for general application observability, it's easily adaptable for LLMs. The ADK provides libraries and tools for collecting metrics, traces, and logs, which you can then analyze using Google Cloud Observability (formerly Stackdriver).
+Google's Agent Development Kit (ADK) provides a robust foundation for building observable applications. While it's designed for general application observability, it's easily adaptable for LLMs. The ADK provides libraries and tools for collecting metrics, traces, and logs, which you can then analyze using Google Cloud Observability (formerly Stackdriver).
 
 Let’s consider how we can leverage ADK for manual instrumentation of our LLM applications.
 
@@ -117,6 +118,41 @@ def extract_intent(query):
 ```
 
 In this example, we use OpenTelemetry (which Google Cloud Observability supports) to create spans for the `process_query`, `extract_intent`, and `generate_llm_response` functions. This allows you to visualize the execution time of each step in the process.  By analyzing these traces, you can identify bottlenecks and optimize the performance of your application. You'll be able to see exactly how long each stage takes, from intent extraction to LLM response generation, highlighting areas that need improvement.
+
+**3. Tracing Inside a Real ADK Agent:**
+
+ADK already emits OpenTelemetry spans of its own, such as `invoke_agent {agent.name}` and `execute_tool {tool.name}`. If you register a tracer provider before the agent runs, a manual span you open inside a tool nests under ADK's `execute_tool` span, so your own stages show up in the same trace in Cloud Trace:
+
+```python
+from google.adk.agents import Agent
+from opentelemetry import trace
+from opentelemetry.sdk.trace import TracerProvider
+from opentelemetry.sdk.trace.export import BatchSpanProcessor
+from opentelemetry.exporter.cloud_trace import CloudTraceSpanExporter
+
+# Register the provider before the agent runs, so ADK's spans use it too
+provider = TracerProvider()
+provider.add_span_processor(BatchSpanProcessor(CloudTraceSpanExporter()))
+trace.set_tracer_provider(provider)
+
+tracer = trace.get_tracer(__name__)
+
+def lookup_order(order_id: str) -> dict:
+  """Looks up the status of a customer order."""
+  with tracer.start_as_current_span("lookup_order.db_query") as span:
+    span.set_attribute("order.id", order_id)
+    status = "shipped"  # your database call here
+  return {"order_id": order_id, "status": status}
+
+root_agent = Agent(
+    name="support_agent",
+    model="gemini-2.5-flash",
+    instruction="Answer questions about customer orders.",
+    tools=[lookup_order],
+)
+```
+
+Run it with `adk web` or `adk run`, and each tool call shows up in Cloud Trace as `invoke_agent support_agent` > `execute_tool lookup_order` > `lookup_order.db_query`.
 
 **Benefits of tracing for LLMs:**
 

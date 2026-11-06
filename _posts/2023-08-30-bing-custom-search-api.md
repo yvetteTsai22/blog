@@ -1,6 +1,7 @@
 ---
 date: 2023-08-30 12:05:21
 layout: post
+last_modified_at: 2026-11-06
 title: "Getting Started with Bing Custom Search API"
 subtitle:
 description: Bing Custom Search API — Learn how to create a custom search instance, register Azure resources, call the v7.0 endpoint with headers, and wire everything into Power Virtual Agents (PVA) step-by-step.
@@ -13,6 +14,8 @@ tags:
 author: yvetteTsai
 paginate: false
 ---
+
+> **Retirement notice:** Microsoft shut down the Bing Search APIs, including Bing Custom Search, on [August 11, 2025](https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement). The steps below no longer work for new or existing resources. For web grounding in AI agents, Microsoft points to [Grounding with Bing Search in Azure AI Foundry](https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/bing-tools). The original guide is kept below for reference.
 
 Bing Custom Search API lets you build a focused search engine that returns results only from domains you trust. Instead of the entire web, you define a curated set of sites. This sharpens relevance, improves compliance, and makes answers faster and cleaner for your users. It’s ideal for internal knowledge portals, customer-facing help centers, and vertical search experiences where control matters more than breadth.
 
