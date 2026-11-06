@@ -18,7 +18,7 @@
     
 
     <title>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature | YY AI</title>
-    <meta name="description" content="A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they rev...">
+    <meta name="description" content="Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.">
     
         <meta name="keywords" content="python, debugging">
     
@@ -27,21 +27,20 @@
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature | YY AI">
-    <meta name="twitter:description" content="A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they rev...">
+    <meta name="twitter:description" content="Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.">
 
-    
-        <meta property="twitter:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop">
-    
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop">
 
     <!-- Social: Facebook / Open Graph -->
-    <meta property="og:url" content="https://yvettetsai22.github.io/blog/blog/everything-returned-true-debugging-silent-failures/">
+    <meta property="og:url" content="https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/">
     <meta property="og:title" content="Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature | YY AI">
     <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop">
-    <meta property="og:description" content="A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they rev...">
+    <meta property="og:description" content="Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.">
     <meta property="og:site_name" content="YY AI | AI with Yvette Tsai">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-06-25T08:00:00+00:00">
+    
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/blog/assets/img/icons/favicon-96x96.png" sizes="96x96" />
@@ -58,7 +57,10 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
-    <link rel="canonical" href="https://yvettetsai22.github.io/blog/blog/everything-returned-true-debugging-silent-failures/">
+    
+      <link rel="canonical" href="https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/view-all/" />
+  <link rel="next" href="https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/2/" />
+    
     <link rel="alternate" type="application/rss+xml" title="YY AI | AI with Yvette Tsai" href="https://yvettetsai22.github.io/blog/feed.xml" />
 
     <!-- Include extra styles -->
@@ -102,13 +104,13 @@
     <a id="menu" role="button">
         <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
     </a>
-    <h1 class="logo">
+    <div class="logo">
         <a href="/blog/">
             
                 YY AI <span class="version">v3.1.1</span>
             
         </a>
-    </h1>
+    </div>
     <a id="search" class="dosearch" role="button">
         <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
     </a>
@@ -248,29 +250,29 @@ June 25, 2026
                         
                         
                             <li>
-                                <a href="/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
+                                <a href="/blog/greenfield-repo-for-coding-agents/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
+                                        <img src="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=800&auto=format&fit=crop" alt="Before the Agent&#39;s First Ticket: What We Put in an Empty Repo So It Wouldn&#39;t Go Wild">
                                     
-                                    <h3>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</h3>
+                                    <h3>Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild</h3>
                                 </a>
                             </li>
                         
                             <li>
                                 <a href="/blog/what-ai-reviewers-could-not-see/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop">
+                                        <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop" alt="My AI Reviewers Said Clean. My Colleagues Didn&#39;t.">
                                     
                                     <h3>My AI Reviewers Said Clean. My Colleagues Didn't.</h3>
                                 </a>
                             </li>
                         
                             <li>
-                                <a href="/blog/greenfield-repo-for-coding-agents/">
+                                <a href="/blog/bing-custom-search-api/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=800&auto=format&fit=crop">
+                                        <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270" alt="Getting Started with Bing Custom Search API">
                                     
-                                    <h3>Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild</h3>
+                                    <h3>Getting Started with Bing Custom Search API</h3>
                                 </a>
                             </li>
                         
@@ -293,7 +295,7 @@ June 25, 2026
 
         <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they reveal about building on LLM infrastructure.&quot;%20https://yvettetsai22.github.io/everything-returned-true-debugging-silent-failures/%20via%20&#64;&hashtags=python,debugging"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.&quot;%20https://yvettetsai22.github.io/everything-returned-true-debugging-silent-failures/%20via%20&#64;&hashtags=python,debugging"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
@@ -431,18 +433,15 @@ June 25, 2026
   "url": "https://yvettetsai22.github.io/blog/",
   "logo": {
       "@type": "ImageObject",
-      "url": "https://yvettetsai22.github.io/blog/assets/img/icons/mediumtile.png",
-      "width": "600",
-      "height": "315"
+      "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
+      "width": 600,
+      "height": 315
   },
   "sameAs": [
     "https://github.com/yvetteTsai22","https://medium.com/@tsaimc2","https://www.linkedin.com/in/mingchuantsai222"
   ]
 }
 </script>
-
-<!-- Include the script that allows Netlify CMS login -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- Include the website scripts -->
 <script src="/blog/assets/js/scripts.min.js"></script>
@@ -461,42 +460,34 @@ June 25, 2026
         
         
         
+        
+        
+        
+        
+        
+        
         <script type="application/ld+json">
         {
-            "@context": "http://schema.org",
+            "@context": "https://schema.org",
             "@type": "BlogPosting",
             "name": "Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature",
-            "headline": "Six bugs from a day shipping form-panel editing — and the pattern they share.",
-            "description": "A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they reveal about building on LLM infrastructure.",
+            "headline": "Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature",
+            "description": "Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.",
             "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop",
             "url": "https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/",
-            "articleBody": "The most dangerous bug is the one that doesn’t crash.
-
-Today I shipped a form-panel editing feature for a forecasting chatbot. Users can now edit time slots directly from the UI without typing natural language commands — the feature routes all edits through a new /update-slots command that reuses the same validation guards as the chat path.
-
-What shipped: run_slot_update() extracted as a shared function, UpdateSlotsCommand with 12/12 tests green, and a WebSocket handler refactored from 218 down to 132 lines with _handle_form_edit deleted entirely.
-
-At every step, bugs that didn’t fail loudly. They just quietly did nothing, returned the wrong thing, or stored data in a format that looked fine until you looked closely.
-
-Here are six of them.
-
-",
-            "wordcount": "128",
+            "articleBody": "The most dangerous bug is the one that doesn’t crash.\n\nToday I shipped a form-panel editing feature for a forecasting chatbot. Users can now edit time slots directly from the UI without typing natural language commands — the feature routes all edits through a new /update-slots command that reuses the same validation guards as the chat path.\n\nWhat shipped: run_slot_update() extracted as a shared function, UpdateSlotsCommand with 12/12 tests green, and a WebSocket handler refactored from 218 down to 132 lines with _handle_form_edit deleted entirely.\n\nAt every step, bugs that didn’t fail loudly. They just quietly did nothing, returned the wrong thing, or stored data in a format that looked fine until you looked closely.\n\nHere are six of them.\n\n",
+            "wordCount": 128,
             "inLanguage": "en",
-            "dateCreated": "2026-06-25/",
-            "datePublished": "2026-06-25/",
-            "dateModified": "2026-06-25/",
+            "dateCreated": "2026-06-25T08:00:00+00:00",
+            "datePublished": "2026-06-25T08:00:00+00:00",
+            "dateModified": "2026-11-06T00:00:00+00:00",
             "author": {
                 "@type": "Person",
-                "name": "Thiago Rossener",
-                
-                "image": "/assets/img/uploads/profile.png",
-                
-                "jobTitle": "Chief Editor",
-                "url": "https://yvettetsai22.github.io/blog/authors/thiagorossener/",
-                "sameAs": [
-                    "https://github.com/thiagorossener","https://www.facebook.com/thiagorossener","https://twitter.com/thiagorossener","https://medium.com/@thiagorossener","https://www.instagram.com/thiagorossener","https://www.linkedin.com/in/thiagorossener"
-                ]
+                "name": "Yvette Tsai",
+                "image": "https://yvettetsai22.github.io/blog/assets/img/uploads/profile.JPG",
+                "jobTitle": "Senior AI Engineer",
+                "url": "https://yvettetsai22.github.io/blog/authors/yvetteTsai/",
+                "sameAs": ["https://github.com/yvetteTsai22","https://www.linkedin.com/in/mingchuantsai222"]
             },
             "publisher": {
                 "@type": "Organization",
@@ -505,11 +496,11 @@ Here are six of them.
                 "logo": {
                     "@type": "ImageObject",
                     "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
-                    "width": "600",
-                    "height": "315"
+                    "width": 600,
+                    "height": 315
                 }
             },
-            "mainEntityOfPage": "True",
+            "mainEntityOfPage": "https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/",
             "genre": "debugging",
             "articleSection": "debugging",
             "keywords": ["python","debugging"]

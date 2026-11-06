@@ -18,7 +18,7 @@
     
 
     <title>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK | YY AI</title>
-    <meta name="description" content="About AI, ML, LLMs and more by Yvette Tsai.">
+    <meta name="description" content="Add OpenTelemetry tracing to a Google ADK (Agent Development Kit) agent in Python: wrap each stage in a manual span and export traces to Google Cloud Trace.">
     
         <meta name="keywords" content="llm-observability, python, ai-agents">
     
@@ -27,21 +27,20 @@
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK | YY AI">
-    <meta name="twitter:description" content="About AI, ML, LLMs and more by Yvette Tsai.">
+    <meta name="twitter:description" content="Add OpenTelemetry tracing to a Google ADK (Agent Development Kit) agent in Python: wrap each stage in a manual span and export traces to Google Cloud Trace.">
 
-    
-        <meta property="twitter:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-    
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="https://yvettetsai22.github.io/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
     <meta property="og:title" content="Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK | YY AI">
     <meta property="og:image" content="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-    <meta property="og:description" content="About AI, ML, LLMs and more by Yvette Tsai.">
+    <meta property="og:description" content="Add OpenTelemetry tracing to a Google ADK (Agent Development Kit) agent in Python: wrap each stage in a manual span and export traces to Google Cloud Trace.">
     <meta property="og:site_name" content="YY AI | AI with Yvette Tsai">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-02-22T16:40:15+00:00">
+    
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/blog/assets/img/icons/favicon-96x96.png" sizes="96x96" />
@@ -58,7 +57,9 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
+    
     <link rel="canonical" href="https://yvettetsai22.github.io/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
+    
     <link rel="alternate" type="application/rss+xml" title="YY AI | AI with Yvette Tsai" href="https://yvettetsai22.github.io/blog/feed.xml" />
 
     <!-- Include extra styles -->
@@ -102,13 +103,13 @@
     <a id="menu" role="button">
         <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
     </a>
-    <h1 class="logo">
+    <div class="logo">
         <a href="/blog/">
             
                 YY AI <span class="version">v3.1.1</span>
             
         </a>
-    </h1>
+    </div>
     <a id="search" class="dosearch" role="button">
         <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
     </a>
@@ -176,13 +177,13 @@ February 22, 2026
                         </time>
                     
                     <svg id="clock" class="icon-clock"><use xlink:href="#icon-clock"></use></svg>
-                    <span>6 min to read</span>
+                    <span>8 min to read</span>
                 </p>
                 <h1 class="post-title">Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</h1>
                 <p class="post-subtitle"></p>
 
                 
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Featured image" class="post-cover">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK" class="post-cover">
                 
 
                 <!-- Pagination links -->
@@ -195,7 +196,7 @@ February 22, 2026
 
                 <p>Large Language Models (LLMs) are rapidly transforming how we interact with technology. But with great power comes great… complexity. Understanding what’s happening inside these intricate models is crucial for performance optimization, debugging, and ensuring responsible AI practices. That’s where observability comes in.</p>
 
-<p>While automated observability tools offer a quick start, sometimes you need to get your hands dirty. You need granular control over what data you collect and how you analyze it. That’s where manual instrumentation shines. In this post, we’ll explore how to leverage manual instrumentation with Google’s ADK (Application Development Kit) to gain deeper insights into your LLM applications.</p>
+<p>While automated observability tools offer a quick start, sometimes you need to get your hands dirty. You need granular control over what data you collect and how you analyze it. That’s where manual instrumentation shines. In this post, we’ll explore how to leverage manual instrumentation with Google’s ADK (Agent Development Kit) to gain deeper insights into your LLM applications.</p>
 
 <h3 id="why-manual-instrumentation-beyond-the-black-box">Why Manual Instrumentation? Beyond the Black Box</h3>
 
@@ -214,7 +215,7 @@ February 22, 2026
 
 <h3 id="google-adk-your-toolkit-for-observability">Google ADK: Your Toolkit for Observability</h3>
 
-<p>Google’s Application Development Kit (ADK) provides a robust foundation for building observable applications. While it’s designed for general application observability, it’s easily adaptable for LLMs. The ADK provides libraries and tools for collecting metrics, traces, and logs, which you can then analyze using Google Cloud Observability (formerly Stackdriver).</p>
+<p>Google’s Agent Development Kit (ADK) provides a robust foundation for building observable applications. While it’s designed for general application observability, it’s easily adaptable for LLMs. The ADK provides libraries and tools for collecting metrics, traces, and logs, which you can then analyze using Google Cloud Observability (formerly Stackdriver).</p>
 
 <p>Let’s consider how we can leverage ADK for manual instrumentation of our LLM applications.</p>
 
@@ -297,6 +298,40 @@ February 22, 2026
 
 <p>In this example, we use OpenTelemetry (which Google Cloud Observability supports) to create spans for the <code class="language-plaintext highlighter-rouge">process_query</code>, <code class="language-plaintext highlighter-rouge">extract_intent</code>, and <code class="language-plaintext highlighter-rouge">generate_llm_response</code> functions. This allows you to visualize the execution time of each step in the process.  By analyzing these traces, you can identify bottlenecks and optimize the performance of your application. You’ll be able to see exactly how long each stage takes, from intent extraction to LLM response generation, highlighting areas that need improvement.</p>
 
+<p><strong>3. Tracing Inside a Real ADK Agent:</strong></p>
+
+<p>ADK already emits OpenTelemetry spans of its own, such as <code class="language-plaintext highlighter-rouge">invoke_agent {agent.name}</code> and <code class="language-plaintext highlighter-rouge">execute_tool {tool.name}</code>. If you register a tracer provider before the agent runs, a manual span you open inside a tool nests under ADK’s <code class="language-plaintext highlighter-rouge">execute_tool</code> span, so your own stages show up in the same trace in Cloud Trace:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">google.adk.agents</span> <span class="kn">import</span> <span class="n">Agent</span>
+<span class="kn">from</span> <span class="nn">opentelemetry</span> <span class="kn">import</span> <span class="n">trace</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace</span> <span class="kn">import</span> <span class="n">TracerProvider</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.sdk.trace.export</span> <span class="kn">import</span> <span class="n">BatchSpanProcessor</span>
+<span class="kn">from</span> <span class="nn">opentelemetry.exporter.cloud_trace</span> <span class="kn">import</span> <span class="n">CloudTraceSpanExporter</span>
+
+<span class="c1"># Register the provider before the agent runs, so ADK's spans use it too
+</span><span class="n">provider</span> <span class="o">=</span> <span class="n">TracerProvider</span><span class="p">()</span>
+<span class="n">provider</span><span class="p">.</span><span class="n">add_span_processor</span><span class="p">(</span><span class="n">BatchSpanProcessor</span><span class="p">(</span><span class="n">CloudTraceSpanExporter</span><span class="p">()))</span>
+<span class="n">trace</span><span class="p">.</span><span class="n">set_tracer_provider</span><span class="p">(</span><span class="n">provider</span><span class="p">)</span>
+
+<span class="n">tracer</span> <span class="o">=</span> <span class="n">trace</span><span class="p">.</span><span class="n">get_tracer</span><span class="p">(</span><span class="n">__name__</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">lookup_order</span><span class="p">(</span><span class="n">order_id</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+  <span class="s">"""Looks up the status of a customer order."""</span>
+  <span class="k">with</span> <span class="n">tracer</span><span class="p">.</span><span class="n">start_as_current_span</span><span class="p">(</span><span class="s">"lookup_order.db_query"</span><span class="p">)</span> <span class="k">as</span> <span class="n">span</span><span class="p">:</span>
+    <span class="n">span</span><span class="p">.</span><span class="n">set_attribute</span><span class="p">(</span><span class="s">"order.id"</span><span class="p">,</span> <span class="n">order_id</span><span class="p">)</span>
+    <span class="n">status</span> <span class="o">=</span> <span class="s">"shipped"</span>  <span class="c1"># your database call here
+</span>  <span class="k">return</span> <span class="p">{</span><span class="s">"order_id"</span><span class="p">:</span> <span class="n">order_id</span><span class="p">,</span> <span class="s">"status"</span><span class="p">:</span> <span class="n">status</span><span class="p">}</span>
+
+<span class="n">root_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s">"support_agent"</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s">"gemini-2.5-flash"</span><span class="p">,</span>
+    <span class="n">instruction</span><span class="o">=</span><span class="s">"Answer questions about customer orders."</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">lookup_order</span><span class="p">],</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>Run it with <code class="language-plaintext highlighter-rouge">adk web</code> or <code class="language-plaintext highlighter-rouge">adk run</code>, and each tool call shows up in Cloud Trace as <code class="language-plaintext highlighter-rouge">invoke_agent support_agent</code> &gt; <code class="language-plaintext highlighter-rouge">execute_tool lookup_order</code> &gt; <code class="language-plaintext highlighter-rouge">lookup_order.db_query</code>.</p>
+
 <p><strong>Benefits of tracing for LLMs:</strong></p>
 
 <ul>
@@ -335,29 +370,29 @@ February 22, 2026
                         
                         
                             <li>
-                                <a href="/blog/what-ai-reviewers-could-not-see/">
-                                    
-                                        <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop">
-                                    
-                                    <h3>My AI Reviewers Said Clean. My Colleagues Didn't.</h3>
-                                </a>
-                            </li>
-                        
-                            <li>
                                 <a href="/blog/speeding-up-multi-agent-code-review-claude-code/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop">
+                                        <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop" alt="Speeding Up a Multi-Agent Code Review in Claude Code">
                                     
                                     <h3>Speeding Up a Multi-Agent Code Review in Claude Code</h3>
                                 </a>
                             </li>
                         
                             <li>
-                                <a href="/blog/everything-returned-true-debugging-silent-failures/">
+                                <a href="/blog/what-ai-reviewers-could-not-see/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop">
+                                        <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop" alt="My AI Reviewers Said Clean. My Colleagues Didn&#39;t.">
                                     
-                                    <h3>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</h3>
+                                    <h3>My AI Reviewers Said Clean. My Colleagues Didn't.</h3>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/blog/bing-custom-search-api/">
+                                    
+                                        <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270" alt="Getting Started with Bing Custom Search API">
+                                    
+                                    <h3>Getting Started with Bing Custom Search API</h3>
                                 </a>
                             </li>
                         
@@ -369,7 +404,7 @@ February 22, 2026
 
         <!-- Add time bar only for pages without pagination -->
         
-            <div class="time-bar" data-minutes="6">
+            <div class="time-bar" data-minutes="8">
     <span class="time-completed"></span>
     <span class="time-remaining"></span>
     <div class="bar">
@@ -392,7 +427,7 @@ February 22, 2026
     <a href="/blog/what-ai-reviewers-could-not-see/" class="post-preview">
         <div class="image">
             
-                <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop" alt="My AI Reviewers Said Clean. My Colleagues Didn&#39;t.">
             
         </div>
         <h3 class="title">My AI Reviewers Said Clean. My Colleagues Didn't.</h3>
@@ -411,7 +446,7 @@ February 22, 2026
 
         <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;&quot;%20https://yvettetsai22.github.io/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/%20via%20&#64;&hashtags=llm-observability,python,ai-agents"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Add OpenTelemetry tracing to a Google ADK (Agent Development Kit) agent in Python: wrap each stage in a manual span and export traces to Google Cloud Trace.&quot;%20https://yvettetsai22.github.io/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/%20via%20&#64;&hashtags=llm-observability,python,ai-agents"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
@@ -549,18 +584,15 @@ February 22, 2026
   "url": "https://yvettetsai22.github.io/blog/",
   "logo": {
       "@type": "ImageObject",
-      "url": "https://yvettetsai22.github.io/blog/assets/img/icons/mediumtile.png",
-      "width": "600",
-      "height": "315"
+      "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
+      "width": 600,
+      "height": 315
   },
   "sameAs": [
     "https://github.com/yvetteTsai22","https://medium.com/@tsaimc2","https://www.linkedin.com/in/mingchuantsai222"
   ]
 }
 </script>
-
-<!-- Include the script that allows Netlify CMS login -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- Include the website scripts -->
 <script src="/blog/assets/js/scripts.min.js"></script>
@@ -579,159 +611,34 @@ February 22, 2026
         
         
         
+        
+        
+        
+        
+        
+        
         <script type="application/ld+json">
         {
-            "@context": "http://schema.org",
+            "@context": "https://schema.org",
             "@type": "BlogPosting",
             "name": "Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK",
-            "headline": "",
-            "description": "",
+            "headline": "Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK",
+            "description": "Add OpenTelemetry tracing to a Google ADK (Agent Development Kit) agent in Python: wrap each stage in a manual span and export traces to Google Cloud Trace.",
             "image": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
             "url": "https://yvettetsai22.github.io/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/",
-            "articleBody": "Large Language Models (LLMs) are rapidly transforming how we interact with technology. But with great power comes great… complexity. Understanding what’s happening inside these intricate models is crucial for performance optimization, debugging, and ensuring responsible AI practices. That’s where observability comes in.
-
-While automated observability tools offer a quick start, sometimes you need to get your hands dirty. You need granular control over what data you collect and how you analyze it. That’s where manual instrumentation shines. In this post, we’ll explore how to leverage manual instrumentation with Google’s ADK (Application Development Kit) to gain deeper insights into your LLM applications.
-
-Why Manual Instrumentation? Beyond the Black Box
-
-Think of your LLM as a complex machine. Automated tools give you a high-level overview, like the machine’s overall temperature. But what if you want to know the specific temperature of a particular component, or how frequently a certain process is being executed? That’s where manual instrumentation steps in.
-
-Manual instrumentation involves strategically adding code to your application to collect specific data points you’re interested in. This provides a level of detail and customization that automated tools often can’t match. Consider these benefits:
-
-
-  Targeted Insights: You choose exactly what data to collect, focusing on the metrics most relevant to your specific use case.
-  Deeper Understanding: By tracing the flow of data and events, you gain a more profound understanding of your LLM’s behavior.
-  Problem Diagnosis: Pinpoint the root cause of issues by analyzing detailed logs and metrics.
-  Customizable Metrics: Create custom metrics tailored to your application’s unique characteristics and needs.
-
-
-Ultimately, manual instrumentation empowers you to move beyond treating your LLM as a black box and start understanding its inner workings.
-
-Google ADK: Your Toolkit for Observability
-
-Google’s Application Development Kit (ADK) provides a robust foundation for building observable applications. While it’s designed for general application observability, it’s easily adaptable for LLMs. The ADK provides libraries and tools for collecting metrics, traces, and logs, which you can then analyze using Google Cloud Observability (formerly Stackdriver).
-
-Let’s consider how we can leverage ADK for manual instrumentation of our LLM applications.
-
-Hands-on Examples: Illuminating Your LLM’s Behavior
-
-Let’s dive into some concrete examples of how to use manual instrumentation with ADK to improve LLM observability. We’ll focus on logging and tracing.
-
-1. Logging Key Events:
-
-Logging is the cornerstone of observability. It allows you to record specific events that occur within your application, providing a historical record of its behavior.  Let’s say you want to log the prompt and response of your LLM:
-
-import logging
-
-logging.basicConfig(level=logging.INFO)
-
-def generate_response(prompt, model):
-  &quot;&quot;&quot;Generates a response from the LLM.&quot;&quot;&quot;
-  logging.info(f&quot;Prompt: {prompt}&quot;)
-  response = model(prompt)
-  logging.info(f&quot;Response: {response}&quot;)
-  return response
-
-
-This simple example logs the prompt sent to the LLM and the response it generates. By examining these logs, you can quickly identify issues with prompt engineering or unexpected responses.
-
-Extending Logging:
-
-We can extend this further. Imagine you are working on a customer service bot. You could log not only the prompt and response, but also:
-
-
-  User ID: Identify the user making the request.
-  Intent: Log the identified intent of the user’s query (e.g., “billing question”, “shipping inquiry”).
-  Confidence Score: Record the confidence score associated with the intent detection.
-  Latency:  Measure the time it takes for the LLM to generate a response.
-
-
-By logging this information, you create a rich dataset for analyzing the bot’s performance and identifying areas for improvement.
-
-2. Tracing Request Flow:
-
-Tracing allows you to track the journey of a request as it flows through your application. This is particularly useful for understanding the interactions between different components of your LLM application. Let’s look at an example where you can see how your model performs across different stages:
-
-from opentelemetry import trace
-from opentelemetry.sdk.trace import TracerProvider
-from opentelemetry.sdk.trace.export import BatchSpanProcessor
-from opentelemetry.exporter.cloud_trace import CloudTraceSpanExporter
-from opentelemetry.sdk.resources import Resource
-from opentelemetry.semconv.resource import ResourceAttributes
-
-# Configure tracing
-resource = Resource.create({
-    ResourceAttributes.SERVICE_NAME: &quot;my-llm-app&quot;,
-    ResourceAttributes.SERVICE_VERSION: &quot;1.0.0&quot;,
-})
-tracer_provider = TracerProvider(resource=resource)
-cloud_trace_exporter = CloudTraceSpanExporter()
-tracer_provider.add_span_processor(BatchSpanProcessor(cloud_trace_exporter))
-trace.set_tracer_provider(tracer_provider)
-
-tracer = trace.get_tracer(__name__)
-
-def process_user_query(query, model):
-  &quot;&quot;&quot;Processes the user query and generates a response.&quot;&quot;&quot;
-  with tracer.start_as_current_span(&quot;process_query&quot;):
-    # Extract user intent
-    with tracer.start_as_current_span(&quot;extract_intent&quot;):
-      intent = extract_intent(query)
-
-    # Generate response using LLM
-    with tracer.start_as_current_span(&quot;generate_llm_response&quot;):
-      response = model(query)
-
-    return response
-
-def extract_intent(query):
-    &quot;&quot;&quot;Extracts the intent from the user query.&quot;&quot;&quot;
-    # Your intent extraction logic here
-    return &quot;Example Intent&quot;
-
-
-In this example, we use OpenTelemetry (which Google Cloud Observability supports) to create spans for the process_query, extract_intent, and generate_llm_response functions. This allows you to visualize the execution time of each step in the process.  By analyzing these traces, you can identify bottlenecks and optimize the performance of your application. You’ll be able to see exactly how long each stage takes, from intent extraction to LLM response generation, highlighting areas that need improvement.
-
-Benefits of tracing for LLMs:
-
-
-  Visualize the flow of requests through your application.
-  Identify performance bottlenecks and latency issues.
-  Understand dependencies between different components.
-  Debug complex interactions between services.
-
-
-Key Takeaways: Embrace the Power of Manual Instrumentation
-
-Manual instrumentation offers a powerful approach to LLM observability, allowing you to gain granular insights into your application’s behavior. By strategically adding logging and tracing to your code, you can collect the specific data points you need to optimize performance, debug issues, and ensure responsible AI practices.  While automated tools provide a valuable starting point, manual instrumentation empowers you to delve deeper and truly understand the inner workings of your LLM.
-
-Ready to get started?
-
-
-  Identify your key metrics: What are the most important aspects of your LLM’s behavior that you want to track?
-  Start small: Begin with simple logging statements to record key events.
-  Gradually introduce tracing: Use tracing to visualize the flow of requests through your application.
-  Leverage Google Cloud Observability: Analyze your logs, metrics, and traces using Google Cloud Observability to gain actionable insights.
-
-
-By embracing manual instrumentation, you can unlock the full potential of your LLM applications and build more reliable, efficient, and responsible AI systems. Now go and instrument!
-",
-            "wordcount": "1198",
+            "articleBody": "Large Language Models (LLMs) are rapidly transforming how we interact with technology. But with great power comes great… complexity. Understanding what’s happening inside these intricate models is crucial for performance optimization, debugging, and ensuring responsible AI practices. That’s where observability comes in.\n\nWhile automated observability tools offer a quick start, sometimes you need to get your hands dirty. You need granular control over what data you collect and how you analyze it. That’s where manual instrumentation shines. In this post, we’ll explore how to leverage manual instrumentation with Google’s ADK (Agent Development Kit) to gain deeper insights into your LLM applications.\n\nWhy Manual Instrumentation? Beyond the Black Box\n\nThink of your LLM as a complex machine. Automated tools give you a high-level overview, like the machine’s overall temperature. But what if you want to know the specific temperature of a particular component, or how frequently a certain process is being executed? That’s where manual instrumentation steps in.\n\nManual instrumentation involves strategically adding code to your application to collect specific data points you’re interested in. This provides a level of detail and customization that automated tools often can’t match. Consider these benefits:\n\n\n  Targeted Insights: You choose exactly what data to collect, focusing on the metrics most relevant to your specific use case.\n  Deeper Understanding: By tracing the flow of data and events, you gain a more profound understanding of your LLM’s behavior.\n  Problem Diagnosis: Pinpoint the root cause of issues by analyzing detailed logs and metrics.\n  Customizable Metrics: Create custom metrics tailored to your application’s unique characteristics and needs.\n\n\nUltimately, manual instrumentation empowers you to move beyond treating your LLM as a black box and start understanding its inner workings.\n\nGoogle ADK: Your Toolkit for Observability\n\nGoogle’s Agent Development Kit (ADK) provides a robust foundation for building observable applications. While it’s designed for general application observability, it’s easily adaptable for LLMs. The ADK provides libraries and tools for collecting metrics, traces, and logs, which you can then analyze using Google Cloud Observability (formerly Stackdriver).\n\nLet’s consider how we can leverage ADK for manual instrumentation of our LLM applications.\n\nHands-on Examples: Illuminating Your LLM’s Behavior\n\nLet’s dive into some concrete examples of how to use manual instrumentation with ADK to improve LLM observability. We’ll focus on logging and tracing.\n\n1. Logging Key Events:\n\nLogging is the cornerstone of observability. It allows you to record specific events that occur within your application, providing a historical record of its behavior.  Let’s say you want to log the prompt and response of your LLM:\n\nimport logging\n\nlogging.basicConfig(level=logging.INFO)\n\ndef generate_response(prompt, model):\n  \"\"\"Generates a response from the LLM.\"\"\"\n  logging.info(f\"Prompt: {prompt}\")\n  response = model(prompt)\n  logging.info(f\"Response: {response}\")\n  return response\n\n\nThis simple example logs the prompt sent to the LLM and the response it generates. By examining these logs, you can quickly identify issues with prompt engineering or unexpected responses.\n\nExtending Logging:\n\nWe can extend this further. Imagine you are working on a customer service bot. You could log not only the prompt and response, but also:\n\n\n  User ID: Identify the user making the request.\n  Intent: Log the identified intent of the user’s query (e.g., “billing question”, “shipping inquiry”).\n  Confidence Score: Record the confidence score associated with the intent detection.\n  Latency:  Measure the time it takes for the LLM to generate a response.\n\n\nBy logging this information, you create a rich dataset for analyzing the bot’s performance and identifying areas for improvement.\n\n2. Tracing Request Flow:\n\nTracing allows you to track the journey of a request as it flows through your application. This is particularly useful for understanding the interactions between different components of your LLM application. Let’s look at an example where you can see how your model performs across different stages:\n\nfrom opentelemetry import trace\nfrom opentelemetry.sdk.trace import TracerProvider\nfrom opentelemetry.sdk.trace.export import BatchSpanProcessor\nfrom opentelemetry.exporter.cloud_trace import CloudTraceSpanExporter\nfrom opentelemetry.sdk.resources import Resource\nfrom opentelemetry.semconv.resource import ResourceAttributes\n\n# Configure tracing\nresource = Resource.create({\n    ResourceAttributes.SERVICE_NAME: \"my-llm-app\",\n    ResourceAttributes.SERVICE_VERSION: \"1.0.0\",\n})\ntracer_provider = TracerProvider(resource=resource)\ncloud_trace_exporter = CloudTraceSpanExporter()\ntracer_provider.add_span_processor(BatchSpanProcessor(cloud_trace_exporter))\ntrace.set_tracer_provider(tracer_provider)\n\ntracer = trace.get_tracer(__name__)\n\ndef process_user_query(query, model):\n  \"\"\"Processes the user query and generates a response.\"\"\"\n  with tracer.start_as_current_span(\"process_query\"):\n    # Extract user intent\n    with tracer.start_as_current_span(\"extract_intent\"):\n      intent = extract_intent(query)\n\n    # Generate response using LLM\n    with tracer.start_as_current_span(\"generate_llm_response\"):\n      response = model(query)\n\n    return response\n\ndef extract_intent(query):\n    \"\"\"Extracts the intent from the user query.\"\"\"\n    # Your intent extraction logic here\n    return \"Example Intent\"\n\n\nIn this example, we use OpenTelemetry (which Google Cloud Observability supports) to create spans for the process_query, extract_intent, and generate_llm_response functions. This allows you to visualize the execution time of each step in the process.  By analyzing these traces, you can identify bottlenecks and optimize the performance of your application. You’ll be able to see exactly how long each stage takes, from intent extraction to LLM response generation, highlighting areas that need improvement.\n\n3. Tracing Inside a Real ADK Agent:\n\nADK already emits OpenTelemetry spans of its own, such as invoke_agent {agent.name} and execute_tool {tool.name}. If you register a tracer provider before the agent runs, a manual span you open inside a tool nests under ADK’s execute_tool span, so your own stages show up in the same trace in Cloud Trace:\n\nfrom google.adk.agents import Agent\nfrom opentelemetry import trace\nfrom opentelemetry.sdk.trace import TracerProvider\nfrom opentelemetry.sdk.trace.export import BatchSpanProcessor\nfrom opentelemetry.exporter.cloud_trace import CloudTraceSpanExporter\n\n# Register the provider before the agent runs, so ADK's spans use it too\nprovider = TracerProvider()\nprovider.add_span_processor(BatchSpanProcessor(CloudTraceSpanExporter()))\ntrace.set_tracer_provider(provider)\n\ntracer = trace.get_tracer(__name__)\n\ndef lookup_order(order_id: str) -&gt; dict:\n  \"\"\"Looks up the status of a customer order.\"\"\"\n  with tracer.start_as_current_span(\"lookup_order.db_query\") as span:\n    span.set_attribute(\"order.id\", order_id)\n    status = \"shipped\"  # your database call here\n  return {\"order_id\": order_id, \"status\": status}\n\nroot_agent = Agent(\n    name=\"support_agent\",\n    model=\"gemini-2.5-flash\",\n    instruction=\"Answer questions about customer orders.\",\n    tools=[lookup_order],\n)\n\n\nRun it with adk web or adk run, and each tool call shows up in Cloud Trace as invoke_agent support_agent &gt; execute_tool lookup_order &gt; lookup_order.db_query.\n\nBenefits of tracing for LLMs:\n\n\n  Visualize the flow of requests through your application.\n  Identify performance bottlenecks and latency issues.\n  Understand dependencies between different components.\n  Debug complex interactions between services.\n\n\nKey Takeaways: Embrace the Power of Manual Instrumentation\n\nManual instrumentation offers a powerful approach to LLM observability, allowing you to gain granular insights into your application’s behavior. By strategically adding logging and tracing to your code, you can collect the specific data points you need to optimize performance, debug issues, and ensure responsible AI practices.  While automated tools provide a valuable starting point, manual instrumentation empowers you to delve deeper and truly understand the inner workings of your LLM.\n\nReady to get started?\n\n\n  Identify your key metrics: What are the most important aspects of your LLM’s behavior that you want to track?\n  Start small: Begin with simple logging statements to record key events.\n  Gradually introduce tracing: Use tracing to visualize the flow of requests through your application.\n  Leverage Google Cloud Observability: Analyze your logs, metrics, and traces using Google Cloud Observability to gain actionable insights.\n\n\nBy embracing manual instrumentation, you can unlock the full potential of your LLM applications and build more reliable, efficient, and responsible AI systems. Now go and instrument!\n",
+            "wordCount": 1501,
             "inLanguage": "en",
-            "dateCreated": "2026-02-22/",
-            "datePublished": "2026-02-22/",
-            "dateModified": "2026-02-22/",
+            "dateCreated": "2026-02-22T16:40:15+00:00",
+            "datePublished": "2026-02-22T16:40:15+00:00",
+            "dateModified": "2026-11-06T00:00:00+00:00",
             "author": {
                 "@type": "Person",
-                "name": "Thiago Rossener",
-                
-                "image": "/assets/img/uploads/profile.png",
-                
-                "jobTitle": "Chief Editor",
-                "url": "https://yvettetsai22.github.io/blog/authors/thiagorossener/",
-                "sameAs": [
-                    "https://github.com/thiagorossener","https://www.facebook.com/thiagorossener","https://twitter.com/thiagorossener","https://medium.com/@thiagorossener","https://www.instagram.com/thiagorossener","https://www.linkedin.com/in/thiagorossener"
-                ]
+                "name": "Yvette Tsai",
+                "image": "https://yvettetsai22.github.io/blog/assets/img/uploads/profile.JPG",
+                "jobTitle": "Senior AI Engineer",
+                "url": "https://yvettetsai22.github.io/blog/authors/yvetteTsai/",
+                "sameAs": ["https://github.com/yvetteTsai22","https://www.linkedin.com/in/mingchuantsai222"]
             },
             "publisher": {
                 "@type": "Organization",
@@ -740,11 +647,11 @@ By embracing manual instrumentation, you can unlock the full potential of your L
                 "logo": {
                     "@type": "ImageObject",
                     "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
-                    "width": "600",
-                    "height": "315"
+                    "width": 600,
+                    "height": 315
                 }
             },
-            "mainEntityOfPage": "True",
+            "mainEntityOfPage": "https://yvettetsai22.github.io/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/",
             "genre": "guides",
             "articleSection": "guides",
             "keywords": ["llm-observability","python","ai-agents"]

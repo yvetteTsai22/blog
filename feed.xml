@@ -5,8 +5,8 @@
     <description>About AI, ML, LLMs and more by Yvette Tsai.</description>
     <link>https://yvettetsai22.github.io/blog/</link>
     <atom:link href="https://yvettetsai22.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 04 Nov 2026 00:06:43 +0000</pubDate>
-    <lastBuildDate>Wed, 04 Nov 2026 00:06:43 +0000</lastBuildDate>
+    <pubDate>Fri, 06 Nov 2026 10:34:21 +0000</pubDate>
+    <lastBuildDate>Fri, 06 Nov 2026 10:34:21 +0000</lastBuildDate>
     <generator>Jekyll v3.10.0</generator>
     
       <item>
@@ -43,7 +43,7 @@
     
       <item>
         <title>Speeding Up a Multi-Agent Code Review in Claude Code</title>
-        <description>&lt;p&gt;My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.&lt;/p&gt; &lt;p&gt;One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.&lt;/p&gt; &lt;p&gt;I asked the obvious question: why is it slow, and can I make it faster? The answers were not what I expected.&lt;/p&gt; &lt;h2 id=&quot;lesson-1-measure-first-from-the-logs-you-already-have&quot;&gt;Lesson 1: measure first, from the logs...</description>
+        <description>&lt;p&gt;My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.&lt;/p&gt; &lt;p&gt;One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.&lt;/p&gt; &lt;p&gt;I asked the obvious question: why is this multi-agent code review so slow, and can I make it faster? The answers were not what I expected.&lt;/p&gt; &lt;h2 id=&quot;lesson-1-measure-first-from-the-logs-you-already-have&quot;&gt;Lesson 1: measure...</description>
         <pubDate>Tue, 29 Sep 2026 10:00:00 +0000</pubDate>
         <link>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/</link>
         <guid isPermaLink="true">https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/</guid>
@@ -87,7 +87,7 @@
     
       <item>
         <title>Speeding Up a Multi-Agent Code Review in Claude Code</title>
-        <description>&lt;p&gt;My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.&lt;/p&gt; &lt;p&gt;One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.&lt;/p&gt; &lt;p&gt;I asked the obvious question: why is it slow, and can I make it faster? The answers were not what I expected.&lt;/p&gt; &lt;h2 id=&quot;lesson-1-measure-first-from-the-logs-you-already-have&quot;&gt;Lesson 1: measure first, from the logs...</description>
+        <description>&lt;p&gt;My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.&lt;/p&gt; &lt;p&gt;One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.&lt;/p&gt; &lt;p&gt;I asked the obvious question: why is this multi-agent code review so slow, and can I make it faster? The answers were not what I expected.&lt;/p&gt; &lt;h2 id=&quot;lesson-1-measure-first-from-the-logs-you-already-have&quot;&gt;Lesson 1: measure...</description>
         <pubDate>Tue, 29 Sep 2026 10:00:00 +0000</pubDate>
         <link>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/</link>
         <guid isPermaLink="true">https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/</guid>
@@ -151,7 +151,7 @@
     
       <item>
         <title>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</title>
-        <description>&lt;p&gt;Large Language Models (LLMs) are rapidly transforming how we interact with technology. But with great power comes great… complexity. Understanding what’s happening inside these intricate models is crucial for performance optimization, debugging, and ensuring responsible AI practices. That’s where observability comes in.&lt;/p&gt; &lt;p&gt;While automated observability tools offer a quick start, sometimes you need to get your hands dirty. You need granular control over what data you collect and how you analyze it. That’s where manual instrumentation shines. In this post, we’ll explore how to leverage manual instrumentation with Google’s ADK (Application Development Kit) to gain deeper insights into your LLM...</description>
+        <description>&lt;p&gt;Large Language Models (LLMs) are rapidly transforming how we interact with technology. But with great power comes great… complexity. Understanding what’s happening inside these intricate models is crucial for performance optimization, debugging, and ensuring responsible AI practices. That’s where observability comes in.&lt;/p&gt; &lt;p&gt;While automated observability tools offer a quick start, sometimes you need to get your hands dirty. You need granular control over what data you collect and how you analyze it. That’s where manual instrumentation shines. In this post, we’ll explore how to leverage manual instrumentation with Google’s ADK (Agent Development Kit) to gain deeper insights into your LLM...</description>
         <pubDate>Sun, 22 Feb 2026 16:40:15 +0000</pubDate>
         <link>https://yvettetsai22.github.io/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/</link>
         <guid isPermaLink="true">https://yvettetsai22.github.io/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/</guid>
@@ -167,7 +167,7 @@
     
       <item>
         <title>Getting Started with Bing Custom Search API</title>
-        <description>&lt;p&gt;Bing Custom Search API lets you build a focused search engine that returns results only from domains you trust. Instead of the entire web, you define a curated set of sites. This sharpens relevance, improves compliance, and makes answers faster and cleaner for your users. It’s ideal for internal knowledge portals, customer-facing help centers, and vertical search experiences where control matters more than breadth.&lt;/p&gt; &lt;p&gt;Compared to general Bing Web Search, you get domain scoping, ranking controls, pinned results, and filters you can tune without code. You’ll create two things:&lt;/p&gt; &lt;ol&gt; &lt;li&gt;a &lt;strong&gt;Custom Bing Search instance&lt;/strong&gt;,&lt;br /&gt; where you configure domains...</description>
+        <description>&lt;blockquote&gt; &lt;p&gt;&lt;strong&gt;Retirement notice:&lt;/strong&gt; Microsoft shut down the Bing Search APIs, including Bing Custom Search, on &lt;a href=&quot;https://learn.microsoft.com/en-us/lifecycle/announcements/bing-search-api-retirement&quot;&gt;August 11, 2025&lt;/a&gt;. The steps below no longer work for new or existing resources. For web grounding in AI agents, Microsoft points to &lt;a href=&quot;https://learn.microsoft.com/en-us/azure/foundry/agents/how-to/tools/bing-tools&quot;&gt;Grounding with Bing Search in Azure AI Foundry&lt;/a&gt;. The original guide is kept below for reference.&lt;/p&gt; &lt;/blockquote&gt; &lt;p&gt;Bing Custom Search API lets you build a focused search engine that returns results only from domains you trust. Instead of the entire web, you define a curated set of sites. This sharpens relevance, improves compliance, and makes answers faster and cleaner for...</description>
         <pubDate>Wed, 30 Aug 2023 12:05:21 +0000</pubDate>
         <link>https://yvettetsai22.github.io/blog/bing-custom-search-api/</link>
         <guid isPermaLink="true">https://yvettetsai22.github.io/blog/bing-custom-search-api/</guid>

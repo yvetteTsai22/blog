@@ -29,12 +29,7 @@
     <meta name="twitter:title" content="Speeding Up a Multi-Agent Code Review in Claude Code | YY AI">
     <meta name="twitter:description" content="Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.">
 
-    
-        <meta property="twitter:image" content="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop">
-    
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/">
@@ -42,6 +37,10 @@
     <meta property="og:image" content="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop">
     <meta property="og:description" content="Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.">
     <meta property="og:site_name" content="YY AI | AI with Yvette Tsai">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-09-29T10:00:00+00:00">
+    
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/blog/assets/img/icons/favicon-96x96.png" sizes="96x96" />
@@ -58,7 +57,9 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
-    <link rel="canonical" href="https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/">
+    
+      <link rel="canonical" href="https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/" />
+    
     <link rel="alternate" type="application/rss+xml" title="YY AI | AI with Yvette Tsai" href="https://yvettetsai22.github.io/blog/feed.xml" />
 
     <!-- Include extra styles -->
@@ -102,13 +103,13 @@
     <a id="menu" role="button">
         <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
     </a>
-    <h1 class="logo">
+    <div class="logo">
         <a href="/blog/">
             
                 YY AI <span class="version">v3.1.1</span>
             
         </a>
-    </h1>
+    </div>
     <a id="search" class="dosearch" role="button">
         <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
     </a>
@@ -182,7 +183,7 @@ September 29, 2026
                 <p class="post-subtitle">Measure before you tune: model turns are the real clock, and parallelism stops at the rate limit.</p>
 
                 
-                    <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop" alt="Featured image" class="post-cover">
+                    <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop" alt="Speeding Up a Multi-Agent Code Review in Claude Code" class="post-cover">
                 
 
                 <!-- Pagination links -->
@@ -197,7 +198,7 @@ September 29, 2026
 
 <p>One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.</p>
 
-<p>I asked the obvious question: why is it slow, and can I make it faster? The answers were not what I expected.</p>
+<p>I asked the obvious question: why is this multi-agent code review so slow, and can I make it faster? The answers were not what I expected.</p>
 
 <h2 id="lesson-1-measure-first-from-the-logs-you-already-have">Lesson 1: measure first, from the logs you already have</h2>
 
@@ -394,29 +395,29 @@ September 29, 2026
                         
                         
                             <li>
-                                <a href="/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
-                                    
-                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                                    
-                                    <h3>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</h3>
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="/blog/what-ai-reviewers-could-not-see/">
-                                    
-                                        <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop">
-                                    
-                                    <h3>My AI Reviewers Said Clean. My Colleagues Didn't.</h3>
-                                </a>
-                            </li>
-                        
-                            <li>
                                 <a href="/blog/everything-returned-true-debugging-silent-failures/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop">
+                                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop" alt="Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature">
                                     
                                     <h3>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</h3>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/blog/bing-custom-search-api/">
+                                    
+                                        <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270" alt="Getting Started with Bing Custom Search API">
+                                    
+                                    <h3>Getting Started with Bing Custom Search API</h3>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/blog/greenfield-repo-for-coding-agents/">
+                                    
+                                        <img src="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=800&auto=format&fit=crop" alt="Before the Agent&#39;s First Ticket: What We Put in an Empty Repo So It Wouldn&#39;t Go Wild">
+                                    
+                                    <h3>Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild</h3>
                                 </a>
                             </li>
                         
@@ -448,13 +449,13 @@ September 29, 2026
         </div>
     </div>
     
-    <a href="/blog/greenfield-repo-for-coding-agents/" class="post-preview">
+    <a href="/blog/bing-custom-search-api/" class="post-preview">
         <div class="image">
             
-                <img src="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=800&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270" alt="Getting Started with Bing Custom Search API">
             
         </div>
-        <h3 class="title">Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild</h3>
+        <h3 class="title">Getting Started with Bing Custom Search API</h3>
     </a>
 </div>
 
@@ -608,18 +609,15 @@ September 29, 2026
   "url": "https://yvettetsai22.github.io/blog/",
   "logo": {
       "@type": "ImageObject",
-      "url": "https://yvettetsai22.github.io/blog/assets/img/icons/mediumtile.png",
-      "width": "600",
-      "height": "315"
+      "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
+      "width": 600,
+      "height": 315
   },
   "sameAs": [
     "https://github.com/yvetteTsai22","https://medium.com/@tsaimc2","https://www.linkedin.com/in/mingchuantsai222"
   ]
 }
 </script>
-
-<!-- Include the script that allows Netlify CMS login -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- Include the website scripts -->
 <script src="/blog/assets/js/scripts.min.js"></script>
@@ -638,218 +636,34 @@ September 29, 2026
         
         
         
+        
+        
+        
+        
+        
+        
         <script type="application/ld+json">
         {
-            "@context": "http://schema.org",
+            "@context": "https://schema.org",
             "@type": "BlogPosting",
             "name": "Speeding Up a Multi-Agent Code Review in Claude Code",
-            "headline": "Measure before you tune: model turns are the real clock, and parallelism stops at the rate limit.",
+            "headline": "Speeding Up a Multi-Agent Code Review in Claude Code",
             "description": "Multi-agent code review in Claude Code: 114 runs showed model turns, not tools, were the bottleneck. What splitting agents, a call graph, and a 429 taught me.",
             "image": "https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=2670&auto=format&fit=crop",
             "url": "https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/",
-            "articleBody": "My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.
-
-One reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.
-
-I asked the obvious question: why is it slow, and can I make it faster? The answers were not what I expected.
-
-Lesson 1: measure first, from the logs you already have
-
-Claude Code writes every subagent’s transcript to disk, with timestamps, token usage, and every tool call. That meant I didn’t have to guess. A short script over 114 past runs of the bugs reviewer gave me a baseline:
-
-
-  
-    
-      reviewer
-      median
-      p90
-      turns
-    
-  
-  
-    
-      bugs
-      157s
-      308s
-      18
-    
-    
-      spec
-      122s
-      219s
-      23
-    
-    
-      history
-      103s
-      205s
-      21
-    
-    
-      guidelines
-      73s
-      161s
-      15
-    
-  
-
-
-My first guess was that the tools were slow: all that greping and seding around the codebase. It was wrong. Out of 1,284 shell calls, one took longer than ten seconds.
-
-The time was going into model round-trips. The bugs reviewer made about 11 tool calls across 18 turns, almost always one call per turn. Each turn is a full round of the model thinking on the largest model tier, and that thinking costs 20 to 60 seconds. The tool call itself costs about one second.
-
-
-One tool call per turn: the thinking, not the tool, sets the pace. Interactive version
-
-
-  Rule: in an agent loop, the clock is the number of sequential turns, not the work done inside each one.
-
-
-Lesson 2: the slow agent was the one asked to leave the diff
-
-The other reviewers mostly read the diff. The bugs reviewer’s instructions asked it to go further:
-
-
-  for every function the PR newly calls, read that function’s body and check its assumptions still hold;
-  check that no new import closes a cycle;
-  follow any secret to every place it could leak (logs, exception text, repr, response bodies).
-
-
-Each of those is “grep, read the result, decide the next grep”. It’s a chain of dependent lookups, and dependent lookups are serial turns.
-
-So I made two structural changes:
-
-
-  Split the agent in two. bugs now reviews only the changed lines: logic, identity, degenerate input, fixes that are too broad. A new reach agent owns everything outside the diff. They run at the same time.
-  Pre-compute the lookups. Before the reviewers start, a script builds a call-graph digest of the diff with GitNexus and writes it to a file. It lists each changed symbol’s callers, its callees, the unchanged functions the changed code calls, and any import cycles. The agents read one file instead of grepping their way to the same facts.
-
-
-Two details mattered more than I expected:
-
-
-  Use the CLI, not the MCP server. My review agents deliberately have no MCP tools, because MCP tool descriptions eat context before the agent reads a line of code. The GitNexus CLI (analyze --index-only, cypher, check --cycles) gives the same data through a plain shell script, and the agent just reads a text file.
-  The index has to match the code under review. An index of main from yesterday describes the wrong code. The script refreshes the index of the review worktree first: about 30 seconds cold, a few seconds warm, in the background while the scout runs. So it costs nothing on the critical path.
-
-
-One gotcha cost me an hour: the GitNexus CLI truncates piped output at 64 KB, because the process exits before the pipe drains. Writing stdout to a temp file fixed it. If a CLI’s JSON comes back “unterminated”, check the pipe before you check the parser.
-
-The file also carries its own warnings, because static call graphs have blind spots. A call through a Protocol, a callback, or a registry is often missing, so an empty caller list is a lower bound, not proof there are no callers.
-
-Lesson 3: “batch your tool calls” is not an instruction the model follows
-
-I also added a polite line to both agents: collect everything you need, then fetch it all in one message with parallel tool calls.
-
-Then I measured the first real run, a 16,000-line diff split into seven slices:
-
-
-  
-    
-       
-      calls per turn
-    
-  
-  
-    
-      old bugs reviewer
-      1.05
-    
-    
-      new bugs slices
-      1.00 to 1.33
-    
-  
-
-
-Essentially no change. The agents did chain commands with ; inside a single shell call, which is half a batch, but they still thought, fetched, thought, fetched.
-
-A suggestion didn’t change the behaviour, so I rewrote it as a procedure with a violation clause: turn 1 reads every input in parallel; turn 2 lists every lookup and emits them all at once as separate tool calls; at most two more fetch turns after that; “a turn with a single tool call while more reads are foreseeable is a violation”. Anything the agent couldn’t afford to check goes into an unverified: list instead of being fetched one at a time.
-
-I haven’t measured that version yet. Prompts are hypotheses until the transcripts say otherwise.
-
-–page-break–
-
-Lesson 4: splitting moves the bottleneck, it doesn’t remove it
-
-The good news: a 16,000-line diff finished at all. The old single reviewer had never run on anything over 6,000 lines. At that size it would likely have run out of context or taken a quarter of an hour. Seven slices in parallel meant the bugs stage took as long as the slowest slice, about seven minutes.
-
-The less good news came in two parts.
-
-Per line, the new slices weren’t faster. Slices of 1,300 to 2,200 lines had a median of about 170 seconds. The old reviewer’s median on diffs of 800 to 2,500 lines was 106 seconds. Smaller inputs don’t help much when the cost is thinking per turn.
-
-The bottleneck moved. I had sliced bugs seven ways but left reach as a single agent over the whole 16,000 lines. It became the longest-running agent: 31 serial turns, still going after six minutes, reading whole files. Every time you parallelise part of a pipeline, look at what’s now at the back of the queue.
-
-So reach gets sliced too, with the same groups. Each slice sees the whole diff for context but only reports problems that start in its own slice.
-
-Lesson 5: parallelism has a ceiling, and it’s the API
-
-Mid-run, the terminal started showing this:
-
-429 {&quot;detail&quot;:&quot;Rate limited. Retry after 0.4s&quot;} · Retrying in 17s · attempt 7/10
-
-
-I had caused it. To make the review faster I’d also pipelined the verifiers: instead of waiting for all reviewers to finish, each reviewer’s findings went to verifiers the moment it reported. Add seven bug slices and a reach agent, and the session peaked at 17 agents running at once, 34 over the whole run. 26 of them hit a 429 at some point. One verifier that normally takes about 150 seconds took 621, mostly waiting to retry.
-
-Parallelism works until you hit the rate limit. Past that point, extra concurrency just turns into retry backoff.
-
-The fix is a cap, not less parallelism:
-
-
-  at most 8 agents in flight, reviewers and verifiers together;
-  one queue: reviewers first, longest first (bug and reach slices, then the rest), verifiers behind any reviewer that hasn’t started yet;
-  fewer, fatter slices: at most three groups of 2,000 to 4,000 lines, so the two bug agents use at most six slots;
-  if a 429 still shows up, drop the cap to 6 for the rest of the run.
-
-
-
-The pipeline after all the changes: split reviewers, a pre-built call graph, and one capped queue. Interactive version
-
-I deliberately did not batch several findings into one verifier. The point of a verifier is an independent judgement of one claim. Grading a list invites the first answer to anchor the rest. I’d rather queue them than lose that independence.
-
-Eight is a guess. The real limit depends on the account, and the next run will tell me whether it’s right.
-
-
-
-The shared pattern
-
-Every lesson here is the same one wearing different clothes: the thing you think is expensive usually isn’t.
-
-
-  I thought the tools were slow; it was the model’s turns.
-  I thought a smaller diff would make each slice faster; the cost was thinking per turn, not reading.
-  I thought an instruction would change behaviour; the numbers said it didn’t.
-  I thought more parallelism was free; the API disagreed.
-
-
-None of these were visible from the terminal. All of them were visible in the transcripts. The most valuable thing I built wasn’t the call graph or the split agent. It was the fifty-line script that turned transcripts into a table, because it let me check every change against the old numbers.
-
-
-
-What’s still open
-
-
-  The hard batching rule is written and unmeasured. If calls per turn don’t move off ~1.1, the next lever is fewer, deeper turns rather than more parallel calls.
-  The concurrency cap of 8 is an estimate. One clean run without a 429 will confirm it; another 429 means 6.
-  Sliced reach should remove the new bottleneck. The comparison to make is total review time on a similar-sized diff, not per-agent time.
-
-
-The next large diff will answer all three. Until then, these are hypotheses, not results.
-",
-            "wordcount": "1727",
+            "articleBody": "My pre-PR code review in Claude Code isn’t one agent. It’s a small team: a scout that summarises the diff, seven specialist reviewers running in parallel (bugs, guidelines, history, prior art, comments, spec, design), and then one verifier per finding that tries to knock it down before it reaches me.\n\nOne reviewer was always last: the bugs reviewer. Everyone else would be done and waiting while it was still going.\n\nI asked the obvious question: why is this multi-agent code review so slow, and can I make it faster? The answers were not what I expected.\n\nLesson 1: measure first, from the logs you already have\n\nClaude Code writes every subagent’s transcript to disk, with timestamps, token usage, and every tool call. That meant I didn’t have to guess. A short script over 114 past runs of the bugs reviewer gave me a baseline:\n\n\n  \n    \n      reviewer\n      median\n      p90\n      turns\n    \n  \n  \n    \n      bugs\n      157s\n      308s\n      18\n    \n    \n      spec\n      122s\n      219s\n      23\n    \n    \n      history\n      103s\n      205s\n      21\n    \n    \n      guidelines\n      73s\n      161s\n      15\n    \n  \n\n\nMy first guess was that the tools were slow: all that greping and seding around the codebase. It was wrong. Out of 1,284 shell calls, one took longer than ten seconds.\n\nThe time was going into model round-trips. The bugs reviewer made about 11 tool calls across 18 turns, almost always one call per turn. Each turn is a full round of the model thinking on the largest model tier, and that thinking costs 20 to 60 seconds. The tool call itself costs about one second.\n\n\nOne tool call per turn: the thinking, not the tool, sets the pace. Interactive version\n\n\n  Rule: in an agent loop, the clock is the number of sequential turns, not the work done inside each one.\n\n\nLesson 2: the slow agent was the one asked to leave the diff\n\nThe other reviewers mostly read the diff. The bugs reviewer’s instructions asked it to go further:\n\n\n  for every function the PR newly calls, read that function’s body and check its assumptions still hold;\n  check that no new import closes a cycle;\n  follow any secret to every place it could leak (logs, exception text, repr, response bodies).\n\n\nEach of those is “grep, read the result, decide the next grep”. It’s a chain of dependent lookups, and dependent lookups are serial turns.\n\nSo I made two structural changes:\n\n\n  Split the agent in two. bugs now reviews only the changed lines: logic, identity, degenerate input, fixes that are too broad. A new reach agent owns everything outside the diff. They run at the same time.\n  Pre-compute the lookups. Before the reviewers start, a script builds a call-graph digest of the diff with GitNexus and writes it to a file. It lists each changed symbol’s callers, its callees, the unchanged functions the changed code calls, and any import cycles. The agents read one file instead of grepping their way to the same facts.\n\n\nTwo details mattered more than I expected:\n\n\n  Use the CLI, not the MCP server. My review agents deliberately have no MCP tools, because MCP tool descriptions eat context before the agent reads a line of code. The GitNexus CLI (analyze --index-only, cypher, check --cycles) gives the same data through a plain shell script, and the agent just reads a text file.\n  The index has to match the code under review. An index of main from yesterday describes the wrong code. The script refreshes the index of the review worktree first: about 30 seconds cold, a few seconds warm, in the background while the scout runs. So it costs nothing on the critical path.\n\n\nOne gotcha cost me an hour: the GitNexus CLI truncates piped output at 64 KB, because the process exits before the pipe drains. Writing stdout to a temp file fixed it. If a CLI’s JSON comes back “unterminated”, check the pipe before you check the parser.\n\nThe file also carries its own warnings, because static call graphs have blind spots. A call through a Protocol, a callback, or a registry is often missing, so an empty caller list is a lower bound, not proof there are no callers.\n\nLesson 3: “batch your tool calls” is not an instruction the model follows\n\nI also added a polite line to both agents: collect everything you need, then fetch it all in one message with parallel tool calls.\n\nThen I measured the first real run, a 16,000-line diff split into seven slices:\n\n\n  \n    \n       \n      calls per turn\n    \n  \n  \n    \n      old bugs reviewer\n      1.05\n    \n    \n      new bugs slices\n      1.00 to 1.33\n    \n  \n\n\nEssentially no change. The agents did chain commands with ; inside a single shell call, which is half a batch, but they still thought, fetched, thought, fetched.\n\nA suggestion didn’t change the behaviour, so I rewrote it as a procedure with a violation clause: turn 1 reads every input in parallel; turn 2 lists every lookup and emits them all at once as separate tool calls; at most two more fetch turns after that; “a turn with a single tool call while more reads are foreseeable is a violation”. Anything the agent couldn’t afford to check goes into an unverified: list instead of being fetched one at a time.\n\nI haven’t measured that version yet. Prompts are hypotheses until the transcripts say otherwise.\n\n–page-break–\n\nLesson 4: splitting moves the bottleneck, it doesn’t remove it\n\nThe good news: a 16,000-line diff finished at all. The old single reviewer had never run on anything over 6,000 lines. At that size it would likely have run out of context or taken a quarter of an hour. Seven slices in parallel meant the bugs stage took as long as the slowest slice, about seven minutes.\n\nThe less good news came in two parts.\n\nPer line, the new slices weren’t faster. Slices of 1,300 to 2,200 lines had a median of about 170 seconds. The old reviewer’s median on diffs of 800 to 2,500 lines was 106 seconds. Smaller inputs don’t help much when the cost is thinking per turn.\n\nThe bottleneck moved. I had sliced bugs seven ways but left reach as a single agent over the whole 16,000 lines. It became the longest-running agent: 31 serial turns, still going after six minutes, reading whole files. Every time you parallelise part of a pipeline, look at what’s now at the back of the queue.\n\nSo reach gets sliced too, with the same groups. Each slice sees the whole diff for context but only reports problems that start in its own slice.\n\nLesson 5: parallelism has a ceiling, and it’s the API\n\nMid-run, the terminal started showing this:\n\n429 {\"detail\":\"Rate limited. Retry after 0.4s\"} · Retrying in 17s · attempt 7/10\n\n\nI had caused it. To make the review faster I’d also pipelined the verifiers: instead of waiting for all reviewers to finish, each reviewer’s findings went to verifiers the moment it reported. Add seven bug slices and a reach agent, and the session peaked at 17 agents running at once, 34 over the whole run. 26 of them hit a 429 at some point. One verifier that normally takes about 150 seconds took 621, mostly waiting to retry.\n\nParallelism works until you hit the rate limit. Past that point, extra concurrency just turns into retry backoff.\n\nThe fix is a cap, not less parallelism:\n\n\n  at most 8 agents in flight, reviewers and verifiers together;\n  one queue: reviewers first, longest first (bug and reach slices, then the rest), verifiers behind any reviewer that hasn’t started yet;\n  fewer, fatter slices: at most three groups of 2,000 to 4,000 lines, so the two bug agents use at most six slots;\n  if a 429 still shows up, drop the cap to 6 for the rest of the run.\n\n\n\nThe pipeline after all the changes: split reviewers, a pre-built call graph, and one capped queue. Interactive version\n\nI deliberately did not batch several findings into one verifier. The point of a verifier is an independent judgement of one claim. Grading a list invites the first answer to anchor the rest. I’d rather queue them than lose that independence.\n\nEight is a guess. The real limit depends on the account, and the next run will tell me whether it’s right.\n\n\n\nThe shared pattern\n\nEvery lesson here is the same one wearing different clothes: the thing you think is expensive usually isn’t.\n\n\n  I thought the tools were slow; it was the model’s turns.\n  I thought a smaller diff would make each slice faster; the cost was thinking per turn, not reading.\n  I thought an instruction would change behaviour; the numbers said it didn’t.\n  I thought more parallelism was free; the API disagreed.\n\n\nNone of these were visible from the terminal. All of them were visible in the transcripts. The most valuable thing I built wasn’t the call graph or the split agent. It was the fifty-line script that turned transcripts into a table, because it let me check every change against the old numbers.\n\n\n\nWhat’s still open\n\n\n  The hard batching rule is written and unmeasured. If calls per turn don’t move off ~1.1, the next lever is fewer, deeper turns rather than more parallel calls.\n  The concurrency cap of 8 is an estimate. One clean run without a 429 will confirm it; another 429 means 6.\n  Sliced reach should remove the new bottleneck. The comparison to make is total review time on a similar-sized diff, not per-agent time.\n\n\nThe next large diff will answer all three. Until then, these are hypotheses, not results.\n",
+            "wordCount": 1731,
             "inLanguage": "en",
-            "dateCreated": "2026-09-29/",
-            "datePublished": "2026-09-29/",
-            "dateModified": "2026-09-29/",
+            "dateCreated": "2026-09-29T10:00:00+00:00",
+            "datePublished": "2026-09-29T10:00:00+00:00",
+            "dateModified": "2026-11-06T00:00:00+00:00",
             "author": {
                 "@type": "Person",
-                "name": "Thiago Rossener",
-                
-                "image": "/assets/img/uploads/profile.png",
-                
-                "jobTitle": "Chief Editor",
-                "url": "https://yvettetsai22.github.io/blog/authors/thiagorossener/",
-                "sameAs": [
-                    "https://github.com/thiagorossener","https://www.facebook.com/thiagorossener","https://twitter.com/thiagorossener","https://medium.com/@thiagorossener","https://www.instagram.com/thiagorossener","https://www.linkedin.com/in/thiagorossener"
-                ]
+                "name": "Yvette Tsai",
+                "image": "https://yvettetsai22.github.io/blog/assets/img/uploads/profile.JPG",
+                "jobTitle": "Senior AI Engineer",
+                "url": "https://yvettetsai22.github.io/blog/authors/yvetteTsai/",
+                "sameAs": ["https://github.com/yvetteTsai22","https://www.linkedin.com/in/mingchuantsai222"]
             },
             "publisher": {
                 "@type": "Organization",
@@ -858,11 +672,11 @@ The next large diff will answer all three. Until then, these are hypotheses, not
                 "logo": {
                     "@type": "ImageObject",
                     "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
-                    "width": "600",
-                    "height": "315"
+                    "width": 600,
+                    "height": 315
                 }
             },
-            "mainEntityOfPage": "True",
+            "mainEntityOfPage": "https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/",
             "genre": "agents",
             "articleSection": "agents",
             "keywords": ["ai-agents","claude-code","code-review","multi-agent","performance","rate-limiting"]

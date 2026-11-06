@@ -18,7 +18,7 @@
     
 
     <title>Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild | YY AI</title>
-    <meta name="description" content="Setting up a greenfield repo for a coding agent: what we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.">
+    <meta name="description" content="Greenfield repo setup for coding agents: the scaffold we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.">
     
         <meta name="keywords" content="ai-agents, multi-agent">
     
@@ -27,21 +27,20 @@
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild | YY AI">
-    <meta name="twitter:description" content="Setting up a greenfield repo for a coding agent: what we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.">
+    <meta name="twitter:description" content="Greenfield repo setup for coding agents: the scaffold we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.">
 
-    
-        <meta property="twitter:image" content="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=2670&auto=format&fit=crop">
-    
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=2670&auto=format&fit=crop">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="https://yvettetsai22.github.io/blog/greenfield-repo-for-coding-agents/">
     <meta property="og:title" content="Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild | YY AI">
     <meta property="og:image" content="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=2670&auto=format&fit=crop">
-    <meta property="og:description" content="Setting up a greenfield repo for a coding agent: what we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.">
+    <meta property="og:description" content="Greenfield repo setup for coding agents: the scaffold we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.">
     <meta property="og:site_name" content="YY AI | AI with Yvette Tsai">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-11-03T16:16:57+00:00">
+    
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/blog/assets/img/icons/favicon-96x96.png" sizes="96x96" />
@@ -58,7 +57,9 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
+    
     <link rel="canonical" href="https://yvettetsai22.github.io/blog/greenfield-repo-for-coding-agents/">
+    
     <link rel="alternate" type="application/rss+xml" title="YY AI | AI with Yvette Tsai" href="https://yvettetsai22.github.io/blog/feed.xml" />
 
     <!-- Include extra styles -->
@@ -102,13 +103,13 @@
     <a id="menu" role="button">
         <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
     </a>
-    <h1 class="logo">
+    <div class="logo">
         <a href="/blog/">
             
                 YY AI <span class="version">v3.1.1</span>
             
         </a>
-    </h1>
+    </div>
     <a id="search" class="dosearch" role="button">
         <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
     </a>
@@ -182,7 +183,7 @@ November 3, 2026
                 <p class="post-subtitle">Whatever you don't decide before the first ticket, the agent decides for you.</p>
 
                 
-                    <img src="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=2670&auto=format&fit=crop" alt="Featured image" class="post-cover">
+                    <img src="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=2670&auto=format&fit=crop" alt="Before the Agent&#39;s First Ticket: What We Put in an Empty Repo So It Wouldn&#39;t Go Wild" class="post-cover">
                 
 
                 <!-- Pagination links -->
@@ -330,18 +331,9 @@ November 3, 2026
                         
                         
                             <li>
-                                <a href="/blog/everything-returned-true-debugging-silent-failures/">
-                                    
-                                        <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop">
-                                    
-                                    <h3>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</h3>
-                                </a>
-                            </li>
-                        
-                            <li>
                                 <a href="/blog/what-ai-reviewers-could-not-see/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop">
+                                        <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop" alt="My AI Reviewers Said Clean. My Colleagues Didn&#39;t.">
                                     
                                     <h3>My AI Reviewers Said Clean. My Colleagues Didn't.</h3>
                                 </a>
@@ -350,9 +342,18 @@ November 3, 2026
                             <li>
                                 <a href="/blog/bing-custom-search-api/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270">
+                                        <img src="https://images.unsplash.com/photo-1729860646472-74e178283483?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=3270" alt="Getting Started with Bing Custom Search API">
                                     
                                     <h3>Getting Started with Bing Custom Search API</h3>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
+                                    
+                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK">
+                                    
+                                    <h3>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</h3>
                                 </a>
                             </li>
                         
@@ -387,7 +388,7 @@ November 3, 2026
     <a href="/blog/everything-returned-true-debugging-silent-failures/" class="post-preview">
         <div class="image">
             
-                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=800&auto=format&fit=crop" alt="Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature">
             
         </div>
         <h3 class="title">Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature</h3>
@@ -406,7 +407,7 @@ November 3, 2026
 
         <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Setting up a greenfield repo for a coding agent: what we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.&quot;%20https://yvettetsai22.github.io/greenfield-repo-for-coding-agents/%20via%20&#64;&hashtags=ai-agents,multi-agent"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Greenfield repo setup for coding agents: the scaffold we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.&quot;%20https://yvettetsai22.github.io/greenfield-repo-for-coding-agents/%20via%20&#64;&hashtags=ai-agents,multi-agent"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
@@ -544,18 +545,15 @@ November 3, 2026
   "url": "https://yvettetsai22.github.io/blog/",
   "logo": {
       "@type": "ImageObject",
-      "url": "https://yvettetsai22.github.io/blog/assets/img/icons/mediumtile.png",
-      "width": "600",
-      "height": "315"
+      "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
+      "width": 600,
+      "height": 315
   },
   "sameAs": [
     "https://github.com/yvetteTsai22","https://medium.com/@tsaimc2","https://www.linkedin.com/in/mingchuantsai222"
   ]
 }
 </script>
-
-<!-- Include the script that allows Netlify CMS login -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- Include the website scripts -->
 <script src="/blog/assets/js/scripts.min.js"></script>
@@ -574,154 +572,34 @@ November 3, 2026
         
         
         
+        
+        
+        
+        
+        
+        
         <script type="application/ld+json">
         {
-            "@context": "http://schema.org",
+            "@context": "https://schema.org",
             "@type": "BlogPosting",
             "name": "Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild",
-            "headline": "Whatever you don't decide before the first ticket, the agent decides for you.",
-            "description": "Setting up a greenfield repo for a coding agent: what we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.",
+            "headline": "Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild",
+            "description": "Greenfield repo setup for coding agents: the scaffold we committed before the first ticket so it wouldn't pick its own stack, and what that couldn't stop.",
             "image": "https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=2670&auto=format&fit=crop",
             "url": "https://yvettetsai22.github.io/blog/greenfield-repo-for-coding-agents/",
-            "articleBody": "Before the agent’s first ticket, we were not worried that it would get stuck. We were worried that it would go wild.
-
-Picture the repo from the agent’s side. It clones, opens the root, and finds nothing. No framework to follow, no component to copy, no test to imitate. In an existing repo the agent copies your code. In an empty one, it falls back on its own defaults.
-
-Its defaults are not your team’s defaults. Ask for a GenAI feature and you may get raw requests calls to an LLM API instead of the framework your team uses. Ask for a screen and you get the generic AI-generated look, instead of the component library your front-end engineers know.
-
-
-  Rule: Whatever you don’t decide before the first ticket, the agent decides for you. If your repo doesn’t name your team’s LLM framework, whether it’s LangGraph or ADK, and your component library, the agent will pick its own.
-
-
-
-
-We were about to put an agent in exactly that repo. We run an in-house cloud coding agent: a ticket goes in, a PR comes out, a human reviews it. Until then it had only worked in repos that already had code. This time we wanted a pitch POC built from zero, as fast as possible. So before any ticket, we decided to commit a scaffold.
-
-Two commits before the agent touched anything
-
-That was the whole human setup:
-
-
-  a monorepo with the languages, package managers and versions pinned: Node and pnpm for TypeScript, Python and uv for the API
-  lock files for both
-  one command to set up and one to check (lint, format, typecheck), plus CI that runs it on every PR
-  a design-system package with its own AGENTS.md
-  a root AGENTS.md with a short list of hard rules
-  the specs (story spec, system spec, a “current slice” doc) and seed demo data, committed to the repo
-
-
-The rules in AGENTS.md were blunt:
-
-
-  Use only the listed tools. Never npm or yarn, never pip or poetry.
-  Read the slice doc first, on every ticket.
-  Never edit the specs or the seed data.
-  Build UI only from design-system components. If one is missing, add it to the design system.
-
-
-Every rule maps to a choice the agent would otherwise have made by itself.
-
-About an hour after the scaffold landed, the agent opened its first PR. By the end, 50 of its 53 PRs were merged.
-
-The scaffold worked. To keep that from being a one-off, I went back through the repo afterwards and asked of each piece: why is this here, and did it have to be?
-
-By the end it boiled down to six things. They spell a word worth checking before any first ticket.
-
-What each piece decides, so the agent doesn’t
-
-Here is where each piece comes into play during one agent run:
-
-
-
-Most of it was obvious. A few pieces were not what I assumed.
-
-The lock file isn’t about speed. I asked what I thought was a simple question: isn’t the image built once and reused? Then a lock file only matters the first time.
-
-That’s not how it works. The image is reused, but every agent run starts in a fresh container and installs again. Without a lock file, every install resolves versions again. Two tickets on the same day can get different versions, and CI can get a third set. When a test goes red, you can’t tell if it’s the code or a package that shipped yesterday.
-
-You can write the versions down in a spec. That only pins what you list.
-
-
-  A spec can name the version. Only a lock file can freeze it.
-
-
-The warm image is what makes runs fast. If you want speed, bake the dependencies into the agent’s image. That doesn’t replace the lock file: the image is a snapshot, the agent still resets to the latest branch, and CI doesn’t use the image at all. Warm image solves speed. Lock file solves consistency. You want both.
-
-The specs belong in the repo. Our agent runs in an isolated container with no access to our wiki. Plenty of agents can reach a wiki, a memory tool or a detailed ticket, and that context helps. But it is per ticket and it moves: one ticket links the spec, the next one forgets, and the wiki page changes under a run that’s already going. The repo is the one place every run is guaranteed to read, at the same version. Every question the repo doesn’t answer, the agent answers with a guess.
-
-In a greenfield repo the specs and AGENTS.md are what keep parallel agent runs consistent with each other, because there’s no existing code for them to agree on. If you already have a CLAUDE.md, that works too: our agent reads AGENTS.md first and falls back to CLAUDE.md. Ours was a one-line CLAUDE.md that pointed at AGENTS.md.
-
-Tests weren’t there on day one. The first check only linted and typechecked. The agent added tests in its very first PR, which means it also decided what the tests looked like. That worked out, but it’s one more choice we handed over without meaning to. I’d now ship one passing test per app in the scaffold.
-
-Why not let the agent write the scaffold? It’s tempting: one more ticket, “set up the repo”. But the scaffold is the set of decisions. Hand that ticket over and you’ve let the agent decide everything at once, which is the thing we were trying to avoid.
-
-What the scaffold couldn’t stop
-
-The scaffold kept the stack and the UI on rails. It didn’t fix the parts that were never in the repo.
-
-
-  Design changes from outside. The designer’s Figma export landed as a restyle, and one agent PR became obsolete overnight. The design system only helps if it’s where the design changes too.
-  Review was the bottleneck. The agent opened chains of stacked PRs overnight. Some waited around 20 hours for a human, then had to be rebased onto each other by hand.
-  Infra stayed human. Deploy, cloud resources and secrets were all done by people. The agent has no cloud access, and it shouldn’t.
-
-
-None of these are repo problems. They’re the human side of the loop. The scaffold keeps the agent on rails. It doesn’t build the rails for the humans.
-
-Before the next empty repo
-
-We wanted a POC fast and an agent that wouldn’t go wild. What got us both was not a cleverer prompt but six decisions, written down and committed before the first ticket.
-
-
-  The agent will fill an empty repo either way. The scaffold decides whose choices go in.
-
-
-Before you assign the first ticket, open the repo as the agent would. If you can’t tell what stack to use, neither can it.
-
-Here’s the list I use now. The must-haves spell STACKS:
-
-Must have
-
-
-  Stack decided, with languages, package managers and versions pinned, including the UI component library if there’s UI
-  Tests: at least one passing test per app or package
-  AGENTS.md: the stack, the commands, the allowed tools, the files the agent must not edit
-  Commands: one documented command to set up and one to check (lint, format, typecheck, tests). make is optional; one entry point that the agent and CI share is not
-  Kickoff commit on the default branch (the agent clones it; a truly empty repo can’t even start)
-  Specs committed to the repo, and secrets kept out of it, with settings documented in an example env file
-
-
-Strongly recommended
-
-
-  Lock files committed, and CI installing in frozen/locked mode
-  CI running the check on every PR, required by branch protection
-  A design system, if there’s UI, with an “only these components” rule
-
-
-Later
-
-
-  A warm image, once the dependencies settle down
-
-
-Before the first ticket, check your STACKS. Whatever’s missing, the agent will fill in.
-",
-            "wordcount": "1450",
+            "articleBody": "Before the agent’s first ticket, we were not worried that it would get stuck. We were worried that it would go wild.\n\nPicture the repo from the agent’s side. It clones, opens the root, and finds nothing. No framework to follow, no component to copy, no test to imitate. In an existing repo the agent copies your code. In an empty one, it falls back on its own defaults.\n\nIts defaults are not your team’s defaults. Ask for a GenAI feature and you may get raw requests calls to an LLM API instead of the framework your team uses. Ask for a screen and you get the generic AI-generated look, instead of the component library your front-end engineers know.\n\n\n  Rule: Whatever you don’t decide before the first ticket, the agent decides for you. If your repo doesn’t name your team’s LLM framework, whether it’s LangGraph or ADK, and your component library, the agent will pick its own.\n\n\n\n\nWe were about to put an agent in exactly that repo. We run an in-house cloud coding agent: a ticket goes in, a PR comes out, a human reviews it. Until then it had only worked in repos that already had code. This time we wanted a pitch POC built from zero, as fast as possible. So before any ticket, we decided to commit a scaffold.\n\nTwo commits before the agent touched anything\n\nThat was the whole human setup:\n\n\n  a monorepo with the languages, package managers and versions pinned: Node and pnpm for TypeScript, Python and uv for the API\n  lock files for both\n  one command to set up and one to check (lint, format, typecheck), plus CI that runs it on every PR\n  a design-system package with its own AGENTS.md\n  a root AGENTS.md with a short list of hard rules\n  the specs (story spec, system spec, a “current slice” doc) and seed demo data, committed to the repo\n\n\nThe rules in AGENTS.md were blunt:\n\n\n  Use only the listed tools. Never npm or yarn, never pip or poetry.\n  Read the slice doc first, on every ticket.\n  Never edit the specs or the seed data.\n  Build UI only from design-system components. If one is missing, add it to the design system.\n\n\nEvery rule maps to a choice the agent would otherwise have made by itself.\n\nAbout an hour after the scaffold landed, the agent opened its first PR. By the end, 50 of its 53 PRs were merged.\n\nThe scaffold worked. To keep that from being a one-off, I went back through the repo afterwards and asked of each piece: why is this here, and did it have to be?\n\nBy the end it boiled down to six things. They spell a word worth checking before any first ticket.\n\nWhat each piece decides, so the agent doesn’t\n\nHere is where each piece comes into play during one agent run:\n\n\n\nMost of it was obvious. A few pieces were not what I assumed.\n\nThe lock file isn’t about speed. I asked what I thought was a simple question: isn’t the image built once and reused? Then a lock file only matters the first time.\n\nThat’s not how it works. The image is reused, but every agent run starts in a fresh container and installs again. Without a lock file, every install resolves versions again. Two tickets on the same day can get different versions, and CI can get a third set. When a test goes red, you can’t tell if it’s the code or a package that shipped yesterday.\n\nYou can write the versions down in a spec. That only pins what you list.\n\n\n  A spec can name the version. Only a lock file can freeze it.\n\n\nThe warm image is what makes runs fast. If you want speed, bake the dependencies into the agent’s image. That doesn’t replace the lock file: the image is a snapshot, the agent still resets to the latest branch, and CI doesn’t use the image at all. Warm image solves speed. Lock file solves consistency. You want both.\n\nThe specs belong in the repo. Our agent runs in an isolated container with no access to our wiki. Plenty of agents can reach a wiki, a memory tool or a detailed ticket, and that context helps. But it is per ticket and it moves: one ticket links the spec, the next one forgets, and the wiki page changes under a run that’s already going. The repo is the one place every run is guaranteed to read, at the same version. Every question the repo doesn’t answer, the agent answers with a guess.\n\nIn a greenfield repo the specs and AGENTS.md are what keep parallel agent runs consistent with each other, because there’s no existing code for them to agree on. If you already have a CLAUDE.md, that works too: our agent reads AGENTS.md first and falls back to CLAUDE.md. Ours was a one-line CLAUDE.md that pointed at AGENTS.md.\n\nTests weren’t there on day one. The first check only linted and typechecked. The agent added tests in its very first PR, which means it also decided what the tests looked like. That worked out, but it’s one more choice we handed over without meaning to. I’d now ship one passing test per app in the scaffold.\n\nWhy not let the agent write the scaffold? It’s tempting: one more ticket, “set up the repo”. But the scaffold is the set of decisions. Hand that ticket over and you’ve let the agent decide everything at once, which is the thing we were trying to avoid.\n\nWhat the scaffold couldn’t stop\n\nThe scaffold kept the stack and the UI on rails. It didn’t fix the parts that were never in the repo.\n\n\n  Design changes from outside. The designer’s Figma export landed as a restyle, and one agent PR became obsolete overnight. The design system only helps if it’s where the design changes too.\n  Review was the bottleneck. The agent opened chains of stacked PRs overnight. Some waited around 20 hours for a human, then had to be rebased onto each other by hand.\n  Infra stayed human. Deploy, cloud resources and secrets were all done by people. The agent has no cloud access, and it shouldn’t.\n\n\nNone of these are repo problems. They’re the human side of the loop. The scaffold keeps the agent on rails. It doesn’t build the rails for the humans.\n\nBefore the next empty repo\n\nWe wanted a POC fast and an agent that wouldn’t go wild. What got us both was not a cleverer prompt but six decisions, written down and committed before the first ticket.\n\n\n  The agent will fill an empty repo either way. The scaffold decides whose choices go in.\n\n\nBefore you assign the first ticket, open the repo as the agent would. If you can’t tell what stack to use, neither can it.\n\nHere’s the list I use now. The must-haves spell STACKS:\n\nMust have\n\n\n  Stack decided, with languages, package managers and versions pinned, including the UI component library if there’s UI\n  Tests: at least one passing test per app or package\n  AGENTS.md: the stack, the commands, the allowed tools, the files the agent must not edit\n  Commands: one documented command to set up and one to check (lint, format, typecheck, tests). make is optional; one entry point that the agent and CI share is not\n  Kickoff commit on the default branch (the agent clones it; a truly empty repo can’t even start)\n  Specs committed to the repo, and secrets kept out of it, with settings documented in an example env file\n\n\nStrongly recommended\n\n\n  Lock files committed, and CI installing in frozen/locked mode\n  CI running the check on every PR, required by branch protection\n  A design system, if there’s UI, with an “only these components” rule\n\n\nLater\n\n\n  A warm image, once the dependencies settle down\n\n\nBefore the first ticket, check your STACKS. Whatever’s missing, the agent will fill in.\n",
+            "wordCount": 1450,
             "inLanguage": "en",
-            "dateCreated": "2026-11-03/",
-            "datePublished": "2026-11-03/",
-            "dateModified": "2026-11-03/",
+            "dateCreated": "2026-11-03T16:16:57+00:00",
+            "datePublished": "2026-11-03T16:16:57+00:00",
+            "dateModified": "2026-11-06T00:00:00+00:00",
             "author": {
                 "@type": "Person",
-                "name": "Thiago Rossener",
-                
-                "image": "/assets/img/uploads/profile.png",
-                
-                "jobTitle": "Chief Editor",
-                "url": "https://yvettetsai22.github.io/blog/authors/thiagorossener/",
-                "sameAs": [
-                    "https://github.com/thiagorossener","https://www.facebook.com/thiagorossener","https://twitter.com/thiagorossener","https://medium.com/@thiagorossener","https://www.instagram.com/thiagorossener","https://www.linkedin.com/in/thiagorossener"
-                ]
+                "name": "Yvette Tsai",
+                "image": "https://yvettetsai22.github.io/blog/assets/img/uploads/profile.JPG",
+                "jobTitle": "Senior AI Engineer",
+                "url": "https://yvettetsai22.github.io/blog/authors/yvetteTsai/",
+                "sameAs": ["https://github.com/yvetteTsai22","https://www.linkedin.com/in/mingchuantsai222"]
             },
             "publisher": {
                 "@type": "Organization",
@@ -730,11 +608,11 @@ Before the first ticket, check your STACKS. Whatever’s missing, the agent will
                 "logo": {
                     "@type": "ImageObject",
                     "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
-                    "width": "600",
-                    "height": "315"
+                    "width": 600,
+                    "height": 315
                 }
             },
-            "mainEntityOfPage": "True",
+            "mainEntityOfPage": "https://yvettetsai22.github.io/blog/greenfield-repo-for-coding-agents/",
             "genre": "agents",
             "articleSection": "agents",
             "keywords": ["ai-agents","multi-agent"]

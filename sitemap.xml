@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
+    
+    
+    
         <url>
             <loc>https://yvettetsai22.github.io/blog/about/</loc>
             
@@ -9,13 +12,9 @@
             
         </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/agents/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
+    
+    
+    
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/contact/</loc>
@@ -25,29 +24,13 @@
             
         </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/debugging/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/feed.xml</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/guides/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
+    
+    
+    
+    
+    
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/</loc>
@@ -57,160 +40,85 @@
             
         </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/life/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/contact/message-sent/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/category/patterns/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/assets/css/preview.css</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/search.json</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/sitemap.xml</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/staff/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/assets/css/styles.css</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/tags/</loc>
-            
-                <changefreq>monthly</changefreq>
-                <priority>0.5</priority>
-            
-        </url>
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/greenfield-repo-for-coding-agents/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
-            <lastmod>2026-11-03</lastmod>
+            <lastmod>2026-11-06</lastmod>
         </url>
+    
+    
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/what-ai-reviewers-could-not-see/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
-            <lastmod>2026-10-30</lastmod>
+            <lastmod>2026-11-06</lastmod>
         </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/</loc>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-            <lastmod>2026-09-29</lastmod>
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/2/</loc>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-            <lastmod>2026-09-29</lastmod>
-        </url>
+    
+    
+    
+    
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/speeding-up-multi-agent-code-review-claude-code/view-all/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
-            <lastmod>2026-09-29</lastmod>
+            <lastmod>2026-11-06</lastmod>
         </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/</loc>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-            <lastmod>2026-06-25</lastmod>
-        </url>
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/2/</loc>
-            <changefreq>weekly</changefreq>
-            <priority>0.8</priority>
-            <lastmod>2026-06-25</lastmod>
-        </url>
+    
+    
+    
+    
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/view-all/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
-            <lastmod>2026-06-25</lastmod>
+            <lastmod>2026-11-06</lastmod>
         </url>
+    
+    
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
-            <lastmod>2026-02-22</lastmod>
+            <lastmod>2026-11-06</lastmod>
         </url>
+    
+    
     
         <url>
             <loc>https://yvettetsai22.github.io/blog/bing-custom-search-api/</loc>
             <changefreq>weekly</changefreq>
             <priority>0.8</priority>
-            <lastmod>2023-08-30</lastmod>
+            <lastmod>2026-11-06</lastmod>
         </url>
     
     
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/authors/thiagorossener/</loc>
-            <changefreq>monthly</changefreq>
-            <priority>0.5</priority>
-        </url>
-    
-        <url>
-            <loc>https://yvettetsai22.github.io/blog/authors/yvetteTsai/</loc>
-            <changefreq>monthly</changefreq>
-            <priority>0.5</priority>
-        </url>
     
 </urlset>

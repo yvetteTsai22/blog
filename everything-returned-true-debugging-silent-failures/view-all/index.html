@@ -18,7 +18,7 @@
     
 
     <title>Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature | YY AI</title>
-    <meta name="description" content="A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they rev...">
+    <meta name="description" content="Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.">
     
         <meta name="keywords" content="python, debugging">
     
@@ -27,21 +27,20 @@
     <!-- Social: Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature | YY AI">
-    <meta name="twitter:description" content="A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they rev...">
+    <meta name="twitter:description" content="Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.">
 
-    
-        <meta property="twitter:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop">
-    
-    
-    <!-- Styles -->
-    <link rel="stylesheet" href="/blog/assets/css/styles.css">
+    <meta name="twitter:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop">
 
     <!-- Social: Facebook / Open Graph -->
     <meta property="og:url" content="https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/view-all/">
     <meta property="og:title" content="Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature | YY AI">
     <meta property="og:image" content="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop">
-    <meta property="og:description" content="A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they rev...">
+    <meta property="og:description" content="Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.">
     <meta property="og:site_name" content="YY AI | AI with Yvette Tsai">
+    
+    <meta property="og:type" content="article">
+    <meta property="article:published_time" content="2026-06-25T08:00:00+00:00">
+    
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="/blog/assets/img/icons/favicon-96x96.png" sizes="96x96" />
@@ -58,7 +57,9 @@
     <link href="https://fonts.googleapis.com/css?family=Titillium+Web:300,400,700" rel="stylesheet">
 
     <link rel="stylesheet" href="/blog/assets/css/styles.css">
-    <link rel="canonical" href="https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/view-all/">
+    
+      <link rel="canonical" href="https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/view-all/" />
+    
     <link rel="alternate" type="application/rss+xml" title="YY AI | AI with Yvette Tsai" href="https://yvettetsai22.github.io/blog/feed.xml" />
 
     <!-- Include extra styles -->
@@ -102,13 +103,13 @@
     <a id="menu" role="button">
         <svg id="open" class="icon-menu"><use xlink:href="#icon-menu"></use></svg>
     </a>
-    <h1 class="logo">
+    <div class="logo">
         <a href="/blog/">
             
                 YY AI <span class="version">v3.1.1</span>
             
         </a>
-    </h1>
+    </div>
     <a id="search" class="dosearch" role="button">
         <svg class="icon-search"><use xlink:href="#icon-search"></use></svg>
     </a>
@@ -182,7 +183,7 @@ June 25, 2026
                 <p class="post-subtitle">Six bugs from a day shipping form-panel editing — and the pattern they share.</p>
 
                 
-                    <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop" alt="Featured image" class="post-cover">
+                    <img src="https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop" alt="Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature" class="post-cover">
                 
 
                 <!-- Pagination links -->
@@ -334,29 +335,29 @@ June 25, 2026
                         
                         
                             <li>
-                                <a href="/blog/greenfield-repo-for-coding-agents/">
+                                <a href="/blog/speeding-up-multi-agent-code-review-claude-code/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1519143009590-e3800b9df468?q=80&w=800&auto=format&fit=crop">
+                                        <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop" alt="Speeding Up a Multi-Agent Code Review in Claude Code">
                                     
-                                    <h3>Before the Agent's First Ticket: What We Put in an Empty Repo So It Wouldn't Go Wild</h3>
-                                </a>
-                            </li>
-                        
-                            <li>
-                                <a href="/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
-                                    
-                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D">
-                                    
-                                    <h3>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</h3>
+                                    <h3>Speeding Up a Multi-Agent Code Review in Claude Code</h3>
                                 </a>
                             </li>
                         
                             <li>
                                 <a href="/blog/what-ai-reviewers-could-not-see/">
                                     
-                                        <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop">
+                                        <img src="https://images.unsplash.com/photo-1775163024488-e88e4a71179f?q=80&w=800&auto=format&fit=crop" alt="My AI Reviewers Said Clean. My Colleagues Didn&#39;t.">
                                     
                                     <h3>My AI Reviewers Said Clean. My Colleagues Didn't.</h3>
+                                </a>
+                            </li>
+                        
+                            <li>
+                                <a href="/blog/level-up-your-llm-observability-a-hands-on-guide-to-manual-instrumentation-with-google-adk/">
+                                    
+                                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=2670&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK">
+                                    
+                                    <h3>Level Up Your LLM Observability: A Hands-on Guide to Manual Instrumentation with Google ADK</h3>
                                 </a>
                             </li>
                         
@@ -391,7 +392,7 @@ June 25, 2026
     <a href="/blog/speeding-up-multi-agent-code-review-claude-code/" class="post-preview">
         <div class="image">
             
-                <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop">
+                <img src="https://images.unsplash.com/photo-1611147533125-9ca445f32036?q=80&w=800&auto=format&fit=crop" alt="Speeding Up a Multi-Agent Code Review in Claude Code">
             
         </div>
         <h3 class="title">Speeding Up a Multi-Agent Code Review in Claude Code</h3>
@@ -410,7 +411,7 @@ June 25, 2026
 
         <section class="share">
     <h3>Share</h3>
-    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they reveal about building on LLM infrastructure.&quot;%20https://yvettetsai22.github.io/everything-returned-true-debugging-silent-failures/view-all/%20via%20&#64;&hashtags=python,debugging"
+    <a aria-label="Share on Twitter" href="https://twitter.com/intent/tweet?text=&quot;Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.&quot;%20https://yvettetsai22.github.io/everything-returned-true-debugging-silent-failures/view-all/%20via%20&#64;&hashtags=python,debugging"
     onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;" title="Share on Twitter">
         <svg class="icon icon-twitter"><use xlink:href="#icon-twitter"></use></svg>
     </a>
@@ -548,18 +549,15 @@ June 25, 2026
   "url": "https://yvettetsai22.github.io/blog/",
   "logo": {
       "@type": "ImageObject",
-      "url": "https://yvettetsai22.github.io/blog/assets/img/icons/mediumtile.png",
-      "width": "600",
-      "height": "315"
+      "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
+      "width": 600,
+      "height": 315
   },
   "sameAs": [
     "https://github.com/yvetteTsai22","https://medium.com/@tsaimc2","https://www.linkedin.com/in/mingchuantsai222"
   ]
 }
 </script>
-
-<!-- Include the script that allows Netlify CMS login -->
-<script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
 
 <!-- Include the website scripts -->
 <script src="/blog/assets/js/scripts.min.js"></script>
@@ -578,158 +576,34 @@ June 25, 2026
         
         
         
+        
+        
+        
+        
+        
+        
         <script type="application/ld+json">
         {
-            "@context": "http://schema.org",
+            "@context": "https://schema.org",
             "@type": "BlogPosting",
             "name": "Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature",
-            "headline": "Six bugs from a day shipping form-panel editing — and the pattern they share.",
-            "description": "A retrospective on building a form-edit feature for an AI forecasting chatbot. Six bugs that didn't crash — they just quietly did nothing — and what they reveal about building on LLM infrastructure.",
+            "headline": "Everything Returned True: Debugging Silent Failures in an AI Chatbot Feature",
+            "description": "Six silent failures in an LLM chatbot feature: bugs that didn't crash, just quietly did nothing, and what they reveal about building on LLM infrastructure.",
             "image": "https://images.unsplash.com/photo-1555949963-ff9fe0c870eb?q=80&w=2670&auto=format&fit=crop",
             "url": "https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/view-all/",
-            "articleBody": "The most dangerous bug is the one that doesn’t crash.
-
-Today I shipped a form-panel editing feature for a forecasting chatbot. Users can now edit time slots directly from the UI without typing natural language commands — the feature routes all edits through a new /update-slots command that reuses the same validation guards as the chat path.
-
-What shipped: run_slot_update() extracted as a shared function, UpdateSlotsCommand with 12/12 tests green, and a WebSocket handler refactored from 218 down to 132 lines with _handle_form_edit deleted entirely.
-
-At every step, bugs that didn’t fail loudly. They just quietly did nothing, returned the wrong thing, or stored data in a format that looked fine until you looked closely.
-
-Here are six of them.
-
-–page-break–
-
-Bug 1: _apply_replace always returned True
-
-_merge_slot_entries called _apply_replace to detect whether a slot value had changed. The function compared nothing. It returned True unconditionally.
-
-This meant the “no changes detected” early-return in run_slot_update never fired — any update, even one with identical values, passed through as a real change. Tests that expected the guard to catch no-ops were passing for the wrong reason.
-
-# Before: unconditional return
-def _apply_replace(slot, new_value):
-    slot.value = new_value
-    return True  # always &quot;changed&quot;
-
-# After: compare first
-def _apply_replace(slot, new_value):
-    if slot.value == new_value:
-        return False
-    slot.value = new_value
-    return True
-
-
-A function named “apply” and a function named “detect change” are different functions. When they share a body, one of them lies.
-
-
-  Rule: Verify the postcondition, not just the return value. Check what actually changed in the data, not what the return value claimed.
-
-
-Bug 2: SlotEntry can’t hold what the form sends
-
-The task brief assumed all form edits could route through SlotEntry. But SlotEntry.values is typed str | int | float | list[str|int|float] | None. Constraint and property values from the form panel are already in API format — they’re dicts.
-
-Pydantic rejects them. No crash in all conditions, just a silent coercion failure that surfaces downstream when the wrong shape reaches the guards.
-
-The fix was a dual-path: a _coerce_to_slot_entry_values() helper that tries the SlotEntry path first; if it returns None, falls through to a direct-apply path that runs guards manually against the raw value.
-
-
-  Rule: “Just pass it through” is never a safe assumption across a type boundary. Verify the schema on both sides before assuming one shape can traverse both.
-
-
-Bug 3: delta was a variable that didn’t exist
-
-The plan template referenced delta.get(&quot;validation_errors&quot;) in the WebSocket handler. In the actual codebase, there is no delta alias — the correct reference is event.actions.state_delta.
-
-The template was written from memory of how the code should look, not how it did. Variable names don’t survive translation from a planning document into a codebase.
-
-
-  Rule: Always verify variable names by reading the actual function context. Plans drift. Code has scope.
-
-
-Bug 4: Passthrough fallbacks are where schema bugs hide
-
-This was the hardest one. The natural-language path and the UI form path used different schemas for the same constraint data.
-
-The NL path produces:
-
-{
-  &quot;dimensions&quot;: [{ &quot;index&quot;: 1, &quot;values&quot;: [&quot;UK&quot;] }],
-  &quot;max_spend&quot;: 1000
-}
-
-
-The UI modal was sending:
-
-{
-  &quot;dims&quot;: [{ &quot;dimIndex&quot;: &quot;1&quot;, &quot;value&quot;: &quot;UK&quot; }],
-  &quot;min_spend&quot;: 1000
-}
-
-
-slot_merger._decode_constraint_values only handles s-expression strings. When it encountered a raw UI object, it passed it through unchanged — no error, no warning. So dimIndex: &quot;1&quot; got stored verbatim as a string, and “UK” appeared in the constraints panel under the wrong dimension index. Nothing crashed.
-
-The fix was bidirectional translation in ConstraintsEditModal.jsx: useEffect to convert backend shape into UI dims on load, and handleSave to group by Number(dimIndex) and emit the backend dimensions[] shape. Also: explicit empty-field stripping, and Number() casting for React’s string-returning number inputs (a trap that bites every time).
-
-The pattern that enabled this bug: passthrough fallbacks — code that says “I don’t recognize this format, so I’ll return it unchanged.” Silent passthrough is silent data corruption when the shapes don’t match. The merge function saw an object it didn’t understand and cooperated anyway.
-
-
-  Rule: Passthrough is where schema bugs go to hide. Every format boundary needs an explicit translation, not a graceful shrug.
-
-
-Bug 5: The worktree needed npm install
-
-make dev failed with sh: vite: command not found. The fix was npm install. Five seconds.
-
-The cost wasn’t the fix — it was context. I was mid-flow on a different problem when the environment broke. Isolated git worktrees don’t inherit node_modules.
-
-
-  Rule: Bootstrap an isolated environment before you start work, not when it fails at the worst moment.
-
-
-Bug 6: uv run pip install is the wrong command
-
-In a uv-managed Python project, the correct command is uv pip install. Running uv run pip install wraps pip in a subprocess that doesn’t write to the right environment. The install succeeds; the package doesn’t appear where you expect it.
-
-If the repo has uv.lock or .python-version, use uv for everything. The verbs matter.
-
-
-
-The shared pattern
-
-Every bug here had the same structure: code that looked like it was doing the job, returned something that looked like success, and quietly failed to change anything that mattered.
-
-_apply_replace returned True. Passthrough returned the object. Template variables resolved to the wrong name. The wrong schema stored without complaint.
-
-When you’re building on AI infrastructure — LLMs, typed ADK pipelines, multiple API shapes in the same call chain — silent no-ops are especially hard to catch. Nothing crashes. Logs look fine. The assertion just doesn’t fire because the data is subtly wrong three layers up.
-
-The fix is the same every time: verify the postcondition, not just the return value. Check the actual data after the merge. Assert the schema after the translation. Run the test that depends on the guard, not just the guard itself.
-
-
-
-What’s still open
-
-Two items carried out as known unknowns — which is better than the other kind.
-
-The PerformanceAdjustmentsEditModal needs the same dual-path pattern and schema translation as the constraint modal. And the ADK command-dispatch path needs explicit OpenTelemetry execute_tool spans — the LLM-invoked tool path gets them automatically, but command dispatch bypasses that instrumentation entirely and is currently invisible in traces.
-
-Naming the open work matters. A bug you’ve located and deferred is much less dangerous than one you don’t know exists.
-",
-            "wordcount": "1266",
+            "articleBody": "The most dangerous bug is the one that doesn’t crash.\n\nToday I shipped a form-panel editing feature for a forecasting chatbot. Users can now edit time slots directly from the UI without typing natural language commands — the feature routes all edits through a new /update-slots command that reuses the same validation guards as the chat path.\n\nWhat shipped: run_slot_update() extracted as a shared function, UpdateSlotsCommand with 12/12 tests green, and a WebSocket handler refactored from 218 down to 132 lines with _handle_form_edit deleted entirely.\n\nAt every step, bugs that didn’t fail loudly. They just quietly did nothing, returned the wrong thing, or stored data in a format that looked fine until you looked closely.\n\nHere are six of them.\n\n–page-break–\n\nBug 1: _apply_replace always returned True\n\n_merge_slot_entries called _apply_replace to detect whether a slot value had changed. The function compared nothing. It returned True unconditionally.\n\nThis meant the “no changes detected” early-return in run_slot_update never fired — any update, even one with identical values, passed through as a real change. Tests that expected the guard to catch no-ops were passing for the wrong reason.\n\n# Before: unconditional return\ndef _apply_replace(slot, new_value):\n    slot.value = new_value\n    return True  # always \"changed\"\n\n# After: compare first\ndef _apply_replace(slot, new_value):\n    if slot.value == new_value:\n        return False\n    slot.value = new_value\n    return True\n\n\nA function named “apply” and a function named “detect change” are different functions. When they share a body, one of them lies.\n\n\n  Rule: Verify the postcondition, not just the return value. Check what actually changed in the data, not what the return value claimed.\n\n\nBug 2: SlotEntry can’t hold what the form sends\n\nThe task brief assumed all form edits could route through SlotEntry. But SlotEntry.values is typed str | int | float | list[str|int|float] | None. Constraint and property values from the form panel are already in API format — they’re dicts.\n\nPydantic rejects them. No crash in all conditions, just a silent coercion failure that surfaces downstream when the wrong shape reaches the guards.\n\nThe fix was a dual-path: a _coerce_to_slot_entry_values() helper that tries the SlotEntry path first; if it returns None, falls through to a direct-apply path that runs guards manually against the raw value.\n\n\n  Rule: “Just pass it through” is never a safe assumption across a type boundary. Verify the schema on both sides before assuming one shape can traverse both.\n\n\nBug 3: delta was a variable that didn’t exist\n\nThe plan template referenced delta.get(\"validation_errors\") in the WebSocket handler. In the actual codebase, there is no delta alias — the correct reference is event.actions.state_delta.\n\nThe template was written from memory of how the code should look, not how it did. Variable names don’t survive translation from a planning document into a codebase.\n\n\n  Rule: Always verify variable names by reading the actual function context. Plans drift. Code has scope.\n\n\nBug 4: Passthrough fallbacks are where schema bugs hide\n\nThis was the hardest one. The natural-language path and the UI form path used different schemas for the same constraint data.\n\nThe NL path produces:\n\n{\n  \"dimensions\": [{ \"index\": 1, \"values\": [\"UK\"] }],\n  \"max_spend\": 1000\n}\n\n\nThe UI modal was sending:\n\n{\n  \"dims\": [{ \"dimIndex\": \"1\", \"value\": \"UK\" }],\n  \"min_spend\": 1000\n}\n\n\nslot_merger._decode_constraint_values only handles s-expression strings. When it encountered a raw UI object, it passed it through unchanged — no error, no warning. So dimIndex: \"1\" got stored verbatim as a string, and “UK” appeared in the constraints panel under the wrong dimension index. Nothing crashed.\n\nThe fix was bidirectional translation in ConstraintsEditModal.jsx: useEffect to convert backend shape into UI dims on load, and handleSave to group by Number(dimIndex) and emit the backend dimensions[] shape. Also: explicit empty-field stripping, and Number() casting for React’s string-returning number inputs (a trap that bites every time).\n\nThe pattern that enabled this bug: passthrough fallbacks — code that says “I don’t recognize this format, so I’ll return it unchanged.” Silent passthrough is silent data corruption when the shapes don’t match. The merge function saw an object it didn’t understand and cooperated anyway.\n\n\n  Rule: Passthrough is where schema bugs go to hide. Every format boundary needs an explicit translation, not a graceful shrug.\n\n\nBug 5: The worktree needed npm install\n\nmake dev failed with sh: vite: command not found. The fix was npm install. Five seconds.\n\nThe cost wasn’t the fix — it was context. I was mid-flow on a different problem when the environment broke. Isolated git worktrees don’t inherit node_modules.\n\n\n  Rule: Bootstrap an isolated environment before you start work, not when it fails at the worst moment.\n\n\nBug 6: uv run pip install is the wrong command\n\nIn a uv-managed Python project, the correct command is uv pip install. Running uv run pip install wraps pip in a subprocess that doesn’t write to the right environment. The install succeeds; the package doesn’t appear where you expect it.\n\nIf the repo has uv.lock or .python-version, use uv for everything. The verbs matter.\n\n\n\nThe shared pattern\n\nEvery bug here had the same structure: code that looked like it was doing the job, returned something that looked like success, and quietly failed to change anything that mattered.\n\n_apply_replace returned True. Passthrough returned the object. Template variables resolved to the wrong name. The wrong schema stored without complaint.\n\nWhen you’re building on AI infrastructure — LLMs, typed ADK pipelines, multiple API shapes in the same call chain — silent no-ops are especially hard to catch. Nothing crashes. Logs look fine. The assertion just doesn’t fire because the data is subtly wrong three layers up.\n\nThe fix is the same every time: verify the postcondition, not just the return value. Check the actual data after the merge. Assert the schema after the translation. Run the test that depends on the guard, not just the guard itself.\n\n\n\nWhat’s still open\n\nTwo items carried out as known unknowns — which is better than the other kind.\n\nThe PerformanceAdjustmentsEditModal needs the same dual-path pattern and schema translation as the constraint modal. And the ADK command-dispatch path needs explicit OpenTelemetry execute_tool spans — the LLM-invoked tool path gets them automatically, but command dispatch bypasses that instrumentation entirely and is currently invisible in traces.\n\nNaming the open work matters. A bug you’ve located and deferred is much less dangerous than one you don’t know exists.\n",
+            "wordCount": 1266,
             "inLanguage": "en",
-            "dateCreated": "2026-06-25/",
-            "datePublished": "2026-06-25/",
-            "dateModified": "2026-06-25/",
+            "dateCreated": "2026-06-25T08:00:00+00:00",
+            "datePublished": "2026-06-25T08:00:00+00:00",
+            "dateModified": "2026-11-06T00:00:00+00:00",
             "author": {
                 "@type": "Person",
-                "name": "Thiago Rossener",
-                
-                "image": "/assets/img/uploads/profile.png",
-                
-                "jobTitle": "Chief Editor",
-                "url": "https://yvettetsai22.github.io/blog/authors/thiagorossener/",
-                "sameAs": [
-                    "https://github.com/thiagorossener","https://www.facebook.com/thiagorossener","https://twitter.com/thiagorossener","https://medium.com/@thiagorossener","https://www.instagram.com/thiagorossener","https://www.linkedin.com/in/thiagorossener"
-                ]
+                "name": "Yvette Tsai",
+                "image": "https://yvettetsai22.github.io/blog/assets/img/uploads/profile.JPG",
+                "jobTitle": "Senior AI Engineer",
+                "url": "https://yvettetsai22.github.io/blog/authors/yvetteTsai/",
+                "sameAs": ["https://github.com/yvetteTsai22","https://www.linkedin.com/in/mingchuantsai222"]
             },
             "publisher": {
                 "@type": "Organization",
@@ -738,11 +612,11 @@ Naming the open work matters. A bug you’ve located and deferred is much less d
                 "logo": {
                     "@type": "ImageObject",
                     "url": "https://yvettetsai22.github.io/blog/assets/img/blog-image.png",
-                    "width": "600",
-                    "height": "315"
+                    "width": 600,
+                    "height": 315
                 }
             },
-            "mainEntityOfPage": "True",
+            "mainEntityOfPage": "https://yvettetsai22.github.io/blog/everything-returned-true-debugging-silent-failures/view-all/",
             "genre": "debugging",
             "articleSection": "debugging",
             "keywords": ["python","debugging"]
