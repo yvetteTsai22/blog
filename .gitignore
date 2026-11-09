@@ -17,6 +17,7 @@ skills-lock.json
 # Tool recommends - exclude source and node_modules
 _tool-recommends/*/node_modules/
 _tool-recommends/*/build/
+_tool-recommends/*/build-ssr/
 
 # Exclude all _site EXCEPT tool-recommend pages (which are pre-built)
 _site/*

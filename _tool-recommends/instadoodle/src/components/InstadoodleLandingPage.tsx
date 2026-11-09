@@ -55,7 +55,7 @@ export function InstadoodleLandingPage({
       <nav className="nav">
         <div className="wrap nav-row">
           <a href="#" className="logo" aria-label="InstaDoodle home">insta<b>doodle</b></a>
-          <a href={affiliateUrl} className="nav-btn" target="_blank" rel="noopener noreferrer">
+          <a href={affiliateUrl} className="nav-btn" target="_blank" rel="sponsored noopener noreferrer">
             Start Creating →
           </a>
         </div>
@@ -77,7 +77,7 @@ export function InstadoodleLandingPage({
                 Type a description, click Generate — and InstaDoodle's DoodleAI™ engine turns your idea into a professional whiteboard animation in minutes. No drawing. No software. No monthly fee.
               </p>
               <div className="cta-row">
-                <a href={affiliateUrl} className="btn-main pulse" target="_blank" rel="noopener noreferrer">
+                <a href={affiliateUrl} className="btn-main pulse" target="_blank" rel="sponsored noopener noreferrer">
                   Get InstaDoodle Now ✦
                 </a>
                 <a href="#how" className="btn-ghost">See how it works</a>
@@ -396,7 +396,7 @@ export function InstadoodleLandingPage({
               className="btn-main pulse"
               style={{ fontSize: "1.1rem", padding: "18px 36px" }}
               target="_blank"
-              rel="noopener noreferrer"
+              rel="sponsored noopener noreferrer"
             >
               Get InstaDoodle Today →
             </a>
@@ -436,7 +436,7 @@ export function InstadoodleLandingPage({
         <div className="wrap foot-row">
           <a href="#" className="foot-logo">insta<b>doodle</b></a>
           <div className="foot-links">
-            <a href={affiliateUrl} target="_blank" rel="noopener noreferrer">Get Access</a>
+            <a href={affiliateUrl} target="_blank" rel="sponsored noopener noreferrer">Get Access</a>
             <a href="#features">Features</a>
             <a href="#how">How It Works</a>
             <a href="#get">Pricing</a>
