@@ -6,6 +6,11 @@ Read literature-note bodies through Notion MCP only after a pick.
 
 ### After Yvette picks a topic
 
+If Yvette says the topic already has a draft or published article, treat that as a pick to
+repair the records: do not start a second draft. Confirm the existing article's path and slug,
+then link the literature notes to its permanent note and set the statuses to match the actual
+state. If the match is ambiguous, ask before changing records.
+
 1. **Mark the pick.** Through Notion MCP, set `pick_status=挑中` on every literature note of
    that topic (all notes sharing its `topic_of`). Then run `git merge master` once in this
    worktree. If the merge conflicts, stop and tell her; do not resolve it yourself.
@@ -13,6 +18,8 @@ Read literature-note bodies through Notion MCP only after a pick.
    `status=Reviewed`, `blog status=寫作中`. Write with her: what this means, and which old
    Slip box notes are the same idea. Link the topic's literature notes and those old notes with
    `Parent item`.
+   For an existing draft, reuse its `draft path` and `slug`; for a published article, set
+   `blog status=已發表` and use its frozen `slug` instead of creating another draft.
    If she wants to skip the note, still create it, empty, with `blog status=寫作中` and
    `note pending=true`.
 3. **Draft.** Agree a slug (kebab-case, at most 6 words). Grow the draft from the note into

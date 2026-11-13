@@ -34,7 +34,8 @@ uv run python -m daily run --dry-run --json      # also print the run summary (t
 
 Message sections, in order: batch status (`orca automations runs --json`, last 24 h, plus queue
 length; "did not run" line; ⚠ when the queue is over 100) → per topic: title, reason line
-`<signal> <score> · <n> sessions · <min> min`, `熱度 · 痛點` (only when market values exist),
+`<signal> <score> · <n> 來源筆記 · <min> min`, recommendation state, listing count and last-listed
+date, `熱度 · 痛點` (only when market values exist),
 primary reader question, `延續〈post〉`, `⚠ <privacy reason>`, topic line providers, then per
 session the lesson, PR/commit link and `claude --resume <id>` → other topics → global line
 providers → `寫作中` reminders over 14 days.

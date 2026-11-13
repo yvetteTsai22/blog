@@ -19,8 +19,14 @@ def topic_lines(i: int, topic: Topic) -> list[str]:
     best = topic.best
     out = [
         f"{i}. {best.title or topic.key}",
-        f"{SIGNAL_LABEL[topic.signal]} {topic.score:.2f} · {len(topic.notes)} sessions · {topic.active_minutes:.0f} min",
+        f"{SIGNAL_LABEL[topic.signal]} {topic.score:.2f} · {len(topic.notes)} 來源筆記 · {topic.active_minutes:.0f} min",
     ]
+    listed_count = max((n.listed_count for n in topic.notes), default=0)
+    last_listed_at = max((n.last_listed_at for n in topic.notes if n.last_listed_at), default=None)
+    state = f"推薦狀態 {best.pick_status} · 已列出 {listed_count} 次"
+    if last_listed_at:
+        state += f" · 上次 {last_listed_at.isoformat()}"
+    out.append(state)
     heat = next((n.market_heat for n in topic.notes if n.market_heat is not None), None)
     pain = next((n.market_pain for n in topic.notes if n.market_pain is not None), None)
     if heat is not None or pain is not None:
@@ -41,7 +47,7 @@ def session_lines(topic: Topic) -> list[str]:
     out = []
     for n in topic.notes:
         out.append(f"  • {n.lesson or n.title}")
-        out.append(f"    {n.link or 'no PR/commit link'}")
+        out.append(f"    {n.link or '來源筆記沒有 GitHub PR/commit 連結'}")
         out.append(f"    claude --resume {n.session_id}")
     return out
 
