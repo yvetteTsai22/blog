@@ -15,9 +15,13 @@ DRAFT_RE = re.compile(r"^_drafts/(.+)\.md$")
 SKILLS_DIR = Path("~/.claude/skills")
 # (step in session.md, skill name), in the order the session uses them. Add new skills here.
 SKILLS = (
+    ("1. pick", "content-preflight"),
     ("2. note", "interview"),
     ("2. note", "angle-finder"),
+    ("2. note", "trend-hook"),
     ("3. draft", "article-scaffold"),
+    ("3. draft", "story-424"),
+    ("3. draft", "title-lab"),
     ("3. draft", "article-writing"),
     ("4. before commit", "golden-line"),
     ("4. before commit", "ste80-humanizer"),
