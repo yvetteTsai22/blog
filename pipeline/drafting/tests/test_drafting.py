@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 import subprocess
 from pathlib import Path
 
@@ -56,7 +57,9 @@ def test_links_not_bodies_and_client_highlight(tmp_path):
 
 def test_tools_section(tmp_path):
     text = _render(tmp_path)
-    assert ".claude/CLAUDE.md" in text and "article-writing" in text
+    assert ".claude/CLAUDE.md" in text
+    for _, name in context.SKILLS:
+        assert f"): {name} (" in text, name
     assert text.count("- Voice sample: _posts/") == 2
 
 
@@ -171,6 +174,21 @@ def test_session_instructions_cover_pick_and_publish():
         assert needle in text, needle
     assert "+0800" not in text
     assert "git push" not in text.split("### Publish")[0]
+
+
+def test_session_and_context_list_same_skills_in_order():
+    text = INSTRUCTIONS.read_text(encoding="utf-8").split("### Publish")[0]
+    names = [name for _, name in context.SKILLS]
+    positions = [text.index(f"`{name}`") for name in names]
+    assert positions == sorted(positions)
+    mentioned = set(re.findall(r"`([a-z0-9-]+)` skill", text))
+    assert mentioned == set(names)
+
+
+def test_golden_line_before_humanizer_and_keep_markers_respected():
+    text = INSTRUCTIONS.read_text(encoding="utf-8")
+    assert text.index("`golden-line`") < text.index("`ste80-humanizer`") < text.index("git commit")
+    assert "<!-- gl:keep -->" in text and "must not change any sentence inside a keep marker" in text
 
 
 def test_articles_filter_covers_writing_and_pending():

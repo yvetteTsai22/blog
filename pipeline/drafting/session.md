@@ -20,14 +20,21 @@ state. If the match is ambiguous, ask before changing records.
    `Parent item`.
    For an existing draft, reuse its `draft path` and `slug`; for a published article, set
    `blog status=已發表` and use its frozen `slug` instead of creating another draft.
+   Run the `interview` skill to draw the idea out of her, one question at a time. Keep her
+   own words from the interview in the permanent note as material for the draft.
+   Then run the `angle-finder` skill to pick the angle (skip it when the angle is already clear).
    If she wants to skip the note, still create it, empty, with `blog status=寫作中` and
    `note pending=true`.
-3. **Draft.** Agree a slug (kebab-case, at most 6 words). Grow the draft from the note into
-   `_drafts/<slug>.md`, using the blog `CLAUDE.md`, the `article-writing` skill and the two
-   voice samples above. Front matter follows §5.3 (see the publish checklist below). Leave
+3. **Draft.** Agree a slug (kebab-case, at most 6 words). Run the `article-scaffold` skill
+   to build the opening, structure and ending. Then grow the draft from the note into
+   `_drafts/<slug>.md` with the `article-writing` skill, using the blog `CLAUDE.md` and the two
+   voice samples above. Use her own words from the note wherever they fit. Front matter follows §5.3 (see the publish checklist below). Leave
    the `date` key out of the draft entirely: an empty `date:` fails the whole Jekyll build.
    Images for the post go in `assets/img/<slug>/`.
-4. **Before leaving: one commit for this one article.** `_drafts/` is gitignored, so stage it
+4. **Polish before the commit.** Run the `golden-line` skill first: it marks the sentences
+   to keep with `<!-- gl:keep -->…<!-- /gl:keep -->`. Then run the `ste80-humanizer` skill.
+   The humanizer must not change any sentence inside a keep marker.
+5. **Before leaving: one commit for this one article.** `_drafts/` is gitignored, so stage it
    with force, and stage nothing else:
 
        git add -f _drafts/<slug>.md assets/img/<slug>

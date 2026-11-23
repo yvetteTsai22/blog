@@ -12,7 +12,16 @@ SCRUBBED = "[scrubbed]"
 VOICE_SAMPLES = 2
 POST_RE = re.compile(r"^(\d{4}-\d{2}-\d{2})-(.+)\.md$")
 DRAFT_RE = re.compile(r"^_drafts/(.+)\.md$")
-SKILL_PATH = Path("~/.claude/skills/article-writing/SKILL.md")
+SKILLS_DIR = Path("~/.claude/skills")
+# (step in session.md, skill name), in the order the session uses them. Add new skills here.
+SKILLS = (
+    ("2. note", "interview"),
+    ("2. note", "angle-finder"),
+    ("3. draft", "article-scaffold"),
+    ("3. draft", "article-writing"),
+    ("4. before commit", "golden-line"),
+    ("4. before commit", "ste80-humanizer"),
+)
 BLOG_CLAUDE_MD = ".claude/CLAUDE.md"
 
 
@@ -124,12 +133,12 @@ def section_links(notes: list[LitNote], scrub: bool = False) -> list[str]:
     return out + [f"- [{_s(n.topic, scrub)}] {_s(n.title, scrub)} — {_s(n.url, scrub)}" for n in notes]
 
 
-def section_tools(repo: Path, samples: list[str], skill: Path = SKILL_PATH) -> list[str]:
+def section_tools(repo: Path, samples: list[str], skills=SKILLS) -> list[str]:
     out = [
         "## 4. Writing tools (read these before drafting)",
         f"- Blog repo guide: {BLOG_CLAUDE_MD}",
-        f"- Skill: article-writing ({skill})",
     ]
+    out += [f"- Skill (step {step}): {name} ({SKILLS_DIR / name / 'SKILL.md'})" for step, name in skills]
     out += [f"- Voice sample: {s}" for s in samples] or ["- Voice sample: (no published posts found)"]
     return out
 
