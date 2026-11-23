@@ -14,6 +14,9 @@ state. If the match is ambiguous, ask before changing records.
 1. **Mark the pick.** Through Notion MCP, set `pick_status=挑中` on every literature note of
    that topic (all notes sharing its `topic_of`). Then run `git merge master` once in this
    worktree. If the merge conflicts, stop and tell her; do not resolve it yourself.
+   Then, before any writing, run the `content-preflight` skill: its three questions (reuse,
+   sameness, real goal) end in write, rework or drop. On rework, change the topic with her
+   before going on; on drop, stop and tell her, and change no more records.
 2. **Permanent note first.** Create one Slip box page: `note type=permanant note`,
    `status=Reviewed`, `blog status=寫作中`. Write with her: what this means, and which old
    Slip box notes are the same idea. Link the topic's literature notes and those old notes with
@@ -23,10 +26,14 @@ state. If the match is ambiguous, ask before changing records.
    Run the `interview` skill to draw the idea out of her, one question at a time. Keep her
    own words from the interview in the permanent note as material for the draft.
    Then run the `angle-finder` skill to pick the angle (skip it when the angle is already clear).
+   When the piece should ride something trending now, also run the `trend-hook` skill to hook
+   the topic onto a current trend; skip it otherwise.
    If she wants to skip the note, still create it, empty, with `blog status=寫作中` and
    `note pending=true`.
 3. **Draft.** Agree a slug (kebab-case, at most 6 words). Run the `article-scaffold` skill
-   to build the opening, structure and ending. Then grow the draft from the note into
+   to build the opening, structure and ending. When she has a story to tell inside the post,
+   run the `story-424` skill to turn that material into a story passage; skip it otherwise.
+   Then run the `title-lab` skill for 5+ candidate titles and let her pick one. Then grow the draft from the note into
    `_drafts/<slug>.md` with the `article-writing` skill, using the blog `CLAUDE.md` and the two
    voice samples above. Use her own words from the note wherever they fit. Front matter follows §5.3 (see the publish checklist below). Leave
    the `date` key out of the draft entirely: an empty `date:` fails the whole Jekyll build.
